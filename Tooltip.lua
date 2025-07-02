@@ -46,7 +46,4 @@ function Tooltip:Init()
     hooksecurefunc(ItemRefTooltip, "SetHyperlink", function(self)
         Tooltip:AddExpansionLine(self)
     end)
-    if addon.Highlight and addon.Highlight.Init then
-        addon.Highlight:Init()
-    end
 end

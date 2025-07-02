@@ -7,10 +7,13 @@
 ## SavedVariables: ItemEraConfig
 
 Utils.lua
+
 Locales\enUS.lua
 Locales\esES.lua
 Locales\frFR.lua
+
 Settings.lua
 Tooltip.lua
-Highlight.lua
+Filters.lua
+
 Core.lua

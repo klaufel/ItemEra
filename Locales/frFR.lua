@@ -1,6 +1,6 @@
 local addonName, addon = ...
 
--- Solo cargar las traducciones en francés si el cliente está en francés
+-- Solo cargar las traducciones en francés si le client est en français
 local function LoadFrenchLocale()
     local locale = GetLocale()
     if locale == "frFR" then
@@ -17,6 +17,7 @@ local function LoadFrenchLocale()
         L["COMMON.SAVE"] = "Sauvegarder"
         L["COMMON.CANCEL"] = "Annuler"
         L["COMMON.FILTER"] = "Filtrer"
+        L["COMMON.CLEAR_FILTER"] = "Effacer le Filtre"
 
         -- SETTINGS
         L["SETTINGS.TITLE"] = "Paramètres"

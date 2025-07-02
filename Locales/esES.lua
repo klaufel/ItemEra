@@ -16,6 +16,7 @@ local function LoadSpanishLocale()
         L["COMMON.SAVE"] = "Guardar"
         L["COMMON.CANCEL"] = "Cancelar"
         L["COMMON.FILTER"] = "Filtrar"
+        L["COMMON.CLEAR_FILTER"] = "Limpiar Filtro"
 
         -- SETTINGS
         L["SETTINGS.TITLE"] = "Ajustes"
