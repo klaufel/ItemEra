@@ -1,7 +1,13 @@
 local addonName, addon = ...
-local L = addon.L or _G.ItemEra_Locale or {}
 local Tooltip = {}
 addon.Tooltip = Tooltip
+
+-- Referencia al sistema de localización con fallback defensivo
+addon.L = addon.L or {}
+if not getmetatable(addon.L) then
+    setmetatable(addon.L, { __index = function(t, k) return k end })
+end
+local L = addon.L
 
 function Tooltip:AddExpansionLine(tooltip)
     if not addon.Config:GetShowExpansionTooltip() then return end
@@ -15,9 +21,9 @@ function Tooltip:AddExpansionLine(tooltip)
                 tooltip:AddLine(" ")
                 local icon = "Interface/AddOns/ItemEra/Icons/Exp_Logo_" .. expansionID .. ".png"
                 local iconMarkup = ("|T%s:16:16:0:0:64:64:4:60:4:60|t"):format(icon)
-                tooltip:AddLine(("%s |cff%02x%02x%02x%s|r"):format(iconMarkup, r * 255, g * 255, b * 255,
-                    addon.expansionNames[expansionID]))
-                tooltip:AddLine(L["Expansion:"] .. " " .. addon.expansionNames[expansionID])
+                tooltip:AddLine(L["TOOLTIP.ORIGIN"] .. "  " ..
+                    ("%s |cff%02x%02x%02x%s|r"):format(iconMarkup, r * 255, g * 255, b * 255,
+                        addon.expansionNames[expansionID]))
                 tooltip:Show()
             end
         end

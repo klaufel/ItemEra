@@ -1,11 +1,6 @@
 local addonName, addon = ...
 _G[addonName] = addon
 
-local L = L or {} -- La tabla L global ya está definida por los archivos de idioma
-addon.L = L
-
-print(L)
-
 -- Inicialización de variables globales y datos
 ItemEraConfig = ItemEraConfig or {}
 
@@ -47,7 +42,11 @@ function addon:Init()
     if self.Config and self.Config.Init then self.Config:Init() end
     if self.Tooltip and self.Tooltip.Init then self.Tooltip:Init() end
 
-    print("ItemEra addon loaded successfully!")
+    -- Debug: mostrar información del idioma
+    local locale = GetLocale and GetLocale() or "unknown"
+    print("ItemEra Debug: Client locale is " .. locale)
+
+    print(addon.L["COMMON.ADDON_LOADED"])
 end
 
 addon:Init()

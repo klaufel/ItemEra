@@ -6,9 +6,10 @@
 ## Version: 1.0.0
 ## SavedVariables: ItemEraConfig
 
-Locales/esES.lua
-
 Utils.lua
+Locales\enUS.lua
+Locales\esES.lua
+Locales\frFR.lua
 Settings.lua
 Tooltip.lua
 Highlight.lua

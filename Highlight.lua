@@ -1,7 +1,13 @@
 local addonName, addon = ...
-local L = addon.L or _G.ItemEra_Locale or {} -- Carga la tabla de localización
 local Highlight = {}
 addon.Highlight = Highlight
+
+-- Referencia al sistema de localización con fallback defensivo
+addon.L = addon.L or {}
+if not getmetatable(addon.L) then
+    setmetatable(addon.L, { __index = function(t, k) return k end })
+end
+local L = addon.L
 
 -- Menú de selección de expansión (con selección persistente y visual)
 local function ShowExpansionDropdown(anchor, callback)
@@ -37,6 +43,7 @@ end
 -- Botón para filtrar objetos de una expansión en la mochila
 function Highlight:CreateBagHighlightButton()
     if Highlight.BagButton then return end
+
     local parent = ContainerFrame1
     local cleanButton = _G["ContainerFrame1CleanUpButton"]
     local button = CreateFrame("Button", "ItemEraBagHighlightButton", parent, "UIPanelButtonTemplate")
@@ -48,15 +55,9 @@ function Highlight:CreateBagHighlightButton()
     end
     button:SetText(L["COMMON.FILTER"])
     button:SetScript("OnClick", function(self)
-        -- Solo mostrar el menú si la opción está activada
-        if ItemEraConfig.showExpansionFilter then
-            ShowExpansionDropdown(self, function(expID)
-                Highlight:HighlightBagsByExpansion(expID)
-            end)
-        else
-            UIErrorsFrame:AddMessage(
-                L["SETTINGS.EXPANSION_FILTER.ERROR_DISABLED"], 1, 0.2, 0.2)
-        end
+        ShowExpansionDropdown(self, function(expID)
+            Highlight:HighlightBagsByExpansion(expID)
+        end)
     end)
     button.tooltip = L["FILTER.FILTER_ITEMS_BY_EXPANSION"]
     button:SetScript("OnEnter", function(self)
@@ -71,21 +72,17 @@ end
 function Highlight:CreateBankHighlightButton()
     if Highlight.BankButton then return end
     if not BankFrame then return end
+
     -- Busca el botón de limpiar del banco (Clean Up Bank Bags)
     local button = CreateFrame("Button", "ItemEraBankHighlightButton", BankFrame, "UIPanelButtonTemplate")
     button:SetSize(80, 26)
     button:SetPoint("TOPLEFT", BankFrame, "TOPLEFT", 80, -26)
-    button:SetText(L["Filter"] or "Filtrar")
+    button:SetText(L["COMMON.FILTER"])
 
     button:SetScript("OnClick", function(self)
-        if ItemEraConfig.showExpansionFilter then
-            ShowExpansionDropdown(self, function(expID)
-                Highlight:HighlightBankByExpansion(expID)
-            end)
-        else
-            UIErrorsFrame:AddMessage(
-                L["SETTINGS.EXPANSION_FILTER.ERROR_DISABLED"], 1, 0.2, 0.2)
-        end
+        ShowExpansionDropdown(self, function(expID)
+            Highlight:HighlightBankByExpansion(expID)
+        end)
     end)
     button.tooltip = L["FILTER.FILTER_ITEMS_BY_EXPANSION"]
     button:SetScript("OnEnter", function(self)
@@ -100,18 +97,15 @@ end
 function Highlight:CreateReagentBankHighlightButton()
     if Highlight.ReagentBankButton then return end
     if not ReagentBankFrame or not ReagentBankFrame:IsShown() then return end
+
     local button = CreateFrame("Button", "ItemEraReagentBankHighlightButton", ReagentBankFrame, "UIPanelButtonTemplate")
     button:SetSize(60, 24)
     button:SetPoint("TOPRIGHT", ReagentBankFrame, "TOPRIGHT", -30, -8)
-    button:SetText(L["Filter"] or "Filtrar")
+    button:SetText(L["COMMON.FILTER"])
     button:SetScript("OnClick", function(self)
-        if ItemEraConfig.showExpansionFilter then
-            ShowExpansionDropdown(self, function(expID)
-                Highlight:HighlightReagentBankByExpansion(expID)
-            end)
-        else
-            UIErrorsFrame:AddMessage(L["SETTINGS.EXPANSION_FILTER.ERROR_DISABLED"], 1, 0.2, 0.2)
-        end
+        ShowExpansionDropdown(self, function(expID)
+            Highlight:HighlightReagentBankByExpansion(expID)
+        end)
     end)
     button.tooltip = L["FILTER.FILTER_ITEMS_BY_EXPANSION"]
     button:SetScript("OnEnter", function(self)
@@ -126,6 +120,7 @@ end
 function Highlight:CreateGuildBankHighlightButton()
     if Highlight.GuildBankButton then return end
     if not GuildBankFrame then return end
+
     -- Busca el botón de limpiar del banco de hermandad (GuildBankFrameCleanupButton)
     local cleanButton = _G["GuildBankFrameCleanupButton"]
     local button = CreateFrame("Button", "ItemEraGuildBankHighlightButton", GuildBankFrame, "UIPanelButtonTemplate")
@@ -135,20 +130,17 @@ function Highlight:CreateGuildBankHighlightButton()
     else
         button:SetPoint("TOPLEFT", GuildBankFrame, "TOPLEFT", 40, -8)
     end
-    button:SetText(L["Filter"] or "Filtrar")
+    button:SetText(L["COMMON.FILTER"])
     button:SetScript("OnClick", function(self)
-        if ItemEraConfig.showExpansionFilter then
-            ShowExpansionDropdown(self, function(expID)
-                Highlight:HighlightGuildBankByExpansion(expID)
-            end)
-        else
-            UIErrorsFrame:AddMessage(L["SETTINGS.EXPANSION_FILTER.ERROR_DISABLED"], 1, 0.2, 0.2)
-        end
+        ShowExpansionDropdown(self, function(expID)
+            Highlight:HighlightGuildBankByExpansion(expID)
+        end)
     end)
     button.tooltip = L["FILTER.FILTER_GUILD_BANK_ITEMS_BY_EXPANSION"]
     button:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText(L["FILTER.FILTER_GUILD_BANK_ITEMS_BY_EXPANSION"] .. "\n" .. L["FILTER.CLICK_CHOOSE_EXPANSION"])
+        GameTooltip:SetText(L["FILTER.FILTER_GUILD_BANK_ITEMS_BY_EXPANSION"] ..
+            "\n" .. L["FILTER.CLICK_CHOOSE_EXPANSION"])
         GameTooltip:Show()
     end)
     button:SetScript("OnLeave", function() GameTooltip:Hide() end)
@@ -157,7 +149,6 @@ end
 
 -- Oscurece los objetos que no coinciden con la expansión seleccionada en las bolsas
 function Highlight:HighlightBagsByExpansion(expansionID)
-    if not ItemEraConfig.showExpansionFilter then return end
     local getLink = C_Container and C_Container.GetContainerItemLink or GetContainerItemLink
     for bag = 0, NUM_BAG_SLOTS do
         local numSlots = C_Container and C_Container.GetContainerNumSlots and C_Container.GetContainerNumSlots(bag) or
@@ -196,7 +187,6 @@ end
 
 -- Oscurece los objetos que no coinciden con la expansión seleccionada en el banco
 function Highlight:HighlightBankByExpansion(expansionID)
-    if not ItemEraConfig.showExpansionFilter then return end
     for slot = 1, NUM_BANKGENERIC_SLOTS do
         local itemLink
         if C_Container and C_Container.GetContainerItemLink then
@@ -235,7 +225,6 @@ end
 
 -- Oscurece los objetos que no coinciden con la expansión seleccionada en el banco de componentes
 function Highlight:HighlightReagentBankByExpansion(expansionID)
-    if not ItemEraConfig.showExpansionFilter then return end
     for slot = 1, 98 do
         local itemLink
         if C_Container and C_Container.GetContainerItemLink then
@@ -273,7 +262,6 @@ function Highlight:HighlightReagentBankByExpansion(expansionID)
 end
 
 function Highlight:HighlightGuildBankByExpansion(expansionID)
-    if not ItemEraConfig.showExpansionFilter then return end
     -- El banco de hermandad tiene 7 columnas y 14 filas por pestaña
     for col = 1, 7 do
         for row = 1, 14 do
@@ -416,6 +404,19 @@ hooksecurefunc(Highlight, "HighlightReagentBankByExpansion", function(self, expI
         end
     end
 end)
+
+hooksecurefunc(Highlight, "HighlightGuildBankByExpansion", function(self, expID)
+    -- Forzar refresco visual del banco de hermandad
+    if GuildBankFrame and GuildBankFrame:IsShown() then
+        for col = 1, 7 do
+            for row = 1, 14 do
+                local button = _G["GuildBankColumn" .. col .. "Button" .. row]
+                if button and button.Update then button:Update() end
+            end
+        end
+    end
+end)
+
 
 hooksecurefunc(Highlight, "HighlightGuildBankByExpansion", function(self, expID)
     -- Forzar refresco visual del banco de hermandad
