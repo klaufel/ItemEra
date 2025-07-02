@@ -1,23 +1,25 @@
 L = {}
 
-L["common.expansion"] = "Expansión:"
-L["common.addon_loaded"] = "ItemEra cargado"
-L["common.save"] = "Guardar"
-L["common.cancel"] = "Cancelar"
-L["common.filter"] = "Filtrar"
+-- COMMON
+L["COMMON.ADDON_LOADED"] = "[ItemEra]: Addon cargado"
+L["COMMON.SAVE"] = "Guardar"
+L["COMMON.CANCEL"] = "Cancelar"
+L["COMMON.FILTER"] = "Filtrar"
 
-L["settings"] = "Ajustes"
-L["settings.enable_expansion_tooltip"] = "Activar información de expansión"
-L["Show expansion info in item tooltips"] = "Mostrar información de expansión en los tooltips de objetos"
+-- SETTINGS
+L["SETTINGS.TITLE"] = "Ajustes"
+L["SETTINGS.RESET_TO_DEFAULT"] = "Restablecer por defecto"
+-- SETTINGS.EXPANSION_TOOLTIP
+L["SETTINGS.EXPANSION_TOOLTIP.ENABLE"] = "Activar información de expansión"
+L["SETTINGS.EXPANSION_TOOLTIP.TITLE"] = "Mostrar expansión en el tooltip de objetos"
+L["SETTINGS.EXPANSION_TOOLTIP.TOOLTIP"] = "Mostrar la expansión de origen en el tooltip del objeto."
+-- SETTINGS.EXPANSION_FILTER
+L["SETTINGS.EXPANSION_FILTER.ERROR_DISABLED"] = "La opción 'Filtrar por expansión' está desactivada en las opciones."
 
-L["Reset to Default"] = "Restablecer por defecto"
-
-L["Expansion filter option is disabled in settings."] =
-"La opción 'Filtrar por expansión' está desactivada en las opciones."
-L["Filter items by expansion"] = "Filtrar objetos por expansión"
-L["Click to choose expansion"] = "Haz clic para elegir expansión"
-L["Filter guild bank items by expansion"] = "Filtrar objetos por expansión (banco de hermandad)"
-L["Show expansion tooltip on items"] = "Mostrar expansión en el tooltip de objetos"
-L["Show the expansion source in the item tooltip."] = "Mostrar la expansión de origen en el tooltip del objeto."
-L["Show expansion filter"] = "Mostrar filtro de expansión"
-L["Enable expansion filter in the UI (future feature)."] = "Activar filtro de expansión en la interfaz (futuro)."
+-- UI
+-- TOOLTIP
+L["TOOLTIP.EXPANSION"] = "Expansión:"
+-- FILTER
+L["FILTER.FILTER_ITEMS_BY_EXPANSION"] = "Filtrar objetos por expansión"
+L["FILTER.FILTER_GUILD_BANK_ITEMS_BY_EXPANSION"] = "Filtrar objetos por expansión (banco de hermandad)"
+L["FILTER.CLICK_CHOOSE_EXPANSION"] = "Haz clic para elegir expansión"

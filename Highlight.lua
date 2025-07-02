@@ -46,7 +46,7 @@ function Highlight:CreateBagHighlightButton()
     else
         button:SetPoint("TOPLEFT", parent, "TOPLEFT", 40, -8)
     end
-    button:SetText(L["Filter"] or "Filtrar")
+    button:SetText(L["COMMON.FILTER"])
     button:SetScript("OnClick", function(self)
         -- Solo mostrar el menú si la opción está activada
         if ItemEraConfig.showExpansionFilter then
@@ -55,14 +55,13 @@ function Highlight:CreateBagHighlightButton()
             end)
         else
             UIErrorsFrame:AddMessage(
-            L["Expansion filter option is disabled in settings."] or
-            "La opción 'Filtrar por expansión' está desactivada en las opciones.", 1, 0.2, 0.2)
+                L["SETTINGS.EXPANSION_FILTER.ERROR_DISABLED"], 1, 0.2, 0.2)
         end
     end)
-    button.tooltip = L["Filter items by expansion"] or "Filtrar objetos por expansión"
+    button.tooltip = L["FILTER.FILTER_ITEMS_BY_EXPANSION"]
     button:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText(L["Filter items by expansion"] .. "\n" .. L["Click to choose expansion"])
+        GameTooltip:SetText(L["FILTER.FILTER_ITEMS_BY_EXPANSION"] .. "\n" .. L["FILTER.CLICK_CHOOSE_EXPANSION"])
         GameTooltip:Show()
     end)
     button:SetScript("OnLeave", function() GameTooltip:Hide() end)
@@ -85,14 +84,13 @@ function Highlight:CreateBankHighlightButton()
             end)
         else
             UIErrorsFrame:AddMessage(
-            L["Expansion filter option is disabled in settings."] or
-            "La opción 'Filtrar por expansión' está desactivada en las opciones.", 1, 0.2, 0.2)
+                L["SETTINGS.EXPANSION_FILTER.ERROR_DISABLED"], 1, 0.2, 0.2)
         end
     end)
-    button.tooltip = L["Filter items by expansion"] or "Filtrar objetos por expansión"
+    button.tooltip = L["FILTER.FILTER_ITEMS_BY_EXPANSION"]
     button:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText(L["Filter items by expansion"] .. "\n" .. L["Click to choose expansion"])
+        GameTooltip:SetText(L["FILTER.FILTER_ITEMS_BY_EXPANSION"] .. "\n" .. L["FILTER.CLICK_CHOOSE_EXPANSION"])
         GameTooltip:Show()
     end)
     button:SetScript("OnLeave", function() GameTooltip:Hide() end)
@@ -112,15 +110,13 @@ function Highlight:CreateReagentBankHighlightButton()
                 Highlight:HighlightReagentBankByExpansion(expID)
             end)
         else
-            UIErrorsFrame:AddMessage(
-            L["Expansion filter option is disabled in settings."] or
-            "La opción 'Filtrar por expansión' está desactivada en las opciones.", 1, 0.2, 0.2)
+            UIErrorsFrame:AddMessage(L["SETTINGS.EXPANSION_FILTER.ERROR_DISABLED"], 1, 0.2, 0.2)
         end
     end)
-    button.tooltip = L["Filter items by expansion"] or "Filtrar objetos por expansión"
+    button.tooltip = L["FILTER.FILTER_ITEMS_BY_EXPANSION"]
     button:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText(L["Filter items by expansion"] .. "\n" .. L["Click to choose expansion"])
+        GameTooltip:SetText(L["FILTER.FILTER_ITEMS_BY_EXPANSION"] .. "\n" .. L["FILTER.CLICK_CHOOSE_EXPANSION"])
         GameTooltip:Show()
     end)
     button:SetScript("OnLeave", function() GameTooltip:Hide() end)
@@ -146,15 +142,13 @@ function Highlight:CreateGuildBankHighlightButton()
                 Highlight:HighlightGuildBankByExpansion(expID)
             end)
         else
-            UIErrorsFrame:AddMessage(
-            L["Expansion filter option is disabled in settings."] or
-            "La opción 'Filtrar por expansión' está desactivada en las opciones.", 1, 0.2, 0.2)
+            UIErrorsFrame:AddMessage(L["SETTINGS.EXPANSION_FILTER.ERROR_DISABLED"], 1, 0.2, 0.2)
         end
     end)
-    button.tooltip = L["Filter guild bank items by expansion"] or "Filtrar objetos por expansión (banco de hermandad)"
+    button.tooltip = L["FILTER.FILTER_GUILD_BANK_ITEMS_BY_EXPANSION"]
     button:SetScript("OnEnter", function(self)
         GameTooltip:SetOwner(self, "ANCHOR_RIGHT")
-        GameTooltip:SetText(L["Filter guild bank items by expansion"] .. "\n" .. L["Click to choose expansion"])
+        GameTooltip:SetText(L["FILTER.FILTER_GUILD_BANK_ITEMS_BY_EXPANSION"] .. "\n" .. L["FILTER.CLICK_CHOOSE_EXPANSION"])
         GameTooltip:Show()
     end)
     button:SetScript("OnLeave", function() GameTooltip:Hide() end)

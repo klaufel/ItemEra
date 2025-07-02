@@ -4,6 +4,8 @@ _G[addonName] = addon
 local L = L or {} -- La tabla L global ya está definida por los archivos de idioma
 addon.L = L
 
+print(L)
+
 -- Inicialización de variables globales y datos
 ItemEraConfig = ItemEraConfig or {}
 
