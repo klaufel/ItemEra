@@ -1,0 +1,13 @@
+## Interface: 110100
+## Name: ItemEra
+## Title: ItemEra
+## Notes: 
+## Author: Juan Carlos Ruiz
+## Version: 1.0.0
+## SavedVariables: ItemEraConfig
+
+Utils.lua
+Settings.lua
+Tooltip.lua
+Highlight.lua
+Core.lua
