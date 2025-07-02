@@ -13,7 +13,7 @@ function Tooltip:AddExpansionLine(tooltip)
             if expansionID and addon.expansionColors[expansionID] and addon.expansionNames[expansionID] then
                 local r, g, b = unpack(addon.expansionColors[expansionID])
                 tooltip:AddLine(" ")
-                local icon = "Interface/AddOns/ItemEra/icons/Exp_Logo_" .. expansionID .. ".png"
+                local icon = "Interface/AddOns/ItemEra/Icons/Exp_Logo_" .. expansionID .. ".png"
                 local iconMarkup = ("|T%s:16:16:0:0:64:64:4:60:4:60|t"):format(icon)
                 tooltip:AddLine(("%s |cff%02x%02x%02x%s|r"):format(iconMarkup, r * 255, g * 255, b * 255,
                     addon.expansionNames[expansionID]))
