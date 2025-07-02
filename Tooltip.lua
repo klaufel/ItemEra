@@ -2,7 +2,6 @@ local addonName, addon = ...
 local Tooltip = {}
 addon.Tooltip = Tooltip
 
--- Referencia al sistema de localización con fallback defensivo
 addon.L = addon.L or {}
 if not getmetatable(addon.L) then
     setmetatable(addon.L, { __index = function(t, k) return k end })
