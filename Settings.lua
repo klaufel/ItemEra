@@ -1,6 +1,7 @@
 -- Configuración moderna de ItemEra para WoW 11.0.2+
 
 local addonName, addon = ...
+local L = addon.L or _G.ItemEra_Locale or {}
 local Config = {}
 addon.Config = Config
 
@@ -27,7 +28,7 @@ local function OnSettingChanged(setting, value)
     print("ItemEra: `showExpansionTooltip` key changed:", value)
 end
 
-local name = "Show expansion tooltip on items"
+local name = L["Show expansion tooltip on items"] or "Show expansion tooltip on items"
 local variable = "showExpansionTooltip"
 local variableKey = "showExpansionTooltip"
 local variableTbl = ItemEraConfig
@@ -44,15 +45,16 @@ local setting = Settings.RegisterAddOnSetting(
 )
 setting:SetValueChangedCallback(OnSettingChanged)
 
-local tooltip = "Show the expansion source in the item tooltip."
+local tooltip = L["Show the expansion source in the item tooltip."] or "Show the expansion source in the item tooltip."
 Settings.CreateCheckbox(category, setting, tooltip)
 
 -- Configuración para el filtro de expansión (futuro)
-local filterName = "Show expansion filter"
+local filterName = L["Show expansion filter"] or "Show expansion filter"
 local filterVariable = "showExpansionFilter"
 local filterVariableKey = "showExpansionFilter"
 local filterDefaultValue = true
-local filterTooltip = "Enable expansion filter in the UI (future feature)."
+local filterTooltip = L["Enable expansion filter in the UI (future feature)."] or
+"Enable expansion filter in the UI (future feature)."
 
 local filterSetting = Settings.RegisterAddOnSetting(
     category,

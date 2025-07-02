@@ -1,4 +1,5 @@
 local addonName, addon = ...
+local L = addon.L or _G.ItemEra_Locale or {}
 local Tooltip = {}
 addon.Tooltip = Tooltip
 
@@ -16,6 +17,7 @@ function Tooltip:AddExpansionLine(tooltip)
                 local iconMarkup = ("|T%s:16:16:0:0:64:64:4:60:4:60|t"):format(icon)
                 tooltip:AddLine(("%s |cff%02x%02x%02x%s|r"):format(iconMarkup, r * 255, g * 255, b * 255,
                     addon.expansionNames[expansionID]))
+                tooltip:AddLine(L["Expansion:"] .. " " .. addon.expansionNames[expansionID])
                 tooltip:Show()
             end
         end
