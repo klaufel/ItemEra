@@ -12,6 +12,8 @@ L["COMMON.ADDON_LOADED"] = "[ItemEra]: Addon loaded"
 L["COMMON.SAVE"] = "Save"
 L["COMMON.CANCEL"] = "Cancel"
 L["COMMON.FILTER"] = "Filter"
+L["COMMON.SELECT_EXPANSION"] = "Select expansion"
+L["COMMON.ALL_EXPANSION"] = "All expansions"
 L["COMMON.CLEAR_FILTER"] = "Clear Filter"
 
 -- SETTINGS

@@ -8,8 +8,8 @@ SlashCmdList["ITEMERA"] = function(msg)
     local command = string.lower(msg or "")
 
     if command == "debug" then
-        ItemEraConfig.debug = not ItemEraConfig.debug
-        local status = ItemEraConfig.debug and "enabled" or "disabled"
+        ItemEraSaved.debug = not ItemEraSaved.debug
+        local status = ItemEraSaved.debug and "enabled" or "disabled"
         print("ItemEra Debug: Debug mode " .. status)
     elseif command == "reload" or command == "refresh" then
         print("ItemEra: Reloading filters...")

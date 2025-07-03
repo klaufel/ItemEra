@@ -3,18 +3,18 @@
 ## Title: ItemEra
 ## Notes: 
 ## Author: Juan Carlos Ruiz
-## Version: 1.0.0
-## SavedVariables: ItemEraConfig
+## Version: 1.0.0-beta.1
+## SavedVariables: ItemEraSaved
+## LoadOnDemand: 0
 
 Utils.lua
 
 Locales\enUS.lua
 Locales\esES.lua
-Locales\frFR.lua
 
 Settings.lua
 Tooltip.lua
-Filters.lua
+BankFilter.lua
 
 Core.lua
 CLI.lua

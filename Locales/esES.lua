@@ -16,6 +16,8 @@ local function LoadSpanishLocale()
         L["COMMON.SAVE"] = "Guardar"
         L["COMMON.CANCEL"] = "Cancelar"
         L["COMMON.FILTER"] = "Filtrar"
+        L["COMMON.SELECT_EXPANSION"] = "Seleccionar expansión"
+        L["COMMON.ALL_EXPANSION"] = "Todas las expansiones"
         L["COMMON.CLEAR_FILTER"] = "Limpiar Filtro"
 
         -- SETTINGS

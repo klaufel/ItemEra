@@ -42,3 +42,16 @@ addon.expansionNames = {
     [9] = "Dragonflight",
     [10] = "War Within",
 }
+
+
+function GetExpansionsInOrder()
+    local ordered = {}
+    for id = 0, 10 do
+        if addon.expansionNames[id] then
+            table.insert(ordered, { id = id, name = addon.expansionNames[id] })
+        end
+    end
+    return ordered
+end
+
+addon.GetExpansionsInOrder = GetExpansionsInOrder

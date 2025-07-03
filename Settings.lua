@@ -9,17 +9,17 @@ if not getmetatable(addon.L) then
 end
 local L = addon.L
 
-function Config:GetShowExpansionTooltip()
+function Config:GetSetting(setting)
     if Settings and Settings.GetValue then
-        local ok, value = pcall(Settings.GetValue, "ItemEra_showExpansionTooltip")
+        local ok, value = pcall(Settings.GetValue, "ItemEra_" .. setting)
         if ok and type(value) == "boolean" then
             return value
         end
     end
-    return ItemEraConfig and ItemEraConfig.showExpansionTooltip ~= false
+    return ItemEraSaved and ItemEraSaved[setting] ~= false
 end
 
-ItemEraConfig = ItemEraConfig or {}
+ItemEraSaved = ItemEraSaved or {}
 
 local category = Settings.RegisterVerticalLayoutCategory("ItemEra")
 
@@ -34,7 +34,7 @@ local showExpansionTooltip = Settings.RegisterAddOnSetting(
     category,
     "ItemEra_" .. "showExpansionTooltip",
     "showExpansionTooltip",
-    ItemEraConfig,
+    ItemEraSaved,
     type(true),
     L["SETTINGS.EXPANSION_TOOLTIP.TITLE"],
     true
@@ -48,7 +48,7 @@ local showExpansionFilter = Settings.RegisterAddOnSetting(
     category,
     "ItemEra_" .. "showExpansionFilter",
     "showExpansionFilter",
-    ItemEraConfig,
+    ItemEraSaved,
     type(true),
     L["SETTINGS.EXPANSION_FILTER.TITLE"],
     true
