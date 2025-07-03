@@ -2,10 +2,31 @@
 ## Name: ItemEra
 ## Title: ItemEra
 ## Notes: 
-## Author: Juan Carlos Ruiz
+## Author: Klaufel
 ## Version: 1.0.0-beta.2
 ## SavedVariables: ItemEraSaved
+## IconTexture: Interface\AddOns\ItemEra\Media\Addon\Logo.tga
+
+## X-Website: https://www.curseforge.com/wow/addons/itemera
+## X-Curse-Project-ID: 1298090
+## DefaultState: Enabled
 ## LoadOnDemand: 0
+
+## Category-enUS: Inventory
+## Category-deDE: Inventar
+## Category-esES: Inventario
+## Category-esMX: Inventario
+## Category-frFR: Inventaire
+## Category-itIT: Inventario
+## Category-koKR: 소지품
+## Category-ptBR: Inventário
+## Category-ruRU: Предметы
+## Category-zhCN: 物品栏
+## Category-zhTW: 物品欄
+
+## Notes: A powerful, comprehensive utility for displaying graphics and information based on buffs, debuffs, and other triggers.
+## Notes-esES: Potente y completa aplicación que te permitirá mostrar por pantalla múltiples diseños, basados en beneficios, perjuicios y otros activadores.
+## Notes-esMX: Potente y completa aplicación que te permitirá mostrar por pantalla múltiples diseños, basados en beneficios, perjuicios y otros activadores.
 
 Utils.lua
 

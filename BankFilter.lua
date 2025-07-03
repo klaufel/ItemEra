@@ -35,7 +35,7 @@ local function CreateBankExpansionDropdown(parent)
         -- Expansiones con iconos
         for _, expansion in ipairs(addon.GetExpansionsInOrder()) do
             local id, name = expansion.id, expansion.name
-            local icon = "Interface/AddOns/ItemEra/Media/Icons/Exp_Logo_" .. id .. ".png"
+            local icon = "Interface/AddOns/ItemEra/Media/Icons/Exp_Logo_" .. id .. ".tga"
             local iconMarkup = ("|T%s:16:16:0:0:64:64:4:60:4:60|t"):format(icon)
 
             table.insert(items, {

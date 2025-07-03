@@ -35,6 +35,8 @@ SlashCmdList["ITEMERA"] = function(msg)
         else
             print("ItemEra: Debug function not available")
         end
+    elseif command == "lang" then
+        print("ItemEra: Current locale: " .. GetLocale())
     elseif command == "debugreagent" then
         if addon.Filters and addon.Filters.DebugContainerFilter then
             addon.Filters:DebugContainerFilter("reagentBank")
