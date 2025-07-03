@@ -8,8 +8,7 @@ if not getmetatable(addon.L) then
 end
 local L = addon.L
 
-function Tooltip:AddExpansionLine(tooltip)
-    if not addon.Config:GetShowExpansionTooltip() then return end
+function Tooltip:AddExpansionTooltipLine(tooltip)
     local _, itemLink = tooltip:GetItem()
     if itemLink then
         local itemID = tonumber(itemLink:match("item:(%d+)"))
@@ -31,18 +30,18 @@ end
 
 function Tooltip:Init()
     hooksecurefunc(GameTooltip, "SetBagItem", function(self)
-        Tooltip:AddExpansionLine(self)
+        Tooltip:AddExpansionTooltipLine(self)
     end)
     hooksecurefunc(GameTooltip, "SetInventoryItem", function(self)
-        Tooltip:AddExpansionLine(self)
+        Tooltip:AddExpansionTooltipLine(self)
     end)
     hooksecurefunc(GameTooltip, "SetHyperlink", function(self)
-        Tooltip:AddExpansionLine(self)
+        Tooltip:AddExpansionTooltipLine(self)
     end)
     hooksecurefunc(GameTooltip, "SetMerchantItem", function(self)
-        Tooltip:AddExpansionLine(self)
+        Tooltip:AddExpansionTooltipLine(self)
     end)
     hooksecurefunc(ItemRefTooltip, "SetHyperlink", function(self)
-        Tooltip:AddExpansionLine(self)
+        Tooltip:AddExpansionTooltipLine(self)
     end)
 end
