@@ -24,7 +24,9 @@ ItemEraSaved = ItemEraSaved or {}
 local category = Settings.RegisterVerticalLayoutCategory("ItemEra")
 
 local function OnSettingChanged(setting, value)
-    print("ItemEra:", setting, "key changed:", value)
+    if ItemEraSaved.debug then
+        print("ItemEra:", setting, "key changed:", value)
+    end
 end
 
 -- Add settings

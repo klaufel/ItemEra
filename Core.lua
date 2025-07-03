@@ -17,9 +17,11 @@ function addon:Init()
 
     -- Debug: mostrar información del idioma
     local locale = GetLocale and GetLocale() or "unknown"
-    print("ItemEra Debug: Client locale is " .. locale)
 
-    print(addon.L["COMMON.ADDON_LOADED"])
+    if ItemEraSaved.debug then
+        print("ItemEra Debug: Client locale is " .. locale)
+        print(addon.L["COMMON.ADDON_LOADED"])
+    end
 end
 
 addon:Init()

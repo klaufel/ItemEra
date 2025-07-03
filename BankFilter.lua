@@ -8,53 +8,73 @@ if not getmetatable(addon.L) then
 end
 local L = addon.L
 
--- Dropdown selector para filtrar por expansión en el banco
+-- Dropdown selector para filtrar por expansión en el banco usando el nuevo sistema Menu
 local function CreateBankExpansionDropdown(parent)
-    local dropdown = CreateFrame("Frame", "ItemEraBankFilterDropdown", parent, "UIDropDownMenuTemplate")
-    UIDropDownMenu_SetWidth(dropdown, 136)
-    UIDropDownMenu_SetText(dropdown, L["COMMON.SELECT_EXPANSION"])
-    UIDropDownMenu_JustifyText(dropdown, "LEFT")
+    local button = CreateFrame("DropdownButton", "ItemEraBankFilterButton", parent, "WowStyle1DropdownTemplate")
+    button:SetSize(140, 24)
+    button:SetText(L["COMMON.SELECT_EXPANSION"])
 
-    local function initialize(self, level)
+    -- Crear el menú usando el nuevo sistema
+    local function CreateMenuItems()
+        local items = {}
+
         -- Opción para limpiar filtro
-        local info = UIDropDownMenu_CreateInfo()
-        info.text = L["COMMON.ALL_EXPANSION"]
-        info.value = nil
-        info.func = function()
-            ItemEraSaved.bankExpansionFilter = nil
-            UIDropDownMenu_SetText(dropdown, L["COMMON.ALL_EXPANSION"])
-            BankFilter:ClearBankHighlight()
-        end
-        info.checked = (ItemEraSaved.bankExpansionFilter == nil)
-        UIDropDownMenu_AddButton(info, level)
+        table.insert(items, {
+            text = L["COMMON.ALL_EXPANSION"],
+            func = function()
+                ItemEraSaved.bankExpansionFilter = nil
+                button:SetText(L["COMMON.ALL_EXPANSION"])
+                BankFilter:ClearBankHighlight()
+            end,
+            checked = (ItemEraSaved.bankExpansionFilter == nil)
+        })
 
         -- Separador
-        local sepInfo = UIDropDownMenu_CreateInfo()
-        sepInfo.text = ""
-        sepInfo.isTitle = true
-        sepInfo.notCheckable = true
-        UIDropDownMenu_AddButton(sepInfo, level)
+        table.insert(items, { isSeparator = true })
 
-        -- Expansiones con iconos en orden
+        -- Expansiones con iconos
         for _, expansion in ipairs(addon.GetExpansionsInOrder()) do
             local id, name = expansion.id, expansion.name
-            local expInfo = UIDropDownMenu_CreateInfo()
             local icon = "Interface/AddOns/ItemEra/Media/Icons/Exp_Logo_" .. id .. ".png"
             local iconMarkup = ("|T%s:16:16:0:0:64:64:4:60:4:60|t"):format(icon)
-            expInfo.text = iconMarkup .. " " .. name
-            expInfo.value = id
-            expInfo.func = function()
-                ItemEraSaved.bankExpansionFilter = id
-                UIDropDownMenu_SetText(dropdown, iconMarkup .. " " .. name)
-                BankFilter:HighlightBankByExpansion(id)
-            end
-            expInfo.checked = (ItemEraSaved.bankExpansionFilter == id)
-            UIDropDownMenu_AddButton(expInfo, level)
+
+            table.insert(items, {
+                text = iconMarkup .. " " .. name,
+                func = function()
+                    ItemEraSaved.bankExpansionFilter = id
+                    button:SetText(iconMarkup .. " " .. name)
+                    BankFilter:HighlightBankByExpansion(id)
+                end,
+                checked = (ItemEraSaved.bankExpansionFilter == id)
+            })
         end
+
+        return items
     end
 
-    UIDropDownMenu_Initialize(dropdown, initialize)
-    return dropdown
+    button:SetScript("OnClick", function(self)
+        if Menu and Menu.Toggle then
+            Menu.Toggle(CreateMenuItems(), self, 0, 0)
+        else
+            -- Fallback al sistema antiguo si Menu no está disponible
+            local dropdown = CreateFrame("Frame", nil, UIParent, "UIDropDownMenuTemplate")
+            local function initialize(_, level)
+                for _, item in ipairs(CreateMenuItems()) do
+                    if not item.isSeparator then
+                        local info = UIDropDownMenu_CreateInfo()
+                        info.text = item.text
+                        info.func = item.func
+                        info.checked = item.checked
+                        UIDropDownMenu_AddButton(info, level)
+                    end
+                end
+            end
+            UIDropDownMenu_Initialize(dropdown, initialize, "MENU")
+            ToggleDropDownMenu(1, nil, dropdown, self, 0, 0)
+        end
+    end)
+
+    return button
 end
 
 -- Crear el dropdown en el banco
@@ -63,7 +83,7 @@ function BankFilter:CreateBankDropdown()
     if not BankFrame then return end
 
     self.dropdown = CreateBankExpansionDropdown(BankFrame)
-    self.dropdown:SetPoint("TOPLEFT", BankFrame, "TOPLEFT", 42, -26)
+    self.dropdown:SetPoint("TOPLEFT", BankFrame, "TOPLEFT", 56, -28)
 end
 
 -- Función reutilizable para destacar items en un contenedor
@@ -106,6 +126,11 @@ function BankFilter:HighlightBankByExpansion(expansionID)
     if ReagentBankFrame and ReagentBankFrame:IsShown() then
         HighlightContainerByExpansion(REAGENTBANK_CONTAINER, 98, "ReagentBankFrameItem", expansionID)
     end
+
+    -- Banco de warband - solo si está visible
+    if AccountBankPanel and AccountBankPanel:IsShown() then
+        HighlightContainerByExpansion(13, 98, "AccountBankPanelItem", expansionID)
+    end
 end
 
 -- Limpiar highlighting del banco
@@ -132,6 +157,10 @@ function BankFilter:Init()
     if BankFrame and BankFrame.Show then
         hooksecurefunc(BankFrame, "Show", function(self)
             BankFilter:CreateBankDropdown()
+            -- Mostrar dropdown solo para banco personal
+            if BankFilter.dropdown then
+                BankFilter.dropdown:Show()
+            end
             -- Aplicar filtro si ya está seleccionado
             if ItemEraSaved.bankExpansionFilter then
                 BankFilter:HighlightBankByExpansion(ItemEraSaved.bankExpansionFilter)

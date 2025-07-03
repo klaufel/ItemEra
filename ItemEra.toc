@@ -3,7 +3,7 @@
 ## Title: ItemEra
 ## Notes: 
 ## Author: Juan Carlos Ruiz
-## Version: 1.0.0-beta.1
+## Version: 1.0.0-beta.2
 ## SavedVariables: ItemEraSaved
 ## LoadOnDemand: 0
 
