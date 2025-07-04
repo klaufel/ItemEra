@@ -29,15 +29,16 @@
 ## Notes-esMX: Añade filtros de expansión e información a todas las descripciones de objetos, con nombres codificados por color e iconos visuales para un reconocimiento instantáneo.
 
 Utils.lua
+Api-Definitions.lua
 
-Locales\enUS.lua
-Locales\esES.lua
-Locales\itIT.lua
-Locales\ruRU.lua
-Locales\zhCN.lua
+Locales/enUS.lua
+Locales/esES.lua
+Locales/itIT.lua
+Locales/ruRU.lua
+Locales/zhCN.lua
 
 Settings.lua
-Tooltip.lua
+Modules/Tooltip.lua
 BankFilter.lua
 
 Core.lua

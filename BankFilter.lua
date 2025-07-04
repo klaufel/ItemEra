@@ -78,24 +78,48 @@ function BankFilter:CreateBankDropdown()
 end
 
 -- Función reutilizable para destacar items en un contenedor
-local function HighlightContainerByExpansion(containerID, maxSlots, buttonNamePattern, expansionID)
-    for slot = 1, maxSlots do
-        local itemLink
-        if C_Container and C_Container.GetContainerItemLink then
-            itemLink = C_Container.GetContainerItemLink(containerID, slot)
-        else
-            itemLink = GetContainerItemLink(containerID, slot)
+local function HighlightContainerByExpansion(containerID, maxSlots, buttonNamePattern, expansionID, test)
+    if test then
+        local NUM_SLOTS = C_Container.GetContainerNumSlots(Enum.BagIndex.AccountBankTab_1)
+
+
+        local TEST = Enum.BagIndex.AccountBankTab_1
+
+
+        for bag = TEST, NUM_SLOTS do
+            for slot = 1, C_Container.GetContainerNumSlots(bag) do
+                local item = C_Container.GetContainerItemInfo(bag, slot)
+                if item then
+                    local itemExpansionID = select(15, GetItemInfo(item.itemID))
+                    if itemExpansionID == expansionID then
+                        print(item.itemName)
+                    end
+                end
+            end
         end
+        return
+    else
+        for slot = 1, maxSlots do
+            local itemLink
+            if C_Container and C_Container.GetContainerItemLink then
+                itemLink = C_Container.GetContainerItemLink(containerID, slot)
+            else
+                itemLink = GetContainerItemLink(containerID, slot)
+            end
 
-        local button = _G[buttonNamePattern .. slot]
+            local button = _G[buttonNamePattern .. slot]
 
-        if button and itemLink then
-            local itemID = tonumber(itemLink:match("item:(%d+)"))
-            if itemID then
-                local itemExpansionID = select(15, GetItemInfo(itemID))
-                if itemExpansionID and itemExpansionID ~= expansionID then
-                    if button.searchOverlay then
-                        button.searchOverlay:Show()
+            if button and itemLink then
+                local itemID = tonumber(itemLink:match("item:(%d+)"))
+
+                if itemID then
+                    local itemExpansionID = select(15, GetItemInfo(itemID))
+
+
+                    if itemExpansionID and itemExpansionID ~= expansionID then
+                        if button.searchOverlay then
+                            button.searchOverlay:Show()
+                        end
                     end
                 end
             end
@@ -113,14 +137,14 @@ function BankFilter:HighlightBankByExpansion(expansionID)
     -- Banco principal (28 slots)
     HighlightContainerByExpansion(BANK_CONTAINER, NUM_BANKGENERIC_SLOTS, "BankFrameItem", expansionID)
 
-    -- Banco de reagentes (98 slots) - solo si está visible
+    -- -- Banco de reagentes (98 slots) - solo si está visible
     if ReagentBankFrame and ReagentBankFrame:IsShown() then
         HighlightContainerByExpansion(REAGENTBANK_CONTAINER, 98, "ReagentBankFrameItem", expansionID)
     end
 
-    -- Banco de warband - solo si está visible
-    if AccountBankPanel and AccountBankPanel:IsShown() then
-        HighlightContainerByExpansion(13, 98, "AccountBankPanelItem", expansionID)
+    -- Banco de warband/account bank - solo si está visible y es compatible
+    if AccountBankPanel and BankFrame:IsShown() and BankFrame.selectedTab == 3 then
+        HighlightContainerByExpansion(13, 98, "AccountBankTab_1", expansionID, true)
     end
 end
 
@@ -137,6 +161,14 @@ function BankFilter:ClearBankHighlight()
     -- Banco de reagentes
     for slot = 1, 98 do
         local button = _G["ReagentBankFrameItem" .. slot]
+        if button and button.searchOverlay then
+            button.searchOverlay:Hide()
+        end
+    end
+
+    -- Banco de cuenta (Account Bank/Warband)
+    for slot = 1, 98 do
+        local button = _G["AccountBankPanelItem" .. slot]
         if button and button.searchOverlay then
             button.searchOverlay:Hide()
         end
@@ -174,6 +206,15 @@ function BankFilter:Init()
     if ReagentBankFrame and ReagentBankFrame.Show then
         hooksecurefunc(ReagentBankFrame, "Show", function(self)
             -- Aplicar filtro al banco de reagentes si ya está seleccionado
+            if ItemEraSaved.bankExpansionFilter then
+                BankFilter:HighlightBankByExpansion(ItemEraSaved.bankExpansionFilter)
+            end
+        end)
+    end
+
+    -- Hook para cuando se muestra el banco de cuenta (Account Bank/Warband)
+    if AccountBankPanel and AccountBankPanel.Show then
+        hooksecurefunc(AccountBankPanel, "Show", function(self)
             if ItemEraSaved.bankExpansionFilter then
                 BankFilter:HighlightBankByExpansion(ItemEraSaved.bankExpansionFilter)
             end
