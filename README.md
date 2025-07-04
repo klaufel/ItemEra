@@ -44,3 +44,7 @@ For any issues or feature requests, please contact the addon developer through t
 ## Docs
 
 https://warcraft.wiki.gg/wiki/World_of_Warcraft_API
+
+
+## Contributors
+

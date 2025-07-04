@@ -32,6 +32,9 @@ Utils.lua
 
 Locales\enUS.lua
 Locales\esES.lua
+Locales\itIT.lua
+Locales\ruRU.lua
+Locales\zhCN.lua
 
 Settings.lua
 Tooltip.lua
