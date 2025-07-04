@@ -8,17 +8,14 @@ if not getmetatable(addon.L) then
 end
 local L = addon.L
 
--- Dropdown selector para filtrar por expansión en el banco usando el nuevo sistema Menu
 local function CreateBankExpansionDropdown(parent)
-    local button = CreateFrame("DropdownButton", "ItemEraBankFilterButton", parent, "WowStyle1DropdownTemplate")
+    local button = FrameUtil.CreateFrame("ItemEraBankFilterButton", parent, "WowStyle1DropdownTemplate")
     button:SetSize(140, 24)
     button:SetText(L["COMMON.SELECT_EXPANSION"])
 
-    -- Crear el menú usando el nuevo sistema
     local function CreateMenuItems()
         local items = {}
 
-        -- Opción para limpiar filtro
         table.insert(items, {
             text = L["COMMON.ALL_EXPANSION"],
             func = function()
@@ -29,10 +26,8 @@ local function CreateBankExpansionDropdown(parent)
             checked = (ItemEraSaved.bankExpansionFilter == nil)
         })
 
-        -- Separador
         table.insert(items, { isSeparator = true })
 
-        -- Expansiones con iconos
         for _, expansion in ipairs(addon.GetExpansionsInOrder()) do
             local id, name = expansion.id, expansion.name
             local icon = "Interface/AddOns/ItemEra/Media/Icons/Exp_Logo_" .. id .. ".tga"
@@ -53,25 +48,21 @@ local function CreateBankExpansionDropdown(parent)
     end
 
     button:SetScript("OnClick", function(self)
-        if Menu and Menu.Toggle then
-            Menu.Toggle(CreateMenuItems(), self, 0, 0)
-        else
-            -- Fallback al sistema antiguo si Menu no está disponible
-            local dropdown = CreateFrame("Frame", nil, UIParent, "UIDropDownMenuTemplate")
-            local function initialize(_, level)
-                for _, item in ipairs(CreateMenuItems()) do
-                    if not item.isSeparator then
-                        local info = UIDropDownMenu_CreateInfo()
-                        info.text = item.text
-                        info.func = item.func
-                        info.checked = item.checked
-                        UIDropDownMenu_AddButton(info, level)
-                    end
+        local dropdown = CreateFrame("Frame", nil, UIParent, "UIDropDownMenuTemplate")
+
+        local function initialize(_, level)
+            for _, item in ipairs(CreateMenuItems()) do
+                if not item.isSeparator then
+                    local info = UIDropDownMenu_CreateInfo()
+                    info.text = item.text
+                    info.func = item.func
+                    info.checked = item.checked
+                    UIDropDownMenu_AddButton(info, level)
                 end
             end
-            UIDropDownMenu_Initialize(dropdown, initialize, "MENU")
-            ToggleDropDownMenu(1, nil, dropdown, self, 0, 0)
         end
+        UIDropDownMenu_Initialize(dropdown, initialize, "MENU")
+        ToggleDropDownMenu(1, nil, dropdown, self, 0, 0)
     end)
 
     return button
@@ -171,10 +162,8 @@ function BankFilter:Init()
     -- Hook para cuando se oculta el banco
     if BankFrame and BankFrame.Hide then
         hooksecurefunc(BankFrame, "Hide", function(self)
-            -- Limpiar filtro al cerrar
             ItemEraSaved.bankExpansionFilter = nil
             BankFilter:ClearBankHighlight()
-            -- Reiniciar el texto del dropdown
             if BankFilter.dropdown then
                 UIDropDownMenu_SetText(BankFilter.dropdown, L["COMMON.SELECT_EXPANSION"])
             end

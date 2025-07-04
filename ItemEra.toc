@@ -1,7 +1,7 @@
 ## Interface: 110100
 ## Name: ItemEra
 ## Title: ItemEra
-## Notes: 
+## Notes: Adds expansion filters and information to all item tooltips with color-coded names and visual icons for instant recognition.
 ## Author: Klaufel
 ## Version: 1.0.0-beta.2
 ## SavedVariables: ItemEraSaved
@@ -24,9 +24,9 @@
 ## Category-zhCN: 物品栏
 ## Category-zhTW: 物品欄
 
-## Notes: A powerful, comprehensive utility for displaying graphics and information based on buffs, debuffs, and other triggers.
-## Notes-esES: Potente y completa aplicación que te permitirá mostrar por pantalla múltiples diseños, basados en beneficios, perjuicios y otros activadores.
-## Notes-esMX: Potente y completa aplicación que te permitirá mostrar por pantalla múltiples diseños, basados en beneficios, perjuicios y otros activadores.
+## Notes: Adds expansion filters and information to all item tooltips with color-coded names and visual icons for instant recognition.
+## Notes-esES: Añade filtros de expansión e información a todas las descripciones de objetos, con nombres codificados por color e iconos visuales para un reconocimiento instantáneo.
+## Notes-esMX: Añade filtros de expansión e información a todas las descripciones de objetos, con nombres codificados por color e iconos visuales para un reconocimiento instantáneo.
 
 Utils.lua
 
