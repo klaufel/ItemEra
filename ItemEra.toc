@@ -37,7 +37,7 @@ Locales/itIT.lua
 Locales/ruRU.lua
 Locales/zhCN.lua
 
-Settings.lua
+# Settings.lua
 
 Modules/Tooltip.lua
 Modules/Filter/FilterBank.lua
