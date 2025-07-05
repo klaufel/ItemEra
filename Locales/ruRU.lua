@@ -4,7 +4,7 @@ local locale = GetLocale()
 if locale == "ruRU" then
     addon.L = addon.L or {}
     local L = addon.L
-
+    -- Translator ZamestoTV
     -- COMMON
     L["COMMON.ADDON_LOADED"] = "[ItemEra]: Аддон загружен"
     L["COMMON.SAVE"] = "Сохранить"
@@ -29,8 +29,13 @@ if locale == "ruRU" then
     -- TOOLTIP
     L["TOOLTIP.EXPANSION"] = "Дополнение:"
     L["TOOLTIP.ORIGIN"] = "Происхождение:"
-    -- FILTER
     L["FILTER.FILTER_ITEMS_BY_EXPANSION"] = "Фильтровать предметы по дополнению"
     L["FILTER.FILTER_GUILD_BANK_ITEMS_BY_EXPANSION"] = "Фильтровать предметы по дополнению (гильдейский банк)"
     L["FILTER.CLICK_CHOOSE_EXPANSION"] = "Нажмите, чтобы выбрать дополнение"
+
+    -- Bank Filter
+    L["BANKFILTER.SELECT_EXPANSION"] = "Выбрать дополнение"
+    L["BANKFILTER.ALL_EXPANSIONS"] = "Все дополнения"
+    L["BANKFILTER.FILTER_APPLIED"] = "Фильтр применен к %s предметам"
+    L["BANKFILTER.FILTER_CLEARED"] = "Фильтр очищен"
 end
