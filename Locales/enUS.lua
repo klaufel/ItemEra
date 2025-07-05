@@ -28,3 +28,9 @@ L["TOOLTIP.EXPANSION"] = "Expansion:"
 L["FILTER.FILTER_ITEMS_BY_EXPANSION"] = "Filter items by expansion"
 L["FILTER.FILTER_GUILD_BANK_ITEMS_BY_EXPANSION"] = "Filter items by expansion (guild bank)"
 L["FILTER.CLICK_CHOOSE_EXPANSION"] = "Click to choose expansion"
+
+-- Bank Filter
+L["BANKFILTER.SELECT_EXPANSION"] = "Select Expansion"
+L["BANKFILTER.ALL_EXPANSIONS"] = "All Expansions"
+L["BANKFILTER.FILTER_APPLIED"] = "Filter applied to %s items"
+L["BANKFILTER.FILTER_CLEARED"] = "Filter cleared"

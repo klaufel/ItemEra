@@ -32,4 +32,10 @@ if locale == "esES" or locale == "esMX" then
     L["FILTER.FILTER_ITEMS_BY_EXPANSION"] = "Filtrar objetos por expansión"
     L["FILTER.FILTER_GUILD_BANK_ITEMS_BY_EXPANSION"] = "Filtrar objetos por expansión (banco de hermandad)"
     L["FILTER.CLICK_CHOOSE_EXPANSION"] = "Haz clic para elegir expansión"
+
+    -- Bank Filter
+    L["BANKFILTER.SELECT_EXPANSION"] = "Seleccionar Expansión"
+    L["BANKFILTER.ALL_EXPANSIONS"] = "Todas las Expansiones"
+    L["BANKFILTER.FILTER_APPLIED"] = "Filtro aplicado a %s objetos"
+    L["BANKFILTER.FILTER_CLEARED"] = "Filtro eliminado"
 end

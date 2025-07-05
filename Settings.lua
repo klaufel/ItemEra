@@ -58,5 +58,16 @@ local showExpansionFilter = Settings.RegisterAddOnSetting(
 showExpansionFilter:SetValueChangedCallback(OnSettingChanged)
 Settings.CreateCheckbox(category, showExpansionFilter, L["SETTINGS.EXPANSION_FILTER.TOOLTIP"])
 
+function addon:InitializeSettings()
+    -- Bank Filter Settings
+    if not ItemEraSaved.bankFilter then
+        ItemEraSaved.bankFilter = {
+            enabled = true,
+            rememberSelection = false,
+            showFilterCount = true
+        }
+    end
+end
+
 -- Register category
 Settings.RegisterAddOnCategory(category)
