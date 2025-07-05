@@ -38,8 +38,11 @@ Locales/ruRU.lua
 Locales/zhCN.lua
 
 Settings.lua
+
 Modules/Tooltip.lua
-BankFilter.lua
+Modules/Filter/FilterAccountBank.lua
+Modules/Filter/FilterBank.lua
+
 
 Core.lua
 CLI.lua

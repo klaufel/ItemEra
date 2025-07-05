@@ -15,6 +15,8 @@ function addon:Init()
         if self.BankFilter and self.BankFilter.Init then self.BankFilter:Init() end
     end
 
+    self.Filter:Init()
+
     -- Debug: mostrar información del idioma
     local locale = GetLocale and GetLocale() or "unknown"
 
