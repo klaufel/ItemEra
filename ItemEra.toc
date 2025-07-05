@@ -25,8 +25,16 @@
 ## Category-zhTW: 物品欄
 
 ## Notes: Adds expansion filters and information to all item tooltips with color-coded names and visual icons for instant recognition.
+## Notes-deDE: Fügt Erweiterungsfilter und Informationen zu allen Gegenstandstooltips mit farbcodierten Namen und visuellen Symbolen für sofortige Erkennung hinzu.
 ## Notes-esES: Añade filtros de expansión e información a todas las descripciones de objetos, con nombres codificados por color e iconos visuales para un reconocimiento instantáneo.
 ## Notes-esMX: Añade filtros de expansión e información a todas las descripciones de objetos, con nombres codificados por color e iconos visuales para un reconocimiento instantáneo.
+## Notes-frFR: Ajoute des filtres d'extension et des informations à toutes les info-bulles d'objets avec des noms codés en couleur et des icônes visuelles pour une reconnaissance instantanée.
+## Notes-itIT: Aggiunge filtri di espansione e informazioni a tutti i tooltip degli oggetti con nomi codificati a colori e icone visive per un riconoscimento istantaneo.
+## Notes-koKR: 색상 코딩된 이름과 시각적 아이콘을 통해 즉시 인식할 수 있도록 모든 아이템 툴팁에 확장팩 필터와 정보를 추가합니다.
+## Notes-ptBR: Adiciona filtros de expansão e informações a todas as dicas de ferramentas de itens com nomes codificados por cores e ícones visuais para reconhecimento instantâneo.
+## Notes-ruRU: Добавляет фильтры дополнений и информацию ко всем подсказкам предметов с цветовой кодировкой имён и визуальными иконками для мгновенного распознавания.
+## Notes-zhCN: 为所有物品提示添加资料片过滤器和信息，使用颜色编码的名称和视觉图标以便即时识别。
+## Notes-zhTW: 為所有物品提示添加資料片過濾器和資訊，使用顏色編碼的名稱和視覺圖示以便即時識別。
 
 Utils.lua
 
