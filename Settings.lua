@@ -2,7 +2,6 @@ local addonName, addon = ...
 local Config = {}
 addon.Config = Config
 
--- Referencia al sistema de localización con fallback defensivo
 addon.L = addon.L or {}
 if not getmetatable(addon.L) then
     setmetatable(addon.L, { __index = function(t, k) return k end })
@@ -29,9 +28,7 @@ local function OnSettingChanged(setting, value)
     end
 end
 
--- Add settings
 
--- Setting: showExpansionTooltip
 local showExpansionTooltip = Settings.RegisterAddOnSetting(
     category,
     "ItemEra_" .. "showExpansionTooltip",
@@ -45,7 +42,6 @@ showExpansionTooltip:SetValueChangedCallback(OnSettingChanged)
 Settings.CreateCheckbox(category, showExpansionTooltip, L["SETTINGS.EXPANSION_TOOLTIP.TOOLTIP"])
 
 
--- Setting: showExpansionFilter
 local showExpansionFilter = Settings.RegisterAddOnSetting(
     category,
     "ItemEra_" .. "showExpansionFilter",
@@ -59,7 +55,6 @@ showExpansionFilter:SetValueChangedCallback(OnSettingChanged)
 Settings.CreateCheckbox(category, showExpansionFilter, L["SETTINGS.EXPANSION_FILTER.TOOLTIP"])
 
 function addon:InitializeSettings()
-    -- Bank Filter Settings
     if not ItemEraSaved.bankFilter then
         ItemEraSaved.bankFilter = {
             enabled = true,
@@ -69,5 +64,5 @@ function addon:InitializeSettings()
     end
 end
 
--- Register category
+Settings.RegisterAddOnCategory(category)
 Settings.RegisterAddOnCategory(category)
