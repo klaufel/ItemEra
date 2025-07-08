@@ -1,4 +1,4 @@
-name: Bug Report
+name: 🐞 Bug Report
 description: Report a bug with ItemEra addon
 title: "[Bug]: "
 labels: ["bug", "triage"]
@@ -17,31 +17,6 @@ body:
       description: Describe the bug in detail. What did you expect to happen vs what actually happened?
       placeholder: |
         Example: The expansion filter in the bank doesn't work properly when I try to filter Wrath of the Lich King items... (screenshots, videos, etc.)
-    validations:
-      required: true
-  - type: dropdown
-    id: version
-    attributes:
-      label: ItemEra Version
-      description: What version of ItemEra are you using? Check in-game addon list or .toc file.
-      options:
-        - 1.0.1 (Latest)
-        - 1.0.0
-        - Other (please specify in description)
-      default: 0
-    validations:
-      required: true
-  - type: dropdown
-    id: wow-version
-    attributes:
-      label: World of Warcraft Version
-      description: What version of WoW are you playing?
-      options:
-        - Retail (The War Within - 11.0.x)
-        - Classic Era
-        - Classic Hardcore
-        - Classic Cataclysm
-      default: 0
     validations:
       required: true
   - type: dropdown

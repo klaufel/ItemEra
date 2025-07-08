@@ -1,4 +1,4 @@
-name: Feature Request
+name: 💡 Feature Request
 description: Suggest a new feature for ItemEra addon
 title: "[Feature]: "
 labels: ["enhancement", "feature-request"]
@@ -69,30 +69,6 @@ body:
     validations:
       required: true
   - type: textarea
-    id: alternatives
-    attributes:
-      label: Alternative Solutions
-      description: Are there any alternative approaches or workarounds you've considered?
-      placeholder: |
-        Example: I could use another addon like Bagnon, but I prefer to keep ItemEra for consistency...
-    validations:
-      required: false
-  - type: dropdown
-    id: wow-version
-    attributes:
-      label: Target WoW Version
-      description: Which version of WoW should this feature target?
-      multiple: true
-      options:
-        - Retail (The War Within - 11.0.x)
-        - Classic Era
-        - Classic Hardcore
-        - Classic Cataclysm
-        - All Versions
-      default: 0
-    validations:
-      required: true
-  - type: textarea
     id: mockup-design
     attributes:
       label: Mockup or Design Ideas
@@ -101,21 +77,3 @@ body:
         Example: The quality filter could be a colored dropdown with gem icons representing each quality level...
     validations:
       required: false
-  - type: textarea
-    id: additional-context
-    attributes:
-      label: Additional Context
-      description: Add any other context, examples from other addons, or information that might be helpful
-    validations:
-      required: false
-  - type: checkboxes
-    id: checklist
-    attributes:
-      label: Pre-submission Checklist
-      options:
-        - label: I have searched existing issues to make sure this feature hasn't been requested before
-          required: true
-        - label: This feature is related to ItemEra's core functionality (expansion filtering and item information)
-          required: true
-        - label: I understand that feature development takes time and may not be implemented immediately
-          required: true
