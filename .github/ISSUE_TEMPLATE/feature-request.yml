@@ -63,17 +63,9 @@ body:
     id: proposed-solution
     attributes:
       label: Proposed Solution
-      description: How do you think this feature should work? Be as specific as possible.
+      description: How do you think this feature should work? Be as specific as possible. If you have any visual ideas, mockups, or screenshots that might help explain the feature, describe them here
       placeholder: |
         Example: Add a second dropdown next to the expansion filter that allows filtering by item quality. It should work similar to the expansion filter...
-    validations:
-      required: true
-  - type: textarea
-    id: mockup-design
-    attributes:
-      label: Mockup or Design Ideas
-      description: If you have any visual ideas, mockups, or screenshots that might help explain the feature, describe them here
-      placeholder: |
         Example: The quality filter could be a colored dropdown with gem icons representing each quality level...
     validations:
-      required: false
+      required: true
