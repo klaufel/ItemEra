@@ -1,0 +1,121 @@
+name: Feature Request
+description: Suggest a new feature for ItemEra addon
+title: "[Feature]: "
+labels: ["enhancement", "feature-request"]
+projects: ["klaufel/3"]
+assignees:
+  - klaufel
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for suggesting a feature for ItemEra! Please provide as much detail as possible to help us understand your request.
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: What feature would you like to see added to ItemEra?
+      placeholder: |
+        Example: I would like to add a filter for item quality (Common, Rare, Epic, etc.) in addition to the expansion filter...
+    validations:
+      required: true
+  - type: dropdown
+    id: feature-area
+    attributes:
+      label: Feature Area
+      description: Which part of ItemEra would this feature affect?
+      multiple: true
+      options:
+        - Tooltips (Expansion info display)
+        - Bank Filter (Regular Bank)
+        - Bank Filter (Reagent Bank)
+        - Bank Filter (Account/Warband Bank)
+        - Settings/Configuration
+        - Inventory/Bags
+        - Auction House
+        - Localization/Language
+        - New Feature Area
+        - Other
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: Priority
+      description: How important is this feature to you?
+      options:
+        - Low (Nice to have)
+        - Medium (Would improve my experience)
+        - High (Essential for my gameplay)
+      default: 1
+    validations:
+      required: true
+  - type: textarea
+    id: use-case
+    attributes:
+      label: Use Case / Problem to Solve
+      description: What problem does this feature solve? How would you use it?
+      placeholder: |
+        Example: When organizing my bank, I often need to sort items by quality level in addition to expansion. This would help me quickly identify valuable items...
+    validations:
+      required: true
+  - type: textarea
+    id: proposed-solution
+    attributes:
+      label: Proposed Solution
+      description: How do you think this feature should work? Be as specific as possible.
+      placeholder: |
+        Example: Add a second dropdown next to the expansion filter that allows filtering by item quality. It should work similar to the expansion filter...
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternative Solutions
+      description: Are there any alternative approaches or workarounds you've considered?
+      placeholder: |
+        Example: I could use another addon like Bagnon, but I prefer to keep ItemEra for consistency...
+    validations:
+      required: false
+  - type: dropdown
+    id: wow-version
+    attributes:
+      label: Target WoW Version
+      description: Which version of WoW should this feature target?
+      multiple: true
+      options:
+        - Retail (The War Within - 11.0.x)
+        - Classic Era
+        - Classic Hardcore
+        - Classic Cataclysm
+        - All Versions
+      default: 0
+    validations:
+      required: true
+  - type: textarea
+    id: mockup-design
+    attributes:
+      label: Mockup or Design Ideas
+      description: If you have any visual ideas, mockups, or screenshots that might help explain the feature, describe them here
+      placeholder: |
+        Example: The quality filter could be a colored dropdown with gem icons representing each quality level...
+    validations:
+      required: false
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context, examples from other addons, or information that might be helpful
+    validations:
+      required: false
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      options:
+        - label: I have searched existing issues to make sure this feature hasn't been requested before
+          required: true
+        - label: This feature is related to ItemEra's core functionality (expansion filtering and item information)
+          required: true
+        - label: I understand that feature development takes time and may not be implemented immediately
+          required: true

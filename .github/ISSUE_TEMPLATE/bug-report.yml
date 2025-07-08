@@ -2,6 +2,7 @@ name: Bug Report
 description: Report a bug with ItemEra addon
 title: "[Bug]: "
 labels: ["bug", "triage"]
+projects: ["klaufel/3"]
 assignees:
   - klaufel
 body:
