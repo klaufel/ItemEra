@@ -69,3 +69,10 @@ body:
         Example: The quality filter could be a colored dropdown with gem icons representing each quality level...
     validations:
       required: true
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Pre-submission Checklist
+      options:
+        - label: I have the latest version of ItemEra installed
+          required: true
