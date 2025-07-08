@@ -219,6 +219,8 @@ function BankFilter:Init()
 
     if ReagentBankFrame and ReagentBankFrame.Show then
         hooksecurefunc(ReagentBankFrame, "Show", function(self)
+        end)
+        hooksecurefunc(ReagentBankFrame, "Show", function(self)
             if ItemEraSaved.bankExpansionFilter then
                 BankFilter:HighlightBankByExpansion(ItemEraSaved.bankExpansionFilter)
             end

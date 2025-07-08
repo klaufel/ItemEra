@@ -13,7 +13,7 @@ function Tooltip:AddExpansionTooltipLine(tooltip)
     if itemLink then
         local itemID = tonumber(itemLink:match("item:(%d+)"))
         if itemID then
-            local expansionID = select(15, GetItemInfo(itemID))
+            local expansionID = select(15, C_Item.GetItemInfo(itemID))
             if expansionID and addon.expansionColors[expansionID] and addon.expansionNames[expansionID] then
                 local r, g, b = unpack(addon.expansionColors[expansionID])
                 tooltip:AddLine(" ")

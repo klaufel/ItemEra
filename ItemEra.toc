@@ -3,7 +3,7 @@
 ## Title: ItemEra
 ## Notes: Adds expansion filters and information to all item tooltips with color-coded names and visual icons for instant recognition.
 ## Author: Klaufel
-## Version: 1.0.1
+## Version: 1.0.2
 ## SavedVariables: ItemEraSaved
 ## IconTexture: Interface\AddOns\ItemEra\Media\Addon\Logo.tga
 
