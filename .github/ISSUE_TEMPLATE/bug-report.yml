@@ -9,21 +9,13 @@ body:
     attributes:
       value: |
         Thanks for taking the time to report a bug for ItemEra! Please fill out the information below to help us resolve the issue.
-  - type: input
-    id: contact
-    attributes:
-      label: Contact Details (Optional)
-      description: How can we get in touch with you if we need more info?
-      placeholder: ex. email@example.com or Discord username
-    validations:
-      required: false
   - type: textarea
     id: what-happened
     attributes:
       label: What happened?
       description: Describe the bug in detail. What did you expect to happen vs what actually happened?
       placeholder: |
-        Example: The expansion filter in the bank doesn't work properly when I try to filter Wrath of the Lich King items...
+        Example: The expansion filter in the bank doesn't work properly when I try to filter Wrath of the Lich King items... (screenshots, videos, etc.)
     validations:
       required: true
   - type: dropdown
@@ -77,10 +69,6 @@ body:
         2. Click on the expansion filter dropdown
         3. Select "Wrath of the Lich King"
         4. Notice that items are not filtered correctly
-      value: |
-        1. 
-        2. 
-        3. 
     validations:
       required: true
   - type: textarea
@@ -112,21 +100,10 @@ body:
       render: lua
     validations:
       required: false
-  - type: textarea
-    id: additional-context
-    attributes:
-      label: Additional Context
-      description: Add any other context about the problem here (screenshots, videos, etc.)
-    validations:
-      required: false
   - type: checkboxes
     id: checklist
     attributes:
       label: Pre-submission Checklist
       options:
-        - label: I have searched existing issues to make sure this bug hasn't been reported before
-          required: true
         - label: I have the latest version of ItemEra installed
           required: true
-        - label: I have tried disabling other addons to see if they cause conflicts
-          required: false
