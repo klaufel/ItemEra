@@ -1,15 +1,14 @@
-local addonName, addon = ...
-local Utils = {}
-addon.Utils = Utils
+ItemEra = ItemEra or {}
+ItemEra.Utils = {}
 
-function Utils.toRGB(hex)
+function ItemEra.Utils:toRGB(hex)
     hex = hex:gsub("#", "")
     return tonumber("0x" .. hex:sub(1, 2)) / 255,
         tonumber("0x" .. hex:sub(3, 4)) / 255,
         tonumber("0x" .. hex:sub(5, 6)) / 255
 end
 
-addon.expansionColorsHex = {
+ItemEra.Utils.ExpansionColorsHex = {
     [0]  = "#F4BF2A", -- Classic
     [1]  = "#CBD86C", -- The Burning Crusade
     [2]  = "#9DC6E5", -- Wrath of the Lich King
@@ -24,12 +23,12 @@ addon.expansionColorsHex = {
     [11] = "#5C1FEA", -- Midnight
 }
 
-addon.expansionColors = {}
-for k, hex in pairs(addon.expansionColorsHex) do
-    addon.expansionColors[k] = { addon.Utils.toRGB(hex) }
+ItemEra.Utils.ExpansionColors = {}
+for k, hex in pairs(ItemEra.Utils.ExpansionColorsHex) do
+    ItemEra.Utils.ExpansionColors[k] = { ItemEra.Utils:toRGB(hex) }
 end
 
-addon.expansionNames = {
+ItemEra.Utils.ExpansionNames = {
     [0] = _G.EXPANSION_NAME0,
     [1] = _G.EXPANSION_NAME1,
     [2] = _G.EXPANSION_NAME2,
@@ -44,19 +43,17 @@ addon.expansionNames = {
 }
 
 
-function GetExpansionsInOrder()
+function ItemEra.Utils:GetExpansionsInOrder()
     local ordered = {}
     for id = 0, 10 do
-        if addon.expansionNames[id] then
-            table.insert(ordered, { id = id, name = addon.expansionNames[id] })
+        if ItemEra.Utils.ExpansionNames[id] then
+            table.insert(ordered, { id = id, name =  ItemEra.Utils.ExpansionNames[id] })
         end
     end
     return ordered
 end
 
-addon.GetExpansionsInOrder = GetExpansionsInOrder
-
-function Dump(tbl, indent)
+function ItemEra.Utils:Dump(tbl, indent)
     if not indent then indent = 0 end
     for k, v in pairs(tbl) do
         formatting = string.rep("  ", indent) .. k .. ": "
@@ -70,5 +67,3 @@ function Dump(tbl, indent)
         end
     end
 end
-
-addon.Dump = Dump
