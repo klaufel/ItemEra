@@ -49,7 +49,7 @@ Locales/zhCN.lua
 
 Utils.lua
 Settings.lua
-Modules/Tooltip.lua
 Events.lua
-Filters.lua
+Modules/Tooltip.lua
+Modules/Filters.lua
 Core.lua
