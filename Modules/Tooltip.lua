@@ -1,15 +1,7 @@
-local addonName, addon = ...
+local addonName, ItemEra = ...
+local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
-addon.Tooltip = Tooltip
-
-ItemEra = ItemEra or {}
 ItemEra.Tooltip = {}
-
-if not getmetatable(addon.L) then
-    setmetatable(addon.L, { __index = function(t, k) return k end })
-end
-
-local L = addon.L
 
 function ItemEra.Tooltip:AddExpansionTooltipLine(tooltip)
     local _, itemLink = tooltip:GetItem()

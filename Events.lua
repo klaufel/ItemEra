@@ -1,3 +1,5 @@
+local _, ItemEra = ...
+
 local frame = CreateFrame("Frame")
 
 local handlers = ItemEra.Events or {}

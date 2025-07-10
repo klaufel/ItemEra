@@ -1,41 +1,22 @@
-local addonName, addon = ...
+local addonName = ...
+local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "frFR")
 
-if GetLocale() ~= "frFR" then
+if not L then
     return
 end
 
-local L = addon.L or {}
-addon.L = L
-
--- Common
 L["COMMON.ADDON_LOADED"] = "ItemEra chargé avec succès !"
 L["COMMON.SELECT_EXPANSION"] = "Sélectionner l'extension"
 L["COMMON.ALL_EXPANSION"] = "Toutes les extensions"
 
--- Expansion Names
-L["EXPANSION.CLASSIC"] = "Classic"
-L["EXPANSION.BURNING_CRUSADE"] = "The Burning Crusade"
-L["EXPANSION.WRATH_OF_THE_LICH_KING"] = "Wrath of the Lich King"
-L["EXPANSION.CATACLYSM"] = "Cataclysm"
-L["EXPANSION.MISTS_OF_PANDARIA"] = "Mists of Pandaria"
-L["EXPANSION.WARLORDS_OF_DRAENOR"] = "Warlords of Draenor"
-L["EXPANSION.LEGION"] = "Legion"
-L["EXPANSION.BATTLE_FOR_AZEROTH"] = "Battle for Azeroth"
-L["EXPANSION.SHADOWLANDS"] = "Shadowlands"
-L["EXPANSION.DRAGONFLIGHT"] = "Dragonflight"
-L["EXPANSION.THE_WAR_WITHIN"] = "The War Within"
-
--- Tooltip
 L["TOOLTIP.EXPANSION"] = "Extension : %s"
 L["TOOLTIP.ITEM_LEVEL"] = "Niveau d'objet : %d"
 
--- Bank Filter
 L["BANKFILTER.SELECT_EXPANSION"] = "Sélectionner l'extension"
 L["BANKFILTER.ALL_EXPANSIONS"] = "Toutes les extensions"
 L["BANKFILTER.FILTER_APPLIED"] = "Filtre appliqué à %s objets"
 L["BANKFILTER.FILTER_CLEARED"] = "Filtre supprimé"
 
--- Settings
 L["SETTINGS.TITLE"] = "Paramètres ItemEra"
 L["SETTINGS.GENERAL"] = "Général"
 L["SETTINGS.TOOLTIP"] = "Info-bulle"

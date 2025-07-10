@@ -1,13 +1,12 @@
 local addonName, addon = ...
-ItemEra = ItemEra or {}
-ItemEra.Events = ItemEra.Events or {}
-ItemEra.Tooltip = ItemEra.Tooltip or {}
-ItemEra.Settings = ItemEra.Settings or {}
 
-function addon:Init()
+ItemEra = LibStub("AceAddon-3.0"):NewAddon(addon, addonName)
+
+function ItemEra:OnInitialize()
+    self.db = self.Database:New()
+
+    print(self.db.profile.prueba)
     ItemEra.Tooltip:Initialize()
     ItemEra.Settings:Initialize()
     ItemEra.Filters:Initialize()
 end
-
-addon:Init()

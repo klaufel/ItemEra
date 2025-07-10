@@ -1,5 +1,18 @@
-ItemEra = ItemEra or {}
+local _, ItemEra = ...
 ItemEra.Utils = {}
+
+-- Mix key-value pairs from other tables (...) into object. This is commonly used to create
+-- class "instances" with a particular interface.
+function ItemEra.Utils.Mixin(object, ...)
+    for i = 1, select("#", ...) do
+        local mixin = select(i, ...)
+        for k, v in pairs(mixin) do
+            object[k] = v
+        end
+    end
+
+    return object
+end
 
 function ItemEra.Utils:toRGB(hex)
     hex = hex:gsub("#", "")
@@ -53,17 +66,24 @@ function ItemEra.Utils:GetExpansionsInOrder()
     return ordered
 end
 
-function ItemEra.Utils:Dump(tbl, indent)
-    if not indent then indent = 0 end
-    for k, v in pairs(tbl) do
-        formatting = string.rep("  ", indent) .. k .. ": "
-        if type(v) == "table" then
-            print(formatting)
-            tprint(v, indent + 1)
-        elseif type(v) == 'boolean' then
-            print(formatting .. tostring(v))
+function ItemEra.Utils:Dump(t, indent)
+    assert(type(t) == "table", "PrintTable() called for non-table!")
+
+    local indentString = ""
+    for i = 1, indent do
+        indentString = indentString .. "  "
+    end
+
+    for k, v in pairs(t) do
+        if type(v) ~= "table" then
+            if type(v) == "string" then
+                print(indentString, k, "=", v)
+            end
         else
-            print(formatting .. v)
+            print(indentString, k, "=")
+            print(indentString, "  {")
+            PrintTable(v, indent + 2)
+            print(indentString, "  }")
         end
     end
 end

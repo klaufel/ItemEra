@@ -1,26 +1,24 @@
-local addonName, addon = ...
+local _, ItemEra = ...
 ItemEra.ItemData = {}
 
-if C_AddOns and C_AddOns.IsAddOnLoaded("DataStore") or IsAddOnLoaded("DataStore") then
-    print('cargado DataStore')
-end
-
-
 function ItemEra.ItemData:GetItemDBInfo(itemID)
-    if not itemID or not ItemEra.DB.Items then return nil end
-    return ItemEra.DB.Items[itemID]
+    if not itemID or not ItemEra.itemIdToVersionId then return nil end
+    return ItemEra.itemIdToVersionId[itemID]
 end
-
 
 function ItemEra.ItemData:GetItemDBVersion(itemID)
-local itemVersionId = ItemEra.ItemData:GetItemDBInfo(itemID)
-    return ItemEra.DB.VersionIdToVersion[itemID]
+    local itemVersionId = ItemEra.ItemData:GetItemDBInfo(itemID)
+
+    if (not itemVersionId or not ItemEra.versionIdToVersion) then
+        return nil
+    end
+
+    local version = ItemEra.versionIdToVersion[itemVersionId]
+    if version and version.major then
+        return version.major - 1
+    end
+    return nil
 end
-
-
-
-
-print(ItemEra.ItemData:GetItemDBVersion(35)) -- Example usage, replace with actual itemID
 
 function ItemEra.ItemData:GetItemExpansionID(itemID)
     if not itemID then return nil end
@@ -51,6 +49,8 @@ function ItemEra.ItemData:GetItemInfo(itemID)
     setID,
     isCraftingReagent = C_Item.GetItemInfo(itemID)
 
+
+
     if itemName then
         itemData.itemName = itemName
         itemData.itemLink = itemLink
@@ -66,7 +66,7 @@ function ItemEra.ItemData:GetItemInfo(itemID)
         itemData.classID = classID
         itemData.subclassID = subclassID
         itemData.bindType = bindType
-        itemData.expansionID = expansionID
+        itemData.expansionID = ItemEra.ItemData:GetItemDBVersion(itemID) or expansionID
         itemData.setID = setID
         itemData.isCraftingReagent = isCraftingReagent
     end

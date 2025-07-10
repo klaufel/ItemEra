@@ -1,9 +1,10 @@
-local addonName, addon = ...
-ItemEra.Filters = {}
+local addonName, ItemEra = ...
+local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
+
 
 local ItemEraSaved = ItemEraSaved or {}
 
-local L = addon.L or {}
+ItemEra.Filters = {}
 
 local function HighlightContainerByExpansion(containerID, maxSlots, buttonNamePattern, expansionID)
     for slot = 1, maxSlots do
@@ -19,6 +20,7 @@ local function HighlightContainerByExpansion(containerID, maxSlots, buttonNamePa
                 local itemID = tonumber(itemLink:match("item:(%d+)"))
                 if itemID then
                     local itemExpansionID = ItemEra.ItemData:GetItemExpansionID(itemID)
+
                     if itemExpansionID and itemExpansionID ~= expansionID then
                         if button.searchOverlay then
                             button.searchOverlay:Show()
