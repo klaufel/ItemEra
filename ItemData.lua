@@ -6,6 +6,11 @@ function ItemEra.ItemData:GetItemDBInfo(itemID)
     return ItemEra.itemIdToVersionId[itemID]
 end
 
+function ItemEra.ItemData:GetItemDBVersionExcluded(itemID)
+    local expansionExcludedId = ItemEra.Utils.ExpansionItemsExcluded[itemID]
+    return expansionExcludedId or nil
+end
+
 function ItemEra.ItemData:GetItemDBVersion(itemID)
     local itemDBID = ItemEra.ItemData:GetItemDBInfo(itemID)
 
@@ -22,56 +27,15 @@ end
 
 function ItemEra.ItemData:GetItemExpansionID(itemID)
     if not itemID then return nil end
-    local itemInfo = ItemEra.ItemData:GetItemInfo(itemID)
-    return itemInfo and itemInfo.expansionID or nil
-end
 
-function ItemEra.ItemData:GetItemInfo(itemID)
-    if not itemID then return nil end
+    local expansionExcludedID = ItemEra.ItemData:GetItemDBVersionExcluded(itemID)
+    if (expansionExcludedID) then return expansionExcludedID end
 
-    local itemData = {}
-    local
-    itemName,
-    itemLink,
-    itemQuality,
-    itemLevel,
-    itemMinLevel,
-    itemType,
-    itemSubType,
-    itemStackCount,
-    itemEquipLoc,
-    itemTexture,
-    sellPrice,
-    classID,
-    subclassID,
-    bindType,
-    expansionID,
-    setID,
-    isCraftingReagent = C_Item.GetItemInfo(itemID)
+    local expansionDBID = ItemEra.ItemData:GetItemDBVersion(itemID)
+    if (expansionDBID) then return expansionDBID end
 
-
-
-    if itemName then
-        itemData.itemName = itemName
-        itemData.itemLink = itemLink
-        itemData.itemQuality = itemQuality
-        itemData.itemLevel = itemLevel
-        itemData.itemMinLevel = itemMinLevel
-        itemData.itemType = itemType
-        itemData.itemSubType = itemSubType
-        itemData.itemStackCount = itemStackCount
-        itemData.itemEquipLoc = itemEquipLoc
-        itemData.itemTexture = itemTexture
-        itemData.sellPrice = sellPrice
-        itemData.classID = classID
-        itemData.subclassID = subclassID
-        itemData.bindType = bindType
-        itemData.expansionID = ItemEra.ItemData:GetItemDBVersion(itemID) or expansionID
-        itemData.setID = setID
-        itemData.isCraftingReagent = isCraftingReagent
-    end
-
-    return itemData
+    local expansionID = select(15, C_Item.GetItemInfo(itemID))
+    return expansionID
 end
 
 function ItemEra.ItemData:GetExpansionColor(expansionID)

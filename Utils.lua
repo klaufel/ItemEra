@@ -30,18 +30,43 @@ for k, hex in pairs(ItemEra.Utils.ExpansionColorsHex) do
     ItemEra.Utils.ExpansionColors[k] = { ItemEra.Utils:toRGB(hex) }
 end
 
+
+
+ItemEra.Utils.ExpansionDictionary = {
+    CLASSIC = 0,
+    TBC = 1,
+    WOTLK = 2,
+    CATA = 3,
+    MOP = 4,
+    WOD = 5,
+    LEGION = 6,
+    BFA = 7,
+    SHADOW = 8,
+    DF = 9,
+    TWW = 10
+}
+
 ItemEra.Utils.ExpansionNames = {
-    [0] = "Classic",
-    [1] = "The Burning Crusade",
-    [2] = "Wrath of the Lich King",
-    [3] = "Cataclysm",
-    [4] = "Mists of Pandaria",
-    [5] = "Warlords of Draenor",
-    [6] = "Legion",
-    [7] = "Battle for Azeroth",
-    [8] = "Shadowlands",
-    [9] = "Dragonflight",
-    [10] = "The War Within"
+    [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "Classic",
+    [ItemEra.Utils.ExpansionDictionary.TBC] = "The Burning Crusade",
+    [ItemEra.Utils.ExpansionDictionary.WOTLK] = "Wrath of the Lich King",
+    [ItemEra.Utils.ExpansionDictionary.CATA] = "Cataclysm",
+    [ItemEra.Utils.ExpansionDictionary.MOP] = "Mists of Pandaria",
+    [ItemEra.Utils.ExpansionDictionary.WOD] = "Warlords of Draenor",
+    [ItemEra.Utils.ExpansionDictionary.LEGION] = "Legion",
+    [ItemEra.Utils.ExpansionDictionary.BFA] = "Battle for Azeroth",
+    [ItemEra.Utils.ExpansionDictionary.SHADOW] = "Shadowlands",
+    [ItemEra.Utils.ExpansionDictionary.DF] = "Dragonflight",
+    [ItemEra.Utils.ExpansionDictionary.TWW] = "The War Within"
+}
+
+
+ItemEra.Utils.ExpansionItemsExcluded = {
+    [168583] = ItemEra.Utils.ExpansionDictionary.SHADOW, -- Widowbloom
+    [168586] = ItemEra.Utils.ExpansionDictionary.SHADOW, -- Rising Glory
+    [168589] = ItemEra.Utils.ExpansionDictionary.SHADOW, -- Marrowroot
+    [169701] = ItemEra.Utils.ExpansionDictionary.SHADOW, -- Death Blossom
+    [171315] = ItemEra.Utils.ExpansionDictionary.SHADOW, -- Nightshade
 }
 
 
