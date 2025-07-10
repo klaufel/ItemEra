@@ -49,3 +49,9 @@ https://warcraft.wiki.gg/wiki/World_of_Warcraft_API
   https://www.townlong-yak.com/framexml/live/Blizzard_FrameXMLBase/Constants.lua#213
 
 ## Contributors
+
+## Release
+
+```bash
+bash package.sh
+```

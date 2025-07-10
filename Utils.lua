@@ -29,17 +29,17 @@ for k, hex in pairs(ItemEra.Utils.ExpansionColorsHex) do
 end
 
 ItemEra.Utils.ExpansionNames = {
-    [0] = _G.EXPANSION_NAME0,
-    [1] = _G.EXPANSION_NAME1,
-    [2] = _G.EXPANSION_NAME2,
-    [3] = _G.EXPANSION_NAME3,
-    [4] = _G.EXPANSION_NAME4,
-    [5] = _G.EXPANSION_NAME5,
-    [6] = _G.EXPANSION_NAME6,
-    [7] = _G.EXPANSION_NAME7,
-    [8] = _G.EXPANSION_NAME8,
-    [9] = _G.EXPANSION_NAME9,
-    [10] = _G.EXPANSION_NAME10,
+    [0] = "Classic",
+    [1] = "The Burning Crusade",
+    [2] = "Wrath of the Lich King",
+    [3] = "Cataclysm",
+    [4] = "Mists of Pandaria",
+    [5] = "Warlords of Draenor",
+    [6] = "Legion",
+    [7] = "Battle for Azeroth",
+    [8] = "Shadowlands",
+    [9] = "Dragonflight",
+    [10] = "The War Within"
 }
 
 
@@ -47,7 +47,7 @@ function ItemEra.Utils:GetExpansionsInOrder()
     local ordered = {}
     for id = 0, 10 do
         if ItemEra.Utils.ExpansionNames[id] then
-            table.insert(ordered, { id = id, name =  ItemEra.Utils.ExpansionNames[id] })
+            table.insert(ordered, { id = id, name = ItemEra.Utils.ExpansionNames[id] })
         end
     end
     return ordered

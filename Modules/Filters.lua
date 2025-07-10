@@ -18,7 +18,7 @@ local function HighlightContainerByExpansion(containerID, maxSlots, buttonNamePa
             if itemLink then
                 local itemID = tonumber(itemLink:match("item:(%d+)"))
                 if itemID then
-                    local itemExpansionID = select(15, GetItemInfo(itemID))
+                    local itemExpansionID = ItemEra.ItemData:GetItemExpansionID(itemID)
                     if itemExpansionID and itemExpansionID ~= expansionID then
                         if button.searchOverlay then
                             button.searchOverlay:Show()
@@ -56,7 +56,7 @@ local function HighlightAccountBankByExpansion(expansionID)
         local itemInfo = (C_Container and C_Container.GetContainerItemInfo and bankTabID and containerSlotID) and
             C_Container.GetContainerItemInfo(bankTabID, containerSlotID) or nil
         if itemInfo and itemInfo.itemID then
-            local itemExpansionID = select(15, GetItemInfo(itemInfo.itemID))
+            local itemExpansionID = ItemEra.ItemData:GetItemExpansionID(itemInfo.itemID)
             if expansionID then
                 if itemExpansionID and itemExpansionID ~= expansionID then
                     if itemButton.SetMatchesSearch then

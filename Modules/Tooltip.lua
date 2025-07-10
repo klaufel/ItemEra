@@ -16,7 +16,7 @@ function ItemEra.Tooltip:AddExpansionTooltipLine(tooltip)
     if itemLink then
         local itemID = tonumber(itemLink:match("item:(%d+)"))
         if itemID then
-            local expansionID = select(15, C_Item.GetItemInfo(itemID))
+            local expansionID = ItemEra.ItemData:GetItemExpansionID(itemID)
             if expansionID and ItemEra.Utils.ExpansionColors[expansionID] and ItemEra.Utils.ExpansionNames[expansionID] then
                 local r, g, b = unpack(ItemEra.Utils.ExpansionColors[expansionID])
                 tooltip:AddLine(" ")
