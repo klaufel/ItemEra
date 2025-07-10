@@ -12,7 +12,7 @@ function ItemEra.Tooltip:AddExpansionTooltipLine(tooltip)
             if expansionID and ItemEra.Utils.ExpansionColors[expansionID] and ItemEra.Utils.ExpansionNames[expansionID] then
                 local r, g, b = unpack(ItemEra.Utils.ExpansionColors[expansionID])
                 tooltip:AddLine(" ")
-                local icon = "Interface/AddOns/ItemEra/Media/Icons/Exp_Logo_" .. expansionID .. ".tga"
+                local icon = ItemEra.Utils:GetExpansionLogoById(expansionID)
                 local iconMarkup = ("|T%s:16:16:0:0:64:64:4:60:4:60|t"):format(icon)
                 tooltip:AddLine(L["TOOLTIP.ORIGIN"] .. "  " ..
                     ("%s |cff%02x%02x%02x%s|r"):format(iconMarkup, r * 255, g * 255, b * 255,

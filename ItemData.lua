@@ -7,13 +7,13 @@ function ItemEra.ItemData:GetItemDBInfo(itemID)
 end
 
 function ItemEra.ItemData:GetItemDBVersion(itemID)
-    local itemVersionId = ItemEra.ItemData:GetItemDBInfo(itemID)
+    local itemDBID = ItemEra.ItemData:GetItemDBInfo(itemID)
 
-    if (not itemVersionId or not ItemEra.versionIdToVersion) then
+    if (not itemDBID or not ItemEra.versionIdToVersion) then
         return nil
     end
 
-    local version = ItemEra.versionIdToVersion[itemVersionId]
+    local version = ItemEra.versionIdToVersion[itemDBID]
     if version and version.major then
         return version.major - 1
     end

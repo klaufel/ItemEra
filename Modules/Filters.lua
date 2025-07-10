@@ -1,7 +1,6 @@
 local addonName, ItemEra = ...
 local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
-
 local ItemEraSaved = ItemEraSaved or {}
 
 ItemEra.Filters = {}
@@ -137,7 +136,7 @@ function ItemEra.Filters:CreateFilterDropdown(parent)
 
         for _, expansion in ipairs(ItemEra.Utils:GetExpansionsInOrder()) do
             local id, name = expansion.id, expansion.name
-            local icon = "Interface/AddOns/ItemEra/Media/Icons/Exp_Logo_" .. id .. ".tga"
+            local icon = ItemEra.Utils:GetExpansionLogoById(id)
             local iconMarkup = ("|T%s:16:16:0:0:64:64:4:60:4:60|t"):format(icon)
 
             rootDescription:CreateRadio(

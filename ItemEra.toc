@@ -41,8 +41,6 @@ locales.xml
 
 Core.lua
 Utils.lua
-Settings.lua
-Database.lua
 Data.lua
 ItemData.lua
 Events.lua

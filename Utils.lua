@@ -1,18 +1,7 @@
 local _, ItemEra = ...
 ItemEra.Utils = {}
 
--- Mix key-value pairs from other tables (...) into object. This is commonly used to create
--- class "instances" with a particular interface.
-function ItemEra.Utils.Mixin(object, ...)
-    for i = 1, select("#", ...) do
-        local mixin = select(i, ...)
-        for k, v in pairs(mixin) do
-            object[k] = v
-        end
-    end
 
-    return object
-end
 
 function ItemEra.Utils:toRGB(hex)
     hex = hex:gsub("#", "")
@@ -66,24 +55,8 @@ function ItemEra.Utils:GetExpansionsInOrder()
     return ordered
 end
 
-function ItemEra.Utils:Dump(t, indent)
-    assert(type(t) == "table", "PrintTable() called for non-table!")
+ItemEra.Utils.PathAssets = "Interface\\AddOns\\ItemEra\\Assets\\"
 
-    local indentString = ""
-    for i = 1, indent do
-        indentString = indentString .. "  "
-    end
-
-    for k, v in pairs(t) do
-        if type(v) ~= "table" then
-            if type(v) == "string" then
-                print(indentString, k, "=", v)
-            end
-        else
-            print(indentString, k, "=")
-            print(indentString, "  {")
-            PrintTable(v, indent + 2)
-            print(indentString, "  }")
-        end
-    end
+function ItemEra.Utils:GetExpansionLogoById(expansionID)
+    return ItemEra.Utils.PathAssets .. "Icons\\Exp_Logo_" .. expansionID .. ".tga"
 end
