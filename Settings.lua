@@ -1,68 +1,88 @@
-local addonName, addon = ...
-local Config = {}
-addon.Config = Config
+ItemEra = ItemEra or {}
+ItemEra.Settings = {}
 
-addon.L = addon.L or {}
-if not getmetatable(addon.L) then
-    setmetatable(addon.L, { __index = function(t, k) return k end })
-end
-local L = addon.L
+---@class ItemEraSettings
+---@field showExpansionInTooltip boolean
+---@field showRarityFilter boolean
+---@field bankFilterEnabled boolean
+---@field tooltipColor '"class"'|'"rarity"'|'"expansion"'
 
-function Config:GetSetting(setting)
-    if Settings and Settings.GetValue then
-        local ok, value = pcall(Settings.GetValue, "ItemEra_" .. setting)
-        if ok and type(value) == "boolean" then
-            return value
+-- 🎯 Valores por defecto
+local defaults = {
+    showExpansionInTooltip = true,
+    showRarityFilter = true,
+    bankFilterEnabled = true,
+    tooltipColor = "class", -- puede ser: "class", "rarity", "expansion"
+}
+
+-- 🧩 Tipos esperados
+local schema = {
+    showExpansionInTooltip = "boolean",
+    showRarityFilter = "boolean",
+    bankFilterEnabled = "boolean",
+    tooltipColor = "string",
+}
+
+-- ✅ Valores válidos para claves específicas
+local allowedValues = {
+    tooltipColor = {
+        class = true,
+        rarity = true,
+        expansion = true,
+    }
+}
+
+-- 🔄 Inicializar configuración
+function ItemEra.Settings:Initialize()
+    if not ItemEraDB then
+        ItemEraDB = {}
+    end
+
+    for key, defaultValue in pairs(defaults) do
+        if ItemEraDB[key] == nil then
+            ItemEraDB[key] = defaultValue
         end
     end
-    return ItemEraSaved and ItemEraSaved[setting] ~= false
+
+    self.db = ItemEraDB
 end
 
-ItemEraSaved = ItemEraSaved or {}
+-- 📥 Obtener valor
+---@param key string
+function ItemEra.Settings:Get(key)
+    return self.db and self.db[key]
+end
 
-local category = Settings.RegisterVerticalLayoutCategory("ItemEra")
+-- 📤 Establecer valor con validación
+---@param key string
+---@param value any
+function ItemEra.Settings:Set(key, value)
+    local expectedType = schema[key]
+    if not expectedType then
+        print("|cffff0000[ItemEra]|r Unknown setting:", key)
+        return
+    end
 
-local function OnSettingChanged(setting, value)
-    if ItemEraSaved.debug then
-        print("ItemEra:", setting, "key changed:", value)
+    -- Validación por tipo
+    if type(value) ~= expectedType then
+        print("|cffff0000[ItemEra]|r Invalid type for", key, "- expected", expectedType)
+        return
+    end
+
+    -- Validación por valores permitidos
+    if allowedValues[key] and not allowedValues[key][value] then
+        print("|cffff0000[ItemEra]|r Invalid value for", key, "- value:", value)
+        return
+    end
+
+    self.db[key] = value
+end
+
+-- 🔁 Alternar booleanos
+---@param key string
+function ItemEra.Settings:Toggle(key)
+    if self.db and type(self.db[key]) == "boolean" then
+        self.db[key] = not self.db[key]
+        return self.db[key]
     end
 end
-
-
-local showExpansionTooltip = Settings.RegisterAddOnSetting(
-    category,
-    "ItemEra_" .. "showExpansionTooltip",
-    "showExpansionTooltip",
-    ItemEraSaved,
-    type(true),
-    L["SETTINGS.EXPANSION_TOOLTIP.TITLE"],
-    true
-)
-showExpansionTooltip:SetValueChangedCallback(OnSettingChanged)
-Settings.CreateCheckbox(category, showExpansionTooltip, L["SETTINGS.EXPANSION_TOOLTIP.TOOLTIP"])
-
-
-local showExpansionFilter = Settings.RegisterAddOnSetting(
-    category,
-    "ItemEra_" .. "showExpansionFilter",
-    "showExpansionFilter",
-    ItemEraSaved,
-    type(true),
-    L["SETTINGS.EXPANSION_FILTER.TITLE"],
-    true
-)
-showExpansionFilter:SetValueChangedCallback(OnSettingChanged)
-Settings.CreateCheckbox(category, showExpansionFilter, L["SETTINGS.EXPANSION_FILTER.TOOLTIP"])
-
-function addon:InitializeSettings()
-    if not ItemEraSaved.bankFilter then
-        ItemEraSaved.bankFilter = {
-            enabled = true,
-            rememberSelection = false,
-            showFilterCount = true
-        }
-    end
-end
-
-Settings.RegisterAddOnCategory(category)
-Settings.RegisterAddOnCategory(category)

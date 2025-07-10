@@ -4,7 +4,7 @@
 ## Notes: Adds expansion filters and information to all item tooltips with color-coded names and visual icons for instant recognition.
 ## Author: Klaufel
 ## Version: 1.0.2
-## SavedVariables: ItemEraSaved
+## SavedVariables: ItemEraDB
 ## IconTexture: Interface\AddOns\ItemEra\Media\Addon\Logo.tga
 
 ## X-Website: https://www.curseforge.com/wow/addons/itemera
@@ -36,7 +36,6 @@
 ## Notes-zhCN: 为所有物品提示添加资料片过滤器和信息，使用颜色编码的名称和视觉图标以便即时识别。
 ## Notes-zhTW: 為所有物品提示添加資料片過濾器和資訊，使用顏色編碼的名稱和視覺圖示以便即時識別。
 
-Utils.lua
 
 Locales/enUS.lua
 Locales/esES.lua
@@ -47,9 +46,10 @@ Locales/zhCN.lua
 
 # Settings.lua
 
+
+Utils.lua
+Settings.lua
 Modules/Tooltip.lua
-Modules/Filter/FilterBank.lua
-
-
+Events.lua
+Filters.lua
 Core.lua
-CLI.lua
