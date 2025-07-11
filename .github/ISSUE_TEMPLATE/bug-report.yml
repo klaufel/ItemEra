@@ -19,22 +19,6 @@ body:
         Example: The expansion filter in the bank doesn't work properly when I try to filter Wrath of the Lich King items... (screenshots, videos, etc.)
     validations:
       required: true
-  - type: dropdown
-    id: feature-area
-    attributes:
-      label: Feature Area
-      description: Which part of ItemEra is affected?
-      multiple: true
-      options:
-        - Tooltips (Expansion info display)
-        - Bank Filter (Regular Bank)
-        - Bank Filter (Reagent Bank)
-        - Bank Filter (Account/Warband Bank)
-        - Settings/Configuration
-        - Localization/Language
-        - Other
-    validations:
-      required: true
   - type: textarea
     id: steps-to-reproduce
     attributes:

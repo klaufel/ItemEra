@@ -50,25 +50,6 @@ body:
       default: 1
     validations:
       required: true
-  - type: textarea
-    id: use-case
-    attributes:
-      label: Use Case / Problem to Solve
-      description: What problem does this feature solve? How would you use it?
-      placeholder: |
-        Example: When organizing my bank, I often need to sort items by quality level in addition to expansion. This would help me quickly identify valuable items...
-    validations:
-      required: true
-  - type: textarea
-    id: proposed-solution
-    attributes:
-      label: Proposed Solution
-      description: How do you think this feature should work? Be as specific as possible. If you have any visual ideas, mockups, or screenshots that might help explain the feature, describe them here
-      placeholder: |
-        Example: Add a second dropdown next to the expansion filter that allows filtering by item quality. It should work similar to the expansion filter...
-        Example: The quality filter could be a colored dropdown with gem icons representing each quality level...
-    validations:
-      required: true
   - type: checkboxes
     id: checklist
     attributes:
