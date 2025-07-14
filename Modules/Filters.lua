@@ -291,13 +291,9 @@ function ItemEra.Filters:Initialize()
     end)
 
 
-    ItemEra:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", function(_, event)
-        ItemEra.Filters:UpdateBankFilters()
-    end)
-
-    ItemEra:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", function(self, event, arg)
+    -- Guild Bank
+    ItemEra:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", function(_, _, arg)
         if arg ~= Enum.PlayerInteractionType.GuildBanker then return end
-
         if not ItemEraGuildBankFilterDropdown then
             local dropdownParams = { x = 18, y = -28, width = 200 }
             ItemEra.Filters:CreateFilterDropdown(GuildBankFrame, "ItemEraGuildBankFilterDropdown", dropdownParams)
@@ -305,4 +301,6 @@ function ItemEra.Filters:Initialize()
             ItemEraGuildBankFilterDropdown:Show()
         end
     end)
+
+    ItemEra:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", ItemEra.Filters.UpdateBankFilters)
 end
