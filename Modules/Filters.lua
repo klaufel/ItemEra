@@ -5,6 +5,9 @@ local ItemEraSaved = ItemEraSaved or {}
 
 ItemEra.Filters = {}
 
+local MAX_GUILDBANK_SLOTS_PER_TAB = 98
+local NUM_SLOTS_PER_GUILDBANK_GROUP = 14
+
 local function HighlightContainerByExpansion(containerID, maxSlots, buttonNamePattern, expansionID)
     for slot = 1, maxSlots do
         local itemLink
@@ -86,8 +89,72 @@ local function ClearAccountBankHighlight()
     end
 end
 
+local function HighlightGuildBankByExpansion(expansionID)
+    if not GuildBankFrame or not GuildBankFrame:IsShown() then return end
+
+    local currentTab = GetCurrentGuildBankTab()
+    if not currentTab then return end
+    for slot = 1, MAX_GUILDBANK_SLOTS_PER_TAB do
+        local itemLink = GetGuildBankItemLink(currentTab, slot)
+
+        local index = (slot - 1) % NUM_SLOTS_PER_GUILDBANK_GROUP + 1
+        local column = math.ceil(slot / 14)
+
+        local button = GuildBankFrame.Columns and GuildBankFrame.Columns[column] and
+            GuildBankFrame.Columns[column].Buttons and GuildBankFrame.Columns[column].Buttons[index]
+
+        if button then
+            if itemLink then
+                local itemID = tonumber(itemLink:match("item:(%d+)"))
+                if itemID then
+                    local itemExpansionID = ItemEra.ItemData:GetItemExpansionID(itemID)
+
+                    if itemExpansionID and itemExpansionID ~= expansionID then
+                        if button.searchOverlay then
+                            button.searchOverlay:Show()
+                        elseif button.SetMatchesSearch then
+                            button:SetMatchesSearch(false)
+                        end
+                    else
+                        if button.searchOverlay then
+                            button.searchOverlay:Hide()
+                        elseif button.SetMatchesSearch then
+                            button:SetMatchesSearch(true)
+                        end
+                    end
+                end
+            else
+                if button.searchOverlay then
+                    button.searchOverlay:Hide()
+                elseif button.SetMatchesSearch then
+                    button:SetMatchesSearch(true)
+                end
+            end
+        end
+    end
+end
+
+local function ClearGuildBankHighlight()
+    if not GuildBankFrame then return end
+
+    for slot = 1, MAX_GUILDBANK_SLOTS_PER_TAB do
+        local index = (slot - 1) % 14 + 1
+        local column = math.ceil(slot / 14)
+
+        local button = GuildBankFrame.Columns and GuildBankFrame.Columns[column] and
+            GuildBankFrame.Columns[column].Buttons and GuildBankFrame.Columns[column].Buttons[index]
+
+        if button and button.searchOverlay then
+            button.searchOverlay:Hide()
+        elseif button and button.SetMatchesSearch then
+            button:SetMatchesSearch(true)
+        end
+    end
+end
+
 function ItemEra.Filters:HighlightBankByExpansion(expansionID)
     ItemEra.Filters:ClearBankHighlight()
+
     if not expansionID then return end
     HighlightContainerByExpansion(BANK_CONTAINER, NUM_BANKGENERIC_SLOTS, "BankFrameItem", expansionID)
     if ReagentBankFrame and ReagentBankFrame:IsShown() then
@@ -95,6 +162,10 @@ function ItemEra.Filters:HighlightBankByExpansion(expansionID)
     end
     if AccountBankPanel and AccountBankPanel:IsShown() then
         HighlightAccountBankByExpansion(expansionID)
+    end
+
+    if GuildBankFrame and GuildBankFrame:IsShown() then
+        HighlightGuildBankByExpansion(expansionID)
     end
 end
 
@@ -112,13 +183,19 @@ function ItemEra.Filters:ClearBankHighlight()
         end
     end
     ClearAccountBankHighlight()
+    ClearGuildBankHighlight()
 end
 
-function ItemEra.Filters:CreateFilterDropdown(parent)
-    local dropdown = CreateFrame("DropdownButton", "ItemEraBankFilterDropdown", parent, "WowStyle1DropdownTemplate")
-    dropdown:SetPoint("TOPLEFT", parent, "TOPLEFT", 60, -30)
-    dropdown:SetWidth(140)
-    dropdown:SetHeight(22)
+function ItemEra.Filters:CreateFilterDropdown(parent, name, params)
+    local name = name or "ItemEraBankFilterDropdown"
+    local positionX = (params and params.x) or 60
+    local positionY = (params and params.y) or -30
+    local width = (params and params.width) or 140
+    local height = (params and params.height) or 22
+    local dropdown = CreateFrame("DropdownButton", name, parent, "WowStyle1DropdownTemplate")
+    dropdown:SetPoint("TOPLEFT", parent, "TOPLEFT", positionX, positionY)
+    dropdown:SetWidth(width)
+    dropdown:SetHeight(height)
     dropdown:SetDefaultText(L["COMMON.SELECT_EXPANSION"])
 
     local function GeneratorFunction(owner, rootDescription)
@@ -211,5 +288,21 @@ function ItemEra.Filters:Initialize()
         ItemEra.Filters:UpdateBankFilters()
         ReagentBankFrame:HookScript("OnShow", ItemEra.Filters.UpdateBankFilters)
         hooksecurefunc(AccountBankPanel, "Show", ItemEra.Filters.UpdateBankFilters)
+    end)
+
+
+    ItemEra:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", function(_, event)
+        ItemEra.Filters:UpdateBankFilters()
+    end)
+
+    ItemEra:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", function(self, event, arg)
+        if arg ~= Enum.PlayerInteractionType.GuildBanker then return end
+
+        if not ItemEraGuildBankFilterDropdown then
+            local dropdownParams = { x = 18, y = -28, width = 200 }
+            ItemEra.Filters:CreateFilterDropdown(GuildBankFrame, "ItemEraGuildBankFilterDropdown", dropdownParams)
+        else
+            ItemEraGuildBankFilterDropdown:Show()
+        end
     end)
 end
