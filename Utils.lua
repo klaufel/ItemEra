@@ -5,9 +5,9 @@ ItemEra.Utils = {}
 
 function ItemEra.Utils:toRGB(hex)
     hex = hex:gsub("#", "")
-    return tonumber("0x" .. hex:sub(1, 2)) / 255,
-        tonumber("0x" .. hex:sub(3, 4)) / 255,
-        tonumber("0x" .. hex:sub(5, 6)) / 255
+    return tonumber("0x" .. hex:sub(1, 2)),
+        tonumber("0x" .. hex:sub(3, 4)),
+        tonumber("0x" .. hex:sub(5, 6))
 end
 
 ItemEra.Utils.ExpansionColorsHex = {

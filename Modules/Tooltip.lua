@@ -3,30 +3,56 @@ local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
 ItemEra.Tooltip = {}
 
-function ItemEra.Tooltip:AddExpansionTooltipLine(tooltip)
-    if not tooltip or not tooltip.GetItem then return end
+local TOOLTIP_DATA_TYPES = {
+    ITEM = Enum.TooltipDataType.Item,
+    TOY = Enum.TooltipDataType.Toy
+}
 
-    local _, itemLink = tooltip:GetItem()
-    if itemLink then
-        local itemID = tonumber(string.match(itemLink, "item:(%d*)"))
-        if itemID then
-            local expansionID = ItemEra.ItemData:GetItemExpansionID(itemID)
-            if expansionID and ItemEra.Utils.ExpansionColors[expansionID] and ItemEra.Utils.ExpansionNames[expansionID] then
-                local r, g, b = unpack(ItemEra.Utils.ExpansionColors[expansionID])
-                tooltip:AddLine(" ")
-                local icon = ItemEra.Utils:GetExpansionLogoById(expansionID)
-                local iconMarkup = ("|T%s:16:16:0:0:64:64:4:60:4:60|t"):format(icon)
-                tooltip:AddLine(L["TOOLTIP.ORIGIN"] .. "  " ..
-                    ("%s |cff%02x%02x%02x%s|r"):format(iconMarkup, r * 255, g * 255, b * 255,
-                        ItemEra.Utils.ExpansionNames[expansionID]))
-                tooltip:Show()
-            end
-        end
+local function GetExpansionTextByItemID(itemID)
+    local expansionID = ItemEra.ItemData:GetItemExpansionID(itemID)
+    if not expansionID then return end
+
+    local expansionColor = ItemEra.Utils.ExpansionColors[expansionID]
+    local expansionName = ItemEra.Utils.ExpansionNames[expansionID]
+    if not expansionColor or not expansionName then return end
+
+    local r, g, b = unpack(expansionColor)
+    local logo = ("|T%s:16:16:0:0:64:64:4:60:4:60|t"):format(ItemEra.Utils:GetExpansionLogoById(expansionID))
+
+    return L["TOOLTIP.EXPANSION"] .. "  " .. ("%s |cff%02x%02x%02x%s|r"):format(logo, r, g, b, expansionName)
+end
+
+local function AddExpansionLine(tooltip, itemID)
+    if not tooltip or not itemID then return end
+
+    local expansionText = GetExpansionTextByItemID(itemID)
+    if not expansionText then return end
+
+    tooltip:AddLine(" ")
+    tooltip:AddLine(expansionText)
+    tooltip:Show()
+end
+
+
+local function AddTooltipLine(tooltip, data)
+    if not tooltip then return end
+    local itemID = nil
+
+    if (data.id) then
+        itemID = data.id
+    elseif tooltip.GetItem then
+        local _, itemLink = tooltip:GetItem()
+        if not itemLink then return end
+        itemID = tonumber(string.match(itemLink, "item:(%d*)"))
     end
+
+    if not itemID then return end
+    AddExpansionLine(tooltip, itemID)
 end
 
 function ItemEra.Tooltip:Initialize()
-    TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tooltip)
-        ItemEra.Tooltip:AddExpansionTooltipLine(tooltip)
-    end)
+    for _, toolipDataType in pairs(TOOLTIP_DATA_TYPES) do
+        print(toolipDataType)
+        TooltipDataProcessor.AddTooltipPostCall(toolipDataType, AddTooltipLine)
+    end
 end
