@@ -46,7 +46,7 @@ For any issues or feature requests, please contact the addon developer through t
 https://warcraft.wiki.gg/wiki/World_of_Warcraft_API
 
 - [WoW API Documentation](https://wowpedia.fandom.com/wiki/World_of_Warcraft_API)
-  https://www.townlong-yak.com/framexml/live/Blizzard_FrameXMLBase/Constants.lua#213
+   
 
 ## Contributors
 

@@ -4,9 +4,11 @@ local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 ItemEra.Tooltip = {}
 
 function ItemEra.Tooltip:AddExpansionTooltipLine(tooltip)
+    if not tooltip or not tooltip.GetItem then return end
+
     local _, itemLink = tooltip:GetItem()
     if itemLink then
-        local itemID = tonumber(itemLink:match("item:(%d+)"))
+        local itemID = tonumber(string.match(itemLink, "item:(%d*)"))
         if itemID then
             local expansionID = ItemEra.ItemData:GetItemExpansionID(itemID)
             if expansionID and ItemEra.Utils.ExpansionColors[expansionID] and ItemEra.Utils.ExpansionNames[expansionID] then
@@ -24,19 +26,7 @@ function ItemEra.Tooltip:AddExpansionTooltipLine(tooltip)
 end
 
 function ItemEra.Tooltip:Initialize()
-    hooksecurefunc(GameTooltip, "SetBagItem", function(self)
-        ItemEra.Tooltip:AddExpansionTooltipLine(self)
-    end)
-    hooksecurefunc(GameTooltip, "SetInventoryItem", function(self)
-        ItemEra.Tooltip:AddExpansionTooltipLine(self)
-    end)
-    hooksecurefunc(GameTooltip, "SetHyperlink", function(self)
-        ItemEra.Tooltip:AddExpansionTooltipLine(self)
-    end)
-    hooksecurefunc(GameTooltip, "SetMerchantItem", function(self)
-        ItemEra.Tooltip:AddExpansionTooltipLine(self)
-    end)
-    hooksecurefunc(ItemRefTooltip, "SetHyperlink", function(self)
-        ItemEra.Tooltip:AddExpansionTooltipLine(self)
+    TooltipDataProcessor.AddTooltipPostCall(Enum.TooltipDataType.Item, function(tooltip)
+        ItemEra.Tooltip:AddExpansionTooltipLine(tooltip)
     end)
 end

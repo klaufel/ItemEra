@@ -14,6 +14,8 @@ cp -r * ItemEra/ 2>/dev/null || true
 find ItemEra -name ".DS_Store" -delete
 rm -rf ItemEra/.vscode
 rm -rf ItemEra/_Interface
+rm -rf ItemEra/README.md
+rm -rf ItemEra/stylua.toml
 rm -rf ItemEra/ItemEra
 rm -f ItemEra/package.sh
 rm -f ItemEra/*.zip
