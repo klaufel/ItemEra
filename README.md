@@ -37,16 +37,13 @@ Once installed, simply hover over any item in your inventory or on the ground to
 
 For any issues or feature requests, please contact the addon developer through the appropriate channels on the addon distribution platform.
 
-## Changelog
-
-- **v1.0**: Initial release of ItemEra.
-
 ## Docs
 
 https://warcraft.wiki.gg/wiki/World_of_Warcraft_API
 
 - [WoW API Documentation](https://wowpedia.fandom.com/wiki/World_of_Warcraft_API)
-   
+- https://github.com/Gethe/wow-ui-source
+  https://www.townlong-yak.com/framexml/live/Blizzard_FrameXMLBase/Constants.lua#213
 
 ## Contributors
 
