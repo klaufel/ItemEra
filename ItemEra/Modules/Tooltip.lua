@@ -52,7 +52,6 @@ end
 
 function ItemEra.Tooltip:Initialize()
     for _, toolipDataType in pairs(TOOLTIP_DATA_TYPES) do
-        print(toolipDataType)
         TooltipDataProcessor.AddTooltipPostCall(toolipDataType, AddTooltipLine)
     end
 end

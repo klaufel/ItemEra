@@ -22,4 +22,4 @@ zip -r "${FOLDER_VERSION}.zip" ItemEra
 # Clean up temporary folder
 rm -rf ${FOLDER_VERSION}
 
-echo "Created ItemEra-${VERSION}.zip"
+echo "✅ Created ItemEra-${VERSION}.zip"
