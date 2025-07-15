@@ -23,3 +23,4 @@ zip -r "${FOLDER_VERSION}.zip" ItemEra
 rm -rf ${FOLDER_VERSION}
 
 echo "✅ Created ItemEra-${VERSION}.zip"
+open .
