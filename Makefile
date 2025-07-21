@@ -3,3 +3,6 @@ alias:
 
 package:
 	bash scripts/package.sh
+
+database:
+	bash scripts/database.sh

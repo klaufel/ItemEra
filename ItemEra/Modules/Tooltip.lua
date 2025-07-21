@@ -32,9 +32,7 @@ local function AddExpansionLine(tooltip, itemID)
 
     tooltip:AddLine(" ")
     tooltip:AddLine(expansionText)
-    if (DEBUG) then
-        tooltip:AddLine("itemID: " .. itemID, 1, 1, 1, true)
-    end
+    if (DEBUG) then tooltip:AddLine("itemID: " .. itemID, 1, 1, 1, true) end
     tooltip:Show()
 end
 

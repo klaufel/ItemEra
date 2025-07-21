@@ -40,10 +40,16 @@ libs.xml
 locales.xml
 
 Core.lua
+
 Utils.lua
 Data.lua
 ItemData.lua
 Events.lua
+
 Modules\Tooltip.lua
+
+Modules\Filters_Utils.lua
+Modules\Filters_Bank.lua
+Modules\Filters_GuildBank.lua
 Modules\Filters.lua
 

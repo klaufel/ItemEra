@@ -6,6 +6,16 @@ function ItemEra.ItemData:GetItemDBInfo(itemID)
     return ItemEra.itemIdToVersionId[itemID]
 end
 
+function ItemEra.ItemData:GetExpansionIdFromItemDB(itemID)
+    local version = ItemEra.versionIdToVersion[itemID]
+    if version and type(version) == "string" then
+        local major = version:match("(%d+)%.(%d+)%.(%d+)%.(%d+)")
+        if major then
+            return tonumber(major) - 1
+        end
+    end
+end
+
 function ItemEra.ItemData:GetItemDBVersionExcluded(itemID)
     local expansionExcludedId = ItemEra.Utils.ExpansionItemsExcluded[itemID]
     return expansionExcludedId or nil
@@ -18,10 +28,8 @@ function ItemEra.ItemData:GetItemDBVersion(itemID)
         return nil
     end
 
-    local version = ItemEra.versionIdToVersion[itemDBID]
-    if version and version.major then
-        return version.major - 1
-    end
+    local version = ItemEra.ItemData:GetExpansionIdFromItemDB(itemDBID)
+    if version then return version end
     return nil
 end
 
