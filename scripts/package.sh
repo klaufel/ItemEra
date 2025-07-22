@@ -1,8 +1,19 @@
 #!/bin/bash
 
-# Get the addon version from TOC file
-VERSION=$(grep "## Version:" ItemEra/ItemEra.toc | sed 's/## Version: //')
-FOLDER_VERSION="ItemEra-${VERSION}"
+TOC_FILE="ItemEra/ItemEra.toc"
+
+if grep -q "^## Version:" "$TOC_FILE"; then
+  OLD_VERSION=$(grep "^## Version:" "$TOC_FILE" | awk '{print $3}')
+  IFS='.' read -r MAJOR MINOR PATCH <<< "$OLD_VERSION"
+  NEW_VERSION="$MAJOR.$MINOR.$((PATCH + 1))"
+  sed -i '' "s/^## Version: .*/## Version: $NEW_VERSION/" "$TOC_FILE"
+  echo "Version updated: $OLD_VERSION → $NEW_VERSION"
+else
+  echo "Not Version found in $TOC_FILE"
+  exit 1
+fi
+
+FOLDER_VERSION="ItemEra-${NEW_VERSION}"
 
 # Clean up any existing files
 rm -rf *.zip
@@ -22,5 +33,5 @@ zip -r "${FOLDER_VERSION}.zip" ItemEra
 # Clean up temporary folder
 rm -rf ${FOLDER_VERSION}
 
-echo "✅ Created ItemEra-${VERSION}.zip"
+echo "✅ Created ItemEra-${NEW_VERSION}.zip"
 open .

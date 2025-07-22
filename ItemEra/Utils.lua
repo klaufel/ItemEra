@@ -1,8 +1,6 @@
 local _, ItemEra = ...
 ItemEra.Utils = {}
 
-
-
 function ItemEra.Utils:toRGB(hex)
     hex = hex:gsub("#", "")
     return tonumber("0x" .. hex:sub(1, 2)),

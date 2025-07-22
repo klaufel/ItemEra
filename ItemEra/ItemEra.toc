@@ -3,7 +3,7 @@
 ## Title: ItemEra - Filter Expansion Items
 ## Notes: Adds expansion filters and information to all item tooltips with color-coded names and visual icons for instant recognition.
 ## Author: Klaufel
-## Version: 1.0.5
+## Version: 1.0.6
 ## SavedVariables: ItemEraDB
 ## IconTexture: Interface\AddOns\ItemEra\Assets\Addon\Logo.tga
 ## X-Website: https://www.curseforge.com/wow/addons/itemera
@@ -40,10 +40,17 @@ libs.xml
 locales.xml
 
 Core.lua
+
 Utils.lua
 Data.lua
 ItemData.lua
 Events.lua
-Modules\Tooltip.lua
-Modules\Filters.lua
+
+Modules\Tooltip\Tooltip.lua
+
+Modules\Filters\Filters_Utils.lua
+Modules\Filters\Filters_Bank.lua
+Modules\Filters\Filters_GuildBank.lua
+Modules\Filters\Filters_Inventory.lua
+Modules\Filters\Filters.lua
 
