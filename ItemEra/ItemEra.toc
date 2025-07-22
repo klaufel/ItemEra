@@ -46,10 +46,11 @@ Data.lua
 ItemData.lua
 Events.lua
 
-Modules\Tooltip.lua
+Modules\Tooltip\Tooltip.lua
 
-Modules\Filters_Utils.lua
-Modules\Filters_Bank.lua
-Modules\Filters_GuildBank.lua
-Modules\Filters.lua
+Modules\Filters\Filters_Utils.lua
+Modules\Filters\Filters_Bank.lua
+Modules\Filters\Filters_GuildBank.lua
+Modules\Filters\Filters_Inventory.lua
+Modules\Filters\Filters.lua
 
