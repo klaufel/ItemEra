@@ -3,7 +3,8 @@ local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
 ItemEra.Tooltip = {}
 
-local DEBUG = ItemEra.Debug or false
+local DEBUG = ItemEra.Config.debug
+local DISABLED_DB = ItemEra.Config.disabledDB
 
 local TOOLTIP_DATA_TYPES = {
     ITEM = Enum.TooltipDataType.Item,
@@ -32,7 +33,9 @@ local function AddExpansionLine(tooltip, itemID)
 
     tooltip:AddLine(" ")
     tooltip:AddLine(expansionText)
-    if (DEBUG) then tooltip:AddLine("itemID: " .. itemID, 1, 1, 1, true) end
+    if (DEBUG) then tooltip:AddLine("itemID: " .. itemID) end
+    if (DEBUG) then tooltip:AddLine("itemDB: " .. (DISABLED_DB and "Game" or "DB")) end
+
     tooltip:Show()
 end
 

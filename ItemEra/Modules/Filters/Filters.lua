@@ -4,5 +4,5 @@ ItemEra.Filters = {}
 function ItemEra.Filters:Initialize()
     ItemEra.FiltersBank:Initialize()
     ItemEra.FiltersGuildBank:Initialize()
-    -- ItemEra.FiltersInventory:Initialize()
+    ItemEra.FiltersInventory:Initialize()
 end

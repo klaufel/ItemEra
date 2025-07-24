@@ -1,6 +1,8 @@
 local _, ItemEra = ...
 ItemEra.ItemData = {}
 
+local DISABLED_DB = ItemEra.Config.disabledDB
+
 function ItemEra.ItemData:GetItemDBInfo(itemID)
     if not itemID or not ItemEra.itemIdToVersionId then return nil end
     return ItemEra.itemIdToVersionId[itemID]
@@ -36,11 +38,13 @@ end
 function ItemEra.ItemData:GetItemExpansionID(itemID)
     if not itemID then return nil end
 
-    local expansionExcludedID = ItemEra.ItemData:GetItemDBVersionExcluded(itemID)
-    if (expansionExcludedID) then return expansionExcludedID end
+    if not DISABLED_DB then
+        local expansionExcludedID = ItemEra.ItemData:GetItemDBVersionExcluded(itemID)
+        if (expansionExcludedID) then return expansionExcludedID end
 
-    local expansionDBID = ItemEra.ItemData:GetItemDBVersion(itemID)
-    if (expansionDBID) then return expansionDBID end
+        local expansionDBID = ItemEra.ItemData:GetItemDBVersion(itemID)
+        if (expansionDBID) then return expansionDBID end
+    end
 
     local expansionID = select(15, C_Item.GetItemInfo(itemID))
     return expansionID

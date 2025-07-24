@@ -2,7 +2,10 @@ local addonName, addon = ...
 
 ItemEra = LibStub("AceAddon-3.0"):NewAddon(addon, addonName)
 
-ItemEra.Debug = false
+ItemEra.Config = {
+    debug = true,
+    disabledDB = true
+}
 
 function ItemEra:OnInitialize()
     ItemEra.Tooltip:Initialize()
