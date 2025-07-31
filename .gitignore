@@ -1,6 +1,7 @@
 /.vscode
 .DS_Store
-/_Interface
+/.docs
+
 /*.zip
 /ItemEra_*
 /ItemEra-*

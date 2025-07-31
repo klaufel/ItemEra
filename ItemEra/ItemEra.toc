@@ -1,4 +1,4 @@
-## Interface: 110107
+## Interface: 110107, 110200
 ## Name: ItemEra - Filter Expansion Items
 ## Title: ItemEra - Filter Expansion Items
 ## Notes: Adds expansion filters and information to all item tooltips with color-coded names and visual icons for instant recognition.
@@ -39,10 +39,15 @@
 libs.xml
 locales.xml
 
+Config.lua
 Core.lua
-
 Utils.lua
-Data.lua
+
+Database\Database.lua
+Database\DatabaseItem.lua
+Database\DatabaseMount.lua
+Database\DatabasePatch.lua
+
 ItemData.lua
 Events.lua
 
@@ -50,6 +55,7 @@ Modules\Tooltip\Tooltip.lua
 
 Modules\Filters\Filters_Utils.lua
 Modules\Filters\Filters_Bank.lua
+Modules\Filters\Filters_Bank_11_2.lua
 Modules\Filters\Filters_GuildBank.lua
 Modules\Filters\Filters_Inventory.lua
 Modules\Filters\Filters.lua

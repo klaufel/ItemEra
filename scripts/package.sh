@@ -1,6 +1,18 @@
 #!/bin/bash
 
 TOC_FILE="ItemEra/ItemEra.toc"
+CONFIG_FILE="ItemEra/Config.lua"
+
+if grep -q "ItemEra.CONFIG" "$CONFIG_FILE"; then
+  DEBUG=$(grep "DEBUG" "$CONFIG_FILE" | awk -F'=' '{print $2}' | tr -d ' ,')
+  DISABLED_DB=$(grep "DISABLED_DB" "$CONFIG_FILE" | awk -F'=' '{print $2}' | tr -d ' ,')
+  if [ "$DEBUG" = "true" ] && [ "$DISABLED_DB" = "true" ]; then
+    echo "❌ Both DEBUG and DISABLED_DB are 'true'. Set to 'false' for packaging."
+    exit 1
+  fi
+fi
+
+# ...resto del script...
 
 if grep -q "^## Version:" "$TOC_FILE"; then
   OLD_VERSION=$(grep "^## Version:" "$TOC_FILE" | awk '{print $3}')

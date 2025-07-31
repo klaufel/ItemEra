@@ -1,20 +1,55 @@
 local _, ItemEra = ...
 ItemEra.ItemData = {}
 
-local DISABLED_DB = ItemEra.Config.disabledDB
 
-function ItemEra.ItemData:GetItemDBInfo(itemID)
-    if not itemID or not ItemEra.itemIdToVersionId then return nil end
-    return ItemEra.itemIdToVersionId[itemID]
+local ItemExpansionOrigin = {
+    DB = 'DB',
+    DB_EXCLUDED = 'DB_EXCLUDED',
+    GAME = 'GAME'
+}
+
+function ItemEra.ItemData:GetItemDBVersion(itemID)
+    local patch = ItemEra.DB.ITEM[itemID]
+    if patch and type(patch) == "string" then
+        local major = patch:match("(%d+)%.(%d+)%.(%d+)%.(%d+)")
+        if major then
+            local shortPatch = patch and patch:match("^(%d+%.%d+)") or nil
+            local patchName = ItemEra.DB.PATCH[shortPatch]
+
+            return {
+                expansionID = tonumber(major) - 1,
+                expansionPatch = patch,
+                expansionPatchShort = shortPatch,
+                expansionPatchName = patchName
+            }
+        end
+    else
+        return nil
+    end
 end
 
-function ItemEra.ItemData:GetExpansionIdFromItemDB(itemID)
-    local version = ItemEra.versionIdToVersion[itemID]
-    if version and type(version) == "string" then
-        local major = version:match("(%d+)%.(%d+)%.(%d+)%.(%d+)")
+function ItemEra.ItemData:GetMountDBVersion(itemID)
+    local patch = ItemEra.DB.MOUNT[itemID]
+
+
+
+    if patch and type(patch) == "string" then
+        local major = patch:match("(%d+)%.(%d+)%.(%d+)%.(%d+)")
         if major then
-            return tonumber(major) - 1
+            local shortPatch = patch and patch:match("^(%d+%.%d+)") or nil
+            local patchName = ItemEra.DB.PATCH[shortPatch]
+
+            return {
+                itemID = itemID,
+                origin = ItemExpansionOrigin.DB,
+                expansionID = tonumber(major) - 1,
+                expansionPatch = patch,
+                expansionPatchShort = shortPatch,
+                expansionPatchName = patchName
+            }
         end
+    else
+        return nil
     end
 end
 
@@ -23,31 +58,37 @@ function ItemEra.ItemData:GetItemDBVersionExcluded(itemID)
     return expansionExcludedId or nil
 end
 
-function ItemEra.ItemData:GetItemDBVersion(itemID)
-    local itemDBID = ItemEra.ItemData:GetItemDBInfo(itemID)
-
-    if (not itemDBID or not ItemEra.versionIdToVersion) then
-        return nil
-    end
-
-    local version = ItemEra.ItemData:GetExpansionIdFromItemDB(itemDBID)
-    if version then return version end
-    return nil
-end
-
 function ItemEra.ItemData:GetItemExpansionID(itemID)
     if not itemID then return nil end
+    local expansionID = select(15, C_Item.GetItemInfo(itemID))
+    local origin = ItemExpansionOrigin.GAME
+    local expansionPatch = nil
+    local expansionPatchName = nil
 
-    if not DISABLED_DB then
+    if not ItemEra.CONFIG.DISABLED_DB then
         local expansionExcludedID = ItemEra.ItemData:GetItemDBVersionExcluded(itemID)
-        if (expansionExcludedID) then return expansionExcludedID end
+        if (expansionExcludedID) then
+            expansionID = expansionExcludedID
+            origin = ItemExpansionOrigin.DB_EXCLUDED
+        end
 
-        local expansionDBID = ItemEra.ItemData:GetItemDBVersion(itemID)
-        if (expansionDBID) then return expansionDBID end
+        local itemDBVersion = ItemEra.ItemData:GetItemDBVersion(itemID)
+        if (itemDBVersion) then
+            expansionID = itemDBVersion.expansionID
+            expansionPatch = itemDBVersion.expansionPatch
+            expansionPatchName = itemDBVersion.expansionPatchName
+            origin = ItemExpansionOrigin.DB
+        end
     end
 
-    local expansionID = select(15, C_Item.GetItemInfo(itemID))
-    return expansionID
+
+    return {
+        itemID = itemID,
+        expansionID = expansionID,
+        origin = origin,
+        expansionPatch = expansionPatch,
+        expansionPatchName = expansionPatchName
+    }
 end
 
 function ItemEra.ItemData:GetExpansionColor(expansionID)
