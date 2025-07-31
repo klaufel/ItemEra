@@ -16,7 +16,8 @@ function FiltersBank.HighlightContainerByExpansion(containerID, maxSlots, button
         if itemLink then
             local itemID = tonumber(itemLink:match("item:(%d+)"))
             if itemID then
-                itemExpansionID = select(1, ItemEra.ItemData:GetItemExpansionID(itemID))
+                local item = ItemEra.ItemData:GetItemExpansionID(itemInfo.itemID)
+                itemExpansionID = item and item.expansionID or nil
             end
         end
         FiltersUtils.ToggleButtonMatch(button, itemExpansionID, expansionID)
@@ -36,7 +37,8 @@ function FiltersBank.HighlightByExpansion(expansionID)
                 and C_Container.GetContainerItemInfo(bankTabID, containerSlotID) or nil
             local itemExpansionID = nil
             if itemInfo and itemInfo.itemID then
-                itemExpansionID = ItemEra.ItemData:GetItemExpansionID(itemInfo.itemID)
+                local item = ItemEra.ItemData:GetItemExpansionID(itemInfo.itemID)
+                itemExpansionID = item and item.expansionID or nil
             end
             FiltersUtils.SetButtonHighlight(itemButton, itemExpansionID, expansionID)
         end

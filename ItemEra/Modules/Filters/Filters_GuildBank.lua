@@ -24,7 +24,8 @@ function FiltersGuildBank.HighlightGuildBankByExpansion(expansionID)
         if itemLink then
             local itemID = tonumber(itemLink:match("item:(%d+)"))
             if itemID then
-                itemExpansionID = ItemEra.ItemData:GetItemExpansionID(itemID)
+                local item = ItemEra.ItemData:GetItemExpansionID(itemID)
+                itemExpansionID = item and item.expansionID or nil
             end
         end
         FiltersUtils.ToggleButtonMatch(button, itemExpansionID, expansionID)

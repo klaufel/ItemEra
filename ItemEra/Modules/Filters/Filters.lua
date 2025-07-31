@@ -3,7 +3,8 @@ ItemEra.Filters = {}
 
 function ItemEra.Filters:Initialize()
     ItemEra.FiltersGuildBank:Initialize()
-    ItemEra.FiltersInventory:Initialize()
+    -- Prepare to 11.2
+    -- ItemEra.FiltersInventory:Initialize()
 
     local version = GetBuildInfo()
     local majorVersion = tonumber(version:match("^(%d+)"))

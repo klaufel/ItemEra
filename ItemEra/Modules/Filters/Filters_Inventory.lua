@@ -13,8 +13,8 @@ local function ForEachInventory(containerFrame, expansionID)
             if itemButton then
                 local itemInfo = C_Container.GetContainerItemInfo(itemButton:GetBagID(), itemButton:GetID())
                 if itemInfo and itemInfo.itemID then
-                    local itemExpansionID = ItemEra.ItemData:GetItemExpansionID(itemInfo.itemID)
-                    FiltersUtils.ToggleButtonMatch(itemButton, itemExpansionID, expansionID)
+                    local item = ItemEra.ItemData:GetItemExpansionID(itemInfo.itemID)
+                    FiltersUtils.ToggleButtonMatch(itemButton, item and item.expansionID or nil, expansionID)
                 end
             end
         end
