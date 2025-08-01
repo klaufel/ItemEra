@@ -1,7 +1,6 @@
 local _, ItemEra = ...
 ItemEra.ItemData = {}
 
-
 local ItemExpansionOrigin = {
     DB = 'DB',
     DB_EXCLUDED = 'DB_EXCLUDED',
@@ -54,7 +53,7 @@ function ItemEra.ItemData:GetMountDBVersion(itemID)
 end
 
 function ItemEra.ItemData:GetItemDBVersionExcluded(itemID)
-    local expansionExcludedId = ItemEra.Utils.ExpansionItemsExcluded[itemID]
+    local expansionExcludedId = ItemEra.DB.ITEM_EXCLUDED[itemID]
     return expansionExcludedId or nil
 end
 

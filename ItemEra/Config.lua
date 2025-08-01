@@ -1,6 +1,6 @@
 local addonName, ItemEra = ...
 
 ItemEra.CONFIG = {
-    DEBUG = false,
+    DEBUG = true,
     DISABLED_DB = false
 }
