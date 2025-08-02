@@ -12,7 +12,6 @@ if grep -q "ItemEra.CONFIG" "$CONFIG_FILE"; then
   fi
 fi
 
-# ...resto del script...
 
 if grep -q "^## Version:" "$TOC_FILE"; then
   OLD_VERSION=$(grep "^## Version:" "$TOC_FILE" | awk '{print $3}')
@@ -27,23 +26,19 @@ fi
 
 FOLDER_VERSION="ItemEra-${NEW_VERSION}"
 
-# Clean up any existing files
 rm -rf *.zip
 
-# Create ItemEra folder and copy contents
-mkdir ${FOLDER_VERSION}
-cp -r ItemEra/ ${FOLDER_VERSION}/ 2>/dev/null || true
+rm -rf temp
+mkdir -p temp/ItemEra
 
-# Remove excluded files from the copied folder
-find ${FOLDER_VERSION} -name ".DS_Store" -delete
-rm -rf ${FOLDER_VERSION}/ItemEra
-rm -f ${FOLDER_VERSION}/*.zip
+cp -r ItemEra/* temp/ItemEra/
+find temp/ItemEra -name ".DS_Store" -delete
 
-# Create the zip file
-zip -r "${FOLDER_VERSION}.zip" ItemEra
+cd temp
+zip -r "../${FOLDER_VERSION}.zip" ItemEra
+cd ..
 
-# Clean up temporary folder
-rm -rf ${FOLDER_VERSION}
+rm -rf temp
 
-echo "✅ Created ItemEra-${NEW_VERSION}.zip"
+echo "✅ Created ${FOLDER_VERSION}.zip"
 open .
