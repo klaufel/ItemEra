@@ -50,13 +50,33 @@ function FiltersBank.Update()
 end
 
 function FiltersBank.Reset()
-    FiltersBank.HighlightByExpansion(nil)
-    bankExpansionFilter = nil
+    -- FiltersBank.HighlightByExpansion(nil)
+    -- bankExpansionFilter = nil
     if BankFilterDropdown then BankFilterDropdown:Reset() end
 end
 
 function FiltersBank:Initialize()
-    print('init')
+    ItemEra:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", function(_, _, arg)
+        if arg ~= Enum.PlayerInteractionType.Banker then return end
+        if not BankFilterDropdown then
+            local dropdownParams = { x = 18, y = -28, width = 200 }
+
+            BankFilterDropdown = FiltersUtils.CreateDropdown(BankFrame, "BankFilterDropdown",
+                dropdownParams, guildBankExpansionFilter,
+                function(self, expansionID)
+                    bankExpansionFilter = expansionID
+                    BankFilterDropdown:Update()
+                end)
+        else
+            BankFilterDropdown:Show()
+        end
+    end)
+
+    ItemEra:RegisterEvent('PLAYER_INTERACTION_MANAGER_FRAME_HIDE', function(_, _, arg)
+        if arg ~= Enum.PlayerInteractionType.Banker then return end
+        FiltersBank.Reset()
+    end)
+
     ItemEra:RegisterEvent("BANK_TABS_CHANGED", function(event, arg, rest)
         print(event, arg, rest)
     end)

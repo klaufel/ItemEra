@@ -2,20 +2,6 @@ local _, addon = ...
 
 local ExpansionDictionary = ItemEra.Utils.ExpansionDictionary
 
-local EXPANSION_VERSION = {
-    [ExpansionDictionary.CLASSIC] = "1.0.0.0", -- Classic
-    [ExpansionDictionary.TBC] = "2.0.0.0",     -- The Burning Crusade
-    [ExpansionDictionary.WOTLK] = "3.0.0.0",   -- Wrath of the Lich King
-    [ExpansionDictionary.CATA] = "4.0.0.0",    -- Cataclysm
-    [ExpansionDictionary.MOP] = "5.0.0.0",     -- Mists of Pandaria
-    [ExpansionDictionary.WOD] = "6.0.0.0",     -- Warlords of Draenor
-    [ExpansionDictionary.LEGION] = "7.0.0.0",  -- Legion
-    [ExpansionDictionary.BFA] = "8.0.0.0",     -- Battle for Azeroth
-    [ExpansionDictionary.SHADOW] = "9.0.0.0",  -- Shadowlands
-    [ExpansionDictionary.DF] = "10.0.0.0",     -- Dragonflight
-    [ExpansionDictionary.TWW] = "11.0.0.0",    -- War Within
-}
-
 ---@class MountExpansionConfig
 ---@field expansionIndex number
 ---@field minID number
@@ -121,11 +107,11 @@ addon.DB.MOUNT = {}
 for _, cfg in ipairs(MOUNT_EXPANSION_CONFIG) do
     local expansionIndex, minID, maxID, exceptions = cfg[1], cfg[2], cfg[3], cfg[4]
     for id = minID, maxID do
-        addon.DB.MOUNT[id] = EXPANSION_VERSION[expansionIndex]
+        addon.DB.MOUNT[id] = ItemEra.Utils.ExpansionVersionPatch[expansionIndex]
     end
     if exceptions then
         for _, exID in ipairs(exceptions) do
-            addon.DB.MOUNT[exID] = EXPANSION_VERSION[expansionIndex]
+            addon.DB.MOUNT[exID] = ItemEra.Utils.ExpansionVersionPatch[expansionIndex]
         end
     end
 end

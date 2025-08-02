@@ -40,13 +40,13 @@ function FiltersBank.HighlightByExpansion(expansionID)
                 local item = ItemEra.ItemData:GetItemExpansionID(itemInfo.itemID)
                 itemExpansionID = item and item.expansionID or nil
             end
-            FiltersUtils.SetButtonHighlight(itemButton, itemExpansionID, expansionID)
+            FiltersUtils.ToggleButtonMatch(itemButton, itemExpansionID, expansionID)
         end
     end
 end
 
-function FiltersBank.Update()
-    FiltersBank.HighlightByExpansion(bankExpansionFilter)
+function FiltersBank.Update(expansionID)
+    FiltersBank.HighlightByExpansion(expansionID or nil)
 end
 
 function FiltersBank.Reset()
@@ -62,19 +62,27 @@ function FiltersBank:Initialize()
                 nil, bankExpansionFilter,
                 function(expansionID)
                     bankExpansionFilter = expansionID
-                    FiltersBank.Update()
+                    FiltersBank.Update(expansionID)
                 end)
         else
             BankFilterDropdown:Show()
         end
 
-        ReagentBankFrame:HookScript("OnShow", FiltersBank.Update)
-        hooksecurefunc(AccountBankPanel, "Show", FiltersBank.Update)
+        ReagentBankFrame:HookScript("OnShow", function()
+            FiltersBank.Update(bankExpansionFilter)
+        end)
+
+        hooksecurefunc(AccountBankPanel, "Show", function()
+            FiltersBank.Update(bankExpansionFilter)
+        end)
     end)
 
     ItemEra:RegisterEvent("BANKFRAME_CLOSED", FiltersBank.Reset)
 
-    hooksecurefunc(AccountBankPanel, "SelectTab", FiltersBank.Update)
+    hooksecurefunc(AccountBankPanel, "SelectTab", function()
+        FiltersBank.Update(bankExpansionFilter)
+    end)
+
 
     local updateBankFiltersEvents = {
         "BANK_BAG_SLOT_FLAGS_UPDATED",
@@ -90,7 +98,9 @@ function FiltersBank:Initialize()
         "BAG_UPDATE"
     }
     for _, event in ipairs(updateBankFiltersEvents) do
-        ItemEra:RegisterEvent(event, FiltersBank.Update)
+        ItemEra:RegisterEvent(event, function()
+            FiltersBank.Update(bankExpansionFilter)
+        end)
     end
 end
 

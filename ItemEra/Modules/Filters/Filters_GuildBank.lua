@@ -32,8 +32,8 @@ function FiltersGuildBank.HighlightGuildBankByExpansion(expansionID)
     end
 end
 
-function FiltersGuildBank.Update()
-    FiltersGuildBank.HighlightGuildBankByExpansion(guildBankExpansionFilter)
+function FiltersGuildBank.Update(expansionID)
+    FiltersGuildBank.HighlightGuildBankByExpansion(expansionID or nil)
 end
 
 function FiltersGuildBank.Reset()
@@ -52,14 +52,16 @@ function FiltersGuildBank.Initialize()
                 dropdownParams, guildBankExpansionFilter,
                 function(expansionID)
                     guildBankExpansionFilter = expansionID
-                    FiltersGuildBank.Update()
+                    FiltersGuildBank.Update(expansionID)
                 end)
         else
             GuildBankFilterDropdown:Show()
         end
     end)
 
-    ItemEra:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", FiltersGuildBank.Update)
+    ItemEra:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", function()
+        FiltersGuildBank.Update(guildBankExpansionFilter)
+    end)
 
     ItemEra:RegisterEvent('PLAYER_INTERACTION_MANAGER_FRAME_HIDE', function(_, _, arg)
         if arg ~= Enum.PlayerInteractionType.GuildBanker then return end

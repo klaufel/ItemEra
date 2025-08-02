@@ -1,35 +1,6 @@
 local _, ItemEra = ...
 ItemEra.Utils = {}
 
-function ItemEra.Utils:toRGB(hex)
-    hex = hex:gsub("#", "")
-    return tonumber("0x" .. hex:sub(1, 2)),
-        tonumber("0x" .. hex:sub(3, 4)),
-        tonumber("0x" .. hex:sub(5, 6))
-end
-
-ItemEra.Utils.ExpansionColorsHex = {
-    [0]  = "#F4BF2A", -- Classic
-    [1]  = "#CBD86C", -- The Burning Crusade
-    [2]  = "#9DC6E5", -- Wrath of the Lich King
-    [3]  = "#8E3C14", -- Cataclysm
-    [4]  = "#5FB177", -- Mists of Pandaria
-    [5]  = "#D77500", -- Warlords of Draenor
-    [6]  = "#D9E342", -- Legion
-    [7]  = "#C4C6C5", -- Battle for Azeroth
-    [8]  = "#F9F8F6", -- Shadowlands
-    [9]  = "#B6B6BA", -- Dragonflight
-    [10] = "#EA551F", -- War Within
-    [11] = "#5C1FEA", -- Midnight
-}
-
-ItemEra.Utils.ExpansionColors = {}
-for k, hex in pairs(ItemEra.Utils.ExpansionColorsHex) do
-    ItemEra.Utils.ExpansionColors[k] = { ItemEra.Utils:toRGB(hex) }
-end
-
-
-
 ItemEra.Utils.ExpansionDictionary = {
     CLASSIC = 0,
     TBC = 1,
@@ -46,27 +17,58 @@ ItemEra.Utils.ExpansionDictionary = {
 
 ItemEra.Utils.ExpansionNames = {
     [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "Classic",
-    [ItemEra.Utils.ExpansionDictionary.TBC] = "The Burning Crusade",
-    [ItemEra.Utils.ExpansionDictionary.WOTLK] = "Wrath of the Lich King",
-    [ItemEra.Utils.ExpansionDictionary.CATA] = "Cataclysm",
-    [ItemEra.Utils.ExpansionDictionary.MOP] = "Mists of Pandaria",
-    [ItemEra.Utils.ExpansionDictionary.WOD] = "Warlords of Draenor",
-    [ItemEra.Utils.ExpansionDictionary.LEGION] = "Legion",
-    [ItemEra.Utils.ExpansionDictionary.BFA] = "Battle for Azeroth",
-    [ItemEra.Utils.ExpansionDictionary.SHADOW] = "Shadowlands",
-    [ItemEra.Utils.ExpansionDictionary.DF] = "Dragonflight",
-    [ItemEra.Utils.ExpansionDictionary.TWW] = "The War Within"
+    [ItemEra.Utils.ExpansionDictionary.TBC]     = "The Burning Crusade",
+    [ItemEra.Utils.ExpansionDictionary.WOTLK]   = "Wrath of the Lich King",
+    [ItemEra.Utils.ExpansionDictionary.CATA]    = "Cataclysm",
+    [ItemEra.Utils.ExpansionDictionary.MOP]     = "Mists of Pandaria",
+    [ItemEra.Utils.ExpansionDictionary.WOD]     = "Warlords of Draenor",
+    [ItemEra.Utils.ExpansionDictionary.LEGION]  = "Legion",
+    [ItemEra.Utils.ExpansionDictionary.BFA]     = "Battle for Azeroth",
+    [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "Shadowlands",
+    [ItemEra.Utils.ExpansionDictionary.DF]      = "Dragonflight",
+    [ItemEra.Utils.ExpansionDictionary.TWW]     = "The War Within"
+}
+
+ItemEra.Utils.ExpansionVersionPatch = {
+    [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "1.0.0.0",
+    [ItemEra.Utils.ExpansionDictionary.TBC]     = "2.0.0.0",
+    [ItemEra.Utils.ExpansionDictionary.WOTLK]   = "3.0.0.0",
+    [ItemEra.Utils.ExpansionDictionary.CATA]    = "4.0.0.0",
+    [ItemEra.Utils.ExpansionDictionary.MOP]     = "5.0.0.0",
+    [ItemEra.Utils.ExpansionDictionary.WOD]     = "6.0.0.0",
+    [ItemEra.Utils.ExpansionDictionary.LEGION]  = "7.0.0.0",
+    [ItemEra.Utils.ExpansionDictionary.BFA]     = "8.0.0.0",
+    [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "9.0.0.0",
+    [ItemEra.Utils.ExpansionDictionary.DF]      = "10.0.0.0",
+    [ItemEra.Utils.ExpansionDictionary.TWW]     = "11.0.0.0",
+}
+
+ItemEra.Utils.ExpansionColorsHex = {
+    [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "#F4BF2A",
+    [ItemEra.Utils.ExpansionDictionary.TBC]     = "#CBD86C",
+    [ItemEra.Utils.ExpansionDictionary.WOTLK]   = "#9DC6E5",
+    [ItemEra.Utils.ExpansionDictionary.CATA]    = "#8E3C14",
+    [ItemEra.Utils.ExpansionDictionary.MOP]     = "#5FB177",
+    [ItemEra.Utils.ExpansionDictionary.WOD]     = "#D77500",
+    [ItemEra.Utils.ExpansionDictionary.LEGION]  = "#D9E342",
+    [ItemEra.Utils.ExpansionDictionary.BFA]     = "#C4C6C5",
+    [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "#F9F8F6",
+    [ItemEra.Utils.ExpansionDictionary.DF]      = "#B6B6BA",
+    [ItemEra.Utils.ExpansionDictionary.TWW]     = "#EA551F",
 }
 
 
-ItemEra.Utils.ExpansionItemsExcluded = {
-    [168583] = ItemEra.Utils.ExpansionDictionary.SHADOW, -- Widowbloom
-    [168586] = ItemEra.Utils.ExpansionDictionary.SHADOW, -- Rising Glory
-    [168589] = ItemEra.Utils.ExpansionDictionary.SHADOW, -- Marrowroot
-    [169701] = ItemEra.Utils.ExpansionDictionary.SHADOW, -- Death Blossom
-    [171315] = ItemEra.Utils.ExpansionDictionary.SHADOW, -- Nightshade
-}
+function ItemEra.Utils:toRGB(hex)
+    hex = hex:gsub("#", "")
+    return tonumber("0x" .. hex:sub(1, 2)),
+        tonumber("0x" .. hex:sub(3, 4)),
+        tonumber("0x" .. hex:sub(5, 6))
+end
 
+ItemEra.Utils.ExpansionColors = {}
+for k, hex in pairs(ItemEra.Utils.ExpansionColorsHex) do
+    ItemEra.Utils.ExpansionColors[k] = { ItemEra.Utils:toRGB(hex) }
+end
 
 function ItemEra.Utils:GetExpansionsInOrder()
     local ordered = {}
