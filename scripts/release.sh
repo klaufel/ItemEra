@@ -4,10 +4,10 @@ TOC_FILE="ItemEra/ItemEra.toc"
 CONFIG_FILE="ItemEra/Config.lua"
 
 if grep -q "ItemEra.CONFIG" "$CONFIG_FILE"; then
-  DEBUG=$(grep "DEBUG" "$CONFIG_FILE" | awk -F'=' '{print $2}' | tr -d ' ,')
-  DISABLED_DB=$(grep "DISABLED_DB" "$CONFIG_FILE" | awk -F'=' '{print $2}' | tr -d ' ,')
-  if [ "$DEBUG" = "true" ] && [ "$DISABLED_DB" = "true" ]; then
-    echo "❌ Both DEBUG and DISABLED_DB are 'true'. Set to 'false' for packaging."
+  DEBUG=$(grep -E "DEBUG\s*=" "$CONFIG_FILE" | head -1 | awk -F'=' '{gsub(/[ ,]/,"",$2); print $2}')
+  DISABLED_DB=$(grep -E "DISABLED_DB\s*=" "$CONFIG_FILE" | head -1 | awk -F'=' '{gsub(/[ ,]/,"",$2); print $2}')
+  if [ "$DEBUG" = "true" ] || [ "$DISABLED_DB" = "true" ]; then
+    echo "❌ DEBUG or DISABLED_DB is 'true'. Set both to 'false' for packaging."
     exit 1
   fi
 fi
