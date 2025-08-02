@@ -1,10 +1,10 @@
 local addonName = ...
-local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "esES")
+local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "ptBR")
 
 if not L then
     return
 end
 
-L["SELECT_EXPANSION"] = "Select expansion"
-L["ALL_EXPANSION"] = "All expansions"
-L["EXPANSION"] = "Expansion:"
+L["SELECT_EXPANSION"] = "Selecionar expansão"
+L["ALL_EXPANSION"] = "Todas as expansões"
+L["EXPANSION"] = "Expansão:"
