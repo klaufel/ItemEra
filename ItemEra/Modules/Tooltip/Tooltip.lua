@@ -32,12 +32,10 @@ local function AddExpansionLine(tooltip, item)
     tooltip:AddLine(expansionText)
 
 
-    -- if ItemEra.CONFIG.VERSION_MAJOR == 11 and ItemEra.CONFIG.VERSION_MINOR >= 2 then
-    --     if (item.expansionPatchShort or item.expansionPatchName) then
-    --         local expansionPatchName = item.expansionPatchName or ""
-    --         local expansionPatchText = item.expansionPatchShort and "(" .. item.expansionPatchShort .. ")" or ""
-    --         tooltip:AddLine(expansionPatchName .. " " .. expansionPatchText, 255, 255, 255)
-    --     end
+    -- if (item.expansionPatchShort or item.expansionPatchName) then
+    --     local expansionPatchName = item.expansionPatchName or ""
+    --     local expansionPatchText = item.expansionPatchShort and "(" .. item.expansionPatchShort .. ")" or ""
+    --     tooltip:AddLine(expansionPatchName .. " " .. expansionPatchText, 255, 255, 255)
     -- end
 
     if (ItemEra.CONFIG.DEBUG) then
@@ -58,14 +56,12 @@ local function AddTooltipLine(tooltip, data)
     local dataType = data.type
     local dataID = data.id
 
-    if ItemEra.CONFIG.VERSION_MAJOR == 11 and ItemEra.CONFIG.VERSION_MINOR >= 2 then
-        if (dataType == TOOLTIP_DATA_TYPES.MOUNT) then
-            local mount = ItemEra.ItemData:GetMountDBVersion(dataID)
-            if (mount) then AddExpansionLine(tooltip, mount) end
+    -- if (dataType == TOOLTIP_DATA_TYPES.MOUNT) then
+    --     local mount = ItemEra.ItemData:GetMountDBVersion(dataID)
+    --     if (mount) then AddExpansionLine(tooltip, mount) end
 
-            return
-        end
-    end
+    --     return
+    -- end
 
     if (dataType == TOOLTIP_DATA_TYPES.ITEM or dataType == TOOLTIP_DATA_TYPES.TOY) then
         if (dataID) then
