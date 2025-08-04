@@ -77,8 +77,8 @@ local function Initialize()
     else
         if isCombinedBags then
             InventoryFilterDropdown:ClearAllPoints()
-            InventoryFilterDropdown:SetWidth(160)
             InventoryFilterDropdown:SetParent(containerFrameCombinedBags)
+            InventoryFilterDropdown:SetWidth(160)
             InventoryFilterDropdown:SetPoint("TOPRIGHT", containerFrameCombinedBags, "TOPRIGHT", -12, -64)
         else
             InventoryFilterDropdown:ClearAllPoints()
