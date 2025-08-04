@@ -100,7 +100,9 @@ function FiltersInventory:Initialize()
     }
     for _, event in ipairs(events) do
         ItemEra:RegisterEvent(event, function()
-            FiltersInventory.Update(inventoryExpansionFilter)
+            if (inventoryExpansionFilter) then
+                FiltersInventory.Update(inventoryExpansionFilter)
+            end
         end)
     end
 end
