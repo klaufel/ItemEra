@@ -107,4 +107,4 @@ function FiltersInventory:Initialize()
     end
 end
 
-ItemEra.FiltersInventory = FiltersInventory
+ItemEra.Filters_Inventory = FiltersInventory

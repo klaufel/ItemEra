@@ -30,8 +30,6 @@ end
 function ItemEra.ItemData:GetMountDBVersion(itemID)
     local patch = ItemEra.DB.MOUNT[itemID]
 
-
-
     if patch and type(patch) == "string" then
         local major = patch:match("(%d+)%.(%d+)%.(%d+)%.(%d+)")
         if major then
