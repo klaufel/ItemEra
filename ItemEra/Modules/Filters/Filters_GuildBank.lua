@@ -65,4 +65,4 @@ function FiltersGuildBank.Initialize()
     end)
 end
 
-ItemEra.FiltersGuildBank = FiltersGuildBank
+ItemEra.Filters_GuildBank = FiltersGuildBank

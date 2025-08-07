@@ -31,7 +31,6 @@ local function AddExpansionLine(tooltip, item)
     tooltip:AddLine(" ")
     tooltip:AddLine(expansionText)
 
-
     -- if (item.expansionPatchShort or item.expansionPatchName) then
     --     local expansionPatchName = item.expansionPatchName or ""
     --     local expansionPatchText = item.expansionPatchShort and "(" .. item.expansionPatchShort .. ")" or ""
@@ -44,7 +43,6 @@ local function AddExpansionLine(tooltip, item)
         tooltip:AddLine("Origin: " .. (item.origin) .. (ItemEra.CONFIG.DISABLED_DB and " (DISABLED_DB)" or ""))
     end
 
-
     tooltip:Show()
 end
 
@@ -56,12 +54,11 @@ local function AddTooltipLine(tooltip, data)
     local dataType = data.type
     local dataID = data.id
 
-    -- if (dataType == TOOLTIP_DATA_TYPES.MOUNT) then
-    --     local mount = ItemEra.ItemData:GetMountDBVersion(dataID)
-    --     if (mount) then AddExpansionLine(tooltip, mount) end
-
-    --     return
-    -- end
+    if (dataType == TOOLTIP_DATA_TYPES.MOUNT) then
+        local mount = ItemEra.ItemData:GetMountDBVersion(dataID)
+        if (mount) then AddExpansionLine(tooltip, mount) end
+        return
+    end
 
     if (dataType == TOOLTIP_DATA_TYPES.ITEM or dataType == TOOLTIP_DATA_TYPES.TOY) then
         if (dataID) then
@@ -73,7 +70,6 @@ local function AddTooltipLine(tooltip, data)
         end
 
         if not itemID then return end
-
 
         local item = ItemEra.ItemData:GetItemExpansionID(itemID)
         if (item) then AddExpansionLine(tooltip, item) end
