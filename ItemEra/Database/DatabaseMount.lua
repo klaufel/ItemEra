@@ -101,17 +101,14 @@ local MOUNT_EXPANSION_CONFIG = {
     } },
 }
 
-addon.DB.MOUNT = {}
-
+addon.DB.MOUNT_EXPANSION_CONFIG = MOUNT_EXPANSION_CONFIG
+addon.DB.MOUNT_EXCEPTION_INDEX = {}
 
 for _, cfg in ipairs(MOUNT_EXPANSION_CONFIG) do
-    local expansionIndex, minID, maxID, exceptions = cfg[1], cfg[2], cfg[3], cfg[4]
-    for id = minID, maxID do
-        addon.DB.MOUNT[id] = ItemEra.Utils.ExpansionVersionPatch[expansionIndex]
-    end
+    local expansionIndex, exceptions = cfg[1], cfg[4]
     if exceptions then
         for _, exID in ipairs(exceptions) do
-            addon.DB.MOUNT[exID] = ItemEra.Utils.ExpansionVersionPatch[expansionIndex]
+            addon.DB.MOUNT_EXCEPTION_INDEX[exID] = ItemEra.Utils.ExpansionVersionPatch[expansionIndex]
         end
     end
 end

@@ -27,8 +27,23 @@ function ItemEra.ItemData:GetItemDBVersion(itemID)
     end
 end
 
-function ItemEra.ItemData:GetMountDBVersion(itemID)
-    local patch = ItemEra.DB.MOUNT[itemID]
+function ItemEra.ItemData.GetMountExpansion(mountID)
+    local expansion = ItemEra.DB.MOUNT_EXCEPTION_INDEX[mountID]
+    if expansion then return expansion end
+
+    for _, cfg in ipairs(ItemEra.DB.MOUNT_EXPANSION_CONFIG) do
+        local expansionIndex, minID, maxID = cfg[1], cfg[2], cfg[3]
+        if mountID >= minID and mountID <= maxID then
+            return ItemEra.Utils.ExpansionVersionPatch[expansionIndex]
+        end
+    end
+
+    return nil
+end
+
+function ItemEra.ItemData:GetMountDBVersion(mountID)
+    if not mountID then return nil end
+    local patch = ItemEra.ItemData.GetMountExpansion(mountID)
 
     if patch and type(patch) == "string" then
         local major = patch:match("(%d+)%.(%d+)%.(%d+)%.(%d+)")
@@ -37,7 +52,7 @@ function ItemEra.ItemData:GetMountDBVersion(itemID)
             local patchName = ItemEra.DB.PATCH[shortPatch]
 
             return {
-                itemID = itemID,
+                itemID = mountID,
                 origin = ItemExpansionOrigin.DB,
                 expansionID = tonumber(major) - 1,
                 expansionPatch = patch,
