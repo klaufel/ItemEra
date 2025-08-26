@@ -82,14 +82,14 @@ function ItemEra.ItemData:GetItemExpansionID(itemID)
         if (expansionExcludedID) then
             expansionID = expansionExcludedID
             origin = ItemExpansionOrigin.DB_EXCLUDED
-        end
-
-        local itemDBVersion = ItemEra.ItemData:GetItemDBVersion(itemID)
-        if (itemDBVersion) then
-            expansionID = itemDBVersion.expansionID
-            expansionPatch = itemDBVersion.expansionPatch
-            expansionPatchName = itemDBVersion.expansionPatchName
-            origin = ItemExpansionOrigin.DB
+        else
+            local itemDBVersion = ItemEra.ItemData:GetItemDBVersion(itemID)
+            if (itemDBVersion) then
+                expansionID = itemDBVersion.expansionID
+                expansionPatch = itemDBVersion.expansionPatch
+                expansionPatchName = itemDBVersion.expansionPatchName
+                origin = ItemExpansionOrigin.DB
+            end
         end
     end
 
