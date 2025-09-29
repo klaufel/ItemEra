@@ -48,6 +48,12 @@ end
 ---@param value string|nil
 ---@param onChange function
 function Filters_Utils.CreateDropdown(parent, name, params, value, onChange)
+    -- Validate parent frame exists and is usable
+    if not parent or not parent.GetName then
+        error("Invalid parent frame provided to CreateDropdown")
+        return nil
+    end
+    
     local position = (params and params.position) or "TOPLEFT"
     local positionX = (params and params.x) or 60
     local positionY = (params and params.y) or -30

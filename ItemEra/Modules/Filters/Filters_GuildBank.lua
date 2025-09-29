@@ -39,11 +39,15 @@ end
 function FiltersGuildBank.Reset()
     FiltersGuildBank.HighlightGuildBankByExpansion(nil)
     guildBankExpansionFilter = nil
-    if GuildBankFilterDropdown then GuildBankFilterDropdown:Reset() end
+    if GuildBankFilterDropdown then 
+        GuildBankFilterDropdown:Hide()
+        GuildBankFilterDropdown:Reset()
+    end
 end
 
 function FiltersGuildBank.Initialize()
     ItemEra:RegisterEvent("GUILDBANKBAGSLOTS_CHANGED", function()
+        if not GuildBankFrame then return end -- Validate parent frame exists
         if not GuildBankFilterDropdown then
             local dropdownParams = { x = 18, y = -28, width = 200 }
             GuildBankFilterDropdown = FiltersUtils.CreateDropdown(GuildBankFrame, "GuildBankFilterDropdown",
@@ -53,7 +57,10 @@ function FiltersGuildBank.Initialize()
                     FiltersGuildBank.Update(expansionID)
                 end)
         else
-            GuildBankFilterDropdown:Show()
+            -- Validate dropdown still exists and has a valid parent before showing
+            if GuildBankFilterDropdown and GuildBankFilterDropdown:GetParent() then
+                GuildBankFilterDropdown:Show()
+            end
         end
 
         FiltersGuildBank.Update(guildBankExpansionFilter)
