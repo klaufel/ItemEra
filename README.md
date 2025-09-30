@@ -1,54 +1,39 @@
-# ItemEra Addon
+# ItemEra - Filter Expansion Items
 
-## Overview
+**ItemEra** adds **expansion information to all item tooltips** with color-coded names and visual icons for instant recognition. Works seamlessly across inventory, bank, guild bank, and merchant interfaces, making it easy to identify item origins at a glance.
 
-ItemEra is a World of Warcraft addon that enhances the item tooltip by displaying the expansion information (e.g., Classic, Burning Crusade, etc.) with color coding for each expansion. This allows players to quickly identify the origin of their items at a glance.
+## **🔍 Inventory filterin**
 
-## Features
+**Filter your bags, bank, guild bank, and reagent bank by expansion** to find specific items instantly. Non-matching items are visually dimmed for clarity, making inventory organization effortless and intuitive.
 
-- Displays expansion information in item tooltips.
-- Color-coded expansion names for easy identification.
-- Supports all current expansions.
+<p align="center"><img width="850" height="565" alt="image" src="https://github.com/user-attachments/assets/3081537e-8bd7-400e-9126-354cce1f3217" /></p>
 
-## Installation
+## **🏦 Bank organization**
 
-1. Download the ItemEra addon.
-2. Extract the contents of the zip file into your World of Warcraft `AddOns` directory, typically located at:
-   - Windows: `C:\Program Files (x86)\World of Warcraft\_retail_\Interface\AddOns\`
-   - macOS: `/Applications/World of Warcraft/_retail_/Interface/AddOns/`
-3. Launch World of Warcraft and ensure that the addon is enabled in the AddOns menu on the character selection screen.
+Show bank interface with expansion filtering active and display the filter dropdown menu
 
-## Usage
+<p align="center"><img width="850" height="565" alt="image" src="https://github.com/user-attachments/assets/8260ba1a-05b5-4035-a8c8-9c54189e3b0b" /></p>
 
-Once installed, simply hover over any item in your inventory or on the ground to see the expansion information displayed in the tooltip. The expansion name will be color-coded based on the following scheme:
+<p align="center"><img width="850" height="565" alt="image" src="https://github.com/user-attachments/assets/34b86cf2-34e6-44be-9e1f-e710262c10bc" /></p>
 
-- Classic: Gray
-- Burning Crusade: Green
-- Wrath of the Lich King: Blue
-- Cataclysm: Red
-- Mists of Pandaria: Yellow
-- Warlords of Draenor: Purple
-- Legion: Orange
-- Battle for Azeroth: Teal
-- Shadowlands: Pink
-- Dragonflight: Light Blue
+<p align="center"><img width="850" height="565" alt="image" src="https://github.com/user-attachments/assets/48e0fc1b-09e2-4e10-a69b-176bce4cc3fc" /></p>
 
-## Support
 
-For any issues or feature requests, please contact the addon developer through the appropriate channels on the addon distribution platform.
+## **ℹ️ Enhanced tooltips**
 
-## Docs
+Show an item tooltip with expansion information displayed and include the expansion icon and color-coded text
 
-https://warcraft.wiki.gg/wiki/World_of_Warcraft_API
+<p align="center"><img width="850" height="565" alt="image" src="https://github.com/user-attachments/assets/7ece6293-6266-4469-8da4-2517c3ebc62c" /></p>
 
-- [WoW API Documentation](https://wowpedia.fandom.com/wiki/World_of_Warcraft_API)
-- https://github.com/Gethe/wow-ui-source
-  https://www.townlong-yak.com/framexml/live/Blizzard_FrameXMLBase/Constants.lua#213
+## **🐴 Mounts tooltips**
 
-## Contributors
+<p align="center"><img width="850" height="565" alt="image" src="https://github.com/user-attachments/assets/1ba5ace1-c6dc-42a7-aede-b9adb0cd3239" /></p>
 
-## Release
 
-```bash
-bash package.sh
-```
+## **🕹️ Perfect for:**
+
+*   **Transmog collectors** - Quickly identify gear from specific expansions
+*   **Achievement hunters** - Find items needed for expansion-specific achievements
+*   **Inventory managers** - Organize bags and bank by expansion
+*   **New players** - Learn about item origins and WoW history
+*   **Completionists** - Track items from all expansions
