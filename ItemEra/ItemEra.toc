@@ -11,8 +11,6 @@
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 
-## OptionalDeps: Ace3
-
 ## Category: Inventory
 ## Category-deDE: Inventar
 ## Category-esES: Inventario
