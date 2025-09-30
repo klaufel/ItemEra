@@ -3,3 +3,6 @@ alias:
 
 release:
 	bash scripts/release.sh
+
+package:
+	bash scripts/package.sh
