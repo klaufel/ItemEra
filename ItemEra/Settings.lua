@@ -6,13 +6,18 @@ ItemEra.Settings = {}
 local defaults = {
     global = {
         settings = {
+            enabledTooltip = true,
+            enabledFiltersBank = true,
+            enabledFiltersGuildBank = true,
+            enabledFiltersInventory = true,
             showExpansionName = true,
             showExpansionLogo = true,
-            showExpansionLiteral = true
+            showExpansionLiteral = true,
+            useKeyModifier = false,
+            keyModifier = ItemEra.Utils.KeyModifiers.SHIFT
         }
     }
 }
-
 
 local function handleUpdateSettingsValue(info, value)
     local key = info[#info]
@@ -25,10 +30,9 @@ local function handleGetSettingsValue(info)
     return ItemEra.DB_SETTINGS.global.settings[key]
 end
 
-
 local function GetTooltipPreview()
-    local isDisabled = ItemEra.DB_SETTINGS.global.settings.showExpansionName == false and
-        ItemEra.DB_SETTINGS.global.settings.showExpansionLogo == false
+    local isDisabled = not ItemEra.DB_SETTINGS.global.settings.showExpansionName and
+        not ItemEra.DB_SETTINGS.global.settings.showExpansionLogo
     local expansionID = 10
     local expansionText = ItemEra.Utils:GetExpansionTextByExpansionID(expansionID)
     local tooltipPreview = not isDisabled and expansionText ~= "" and expansionText or
@@ -41,27 +45,27 @@ end
 local function GetOptions()
     return {
         type = "group",
-        name = L["SETTINGS_NAME"],
-        desc = L["SETTINGS_DESC"],
+        name = "ItemEra - Filter Expansion Items",
         args = {
-            header = {
+            tooltipHeader = {
                 type = "header",
-                name = L["SETTINGS_HEADER_NAME"],
+                name = L["SETTINGS_TOOLTIP_HEADER_NAME"],
                 order = 1,
             },
-            description = {
+            tooltipDescription = {
                 type = "description",
-                name = L["SETTINGS_DESCRIPTION_NAME"],
+                name = L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"],
                 order = 2,
             },
-
             showExpansionLiteral = {
                 type = "toggle",
                 name = L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"],
                 desc = L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"],
                 width = "full",
-                disabled = ItemEra.DB_SETTINGS.global.settings.showExpansionName == false and
-                    ItemEra.DB_SETTINGS.global.settings.showExpansionLogo == false,
+                disabled = function()
+                    return not ItemEra.DB_SETTINGS.global.settings.showExpansionName and
+                        not ItemEra.DB_SETTINGS.global.settings.showExpansionLogo
+                end,
                 order = 10,
                 get = handleGetSettingsValue,
                 set = handleUpdateSettingsValue,
@@ -87,16 +91,49 @@ local function GetOptions()
             spacer1 = {
                 type = "description",
                 name = "\n\n\n",
-                order = 998,
+                order = 11,
             },
             preview = {
                 type = "description",
                 name = GetTooltipPreview,
-                order = 999,
+                order = 12,
                 fontSize = "medium",
                 width = "full",
             },
-
+            spacer2 = {
+                type = "description",
+                name = "\n",
+                order = 50,
+            },
+            keyModifierHeader = {
+                type = "header",
+                name = L["SETTINGS_KEY_MODIFIER_HEADER_NAME"],
+                order = 60,
+            },
+            useKeyModifier = {
+                type = "toggle",
+                name = L["SETTINGS_USE_KEY_MODIFIER_NAME"],
+                desc = "Solo muestra la información de expansión cuando se mantiene presionada una tecla modificadora",
+                width = "full",
+                order = 70,
+                get = handleGetSettingsValue,
+                set = handleUpdateSettingsValue,
+            },
+            keyModifier = {
+                type = "select",
+                name = L["SETTINGS_KEY_MODIFIER_NAME"],
+                desc = L["SETTINGS_KEY_MODIFIER_DESC"],
+                width = "full",
+                order = 80,
+                disabled = function() return not ItemEra.DB_SETTINGS.global.settings.useKeyModifier end,
+                values = {
+                    [ItemEra.Utils.KeyModifiers.ALT] = "Alt",
+                    [ItemEra.Utils.KeyModifiers.CTRL] = "Control",
+                    [ItemEra.Utils.KeyModifiers.SHIFT] = "Shift",
+                },
+                get = handleGetSettingsValue,
+                set = handleUpdateSettingsValue,
+            },
         },
     }
 end

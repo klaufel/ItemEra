@@ -94,9 +94,29 @@ local function AddTooltipLine(tooltip, data)
     end
 end
 
+local function ShowTooltip(tooltip, data)
+    local isTooltipEnabled = true
+    if ItemEra.DB_SETTINGS.global.settings.useKeyModifier then
+        isTooltipEnabled = false
+        local keyModifier = ItemEra.DB_SETTINGS.global.settings.keyModifier or ItemEra.Utils.KeyModifiers.SHIFT
+
+        if keyModifier == ItemEra.Utils.KeyModifiers.SHIFT then
+            isTooltipEnabled = IsShiftKeyDown()
+        elseif keyModifier == ItemEra.Utils.KeyModifiers.CTRL then
+            isTooltipEnabled = IsControlKeyDown()
+        elseif keyModifier == ItemEra.Utils.KeyModifiers.ALT then
+            isTooltipEnabled = IsAltKeyDown()
+        end
+    end
+
+    if isTooltipEnabled then
+        AddTooltipLine(tooltip, data)
+    end
+end
+
 
 function ItemEra.Tooltip:Initialize()
     for _, tooltipDataType in pairs(TOOLTIP_DATA_TYPES) do
-        TooltipDataProcessor.AddTooltipPostCall(tooltipDataType, AddTooltipLine)
+        TooltipDataProcessor.AddTooltipPostCall(tooltipDataType, ShowTooltip)
     end
 end

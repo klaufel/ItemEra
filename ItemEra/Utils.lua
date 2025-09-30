@@ -73,6 +73,11 @@ ItemEra.Utils.ExpansionColorsHex = {
     [ItemEra.Utils.ExpansionDictionary.TWW]     = "#EA551F",
 }
 
+ItemEra.Utils.KeyModifiers = {
+    SHIFT = "SHIFT",
+    CTRL = "CTRL",
+    ALT = "ALT"
+}
 
 function ItemEra.Utils:toRGB(hex)
     hex = hex:gsub("#", "")
