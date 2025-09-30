@@ -33,25 +33,10 @@ local TOOLTIP_DATA_TYPES = {
     -- DEBUG = Enum.TooltipDataType.Debug,
 }
 
-local function GetExpansionTextByExpansionID(expansionID)
-    if not expansionID then return end
-
-    local expansionColor = ItemEra.Utils.ExpansionColors[expansionID]
-    local expansionName = ItemEra.Utils.ExpansionNames[expansionID]
-    if not expansionColor or not expansionName then return end
-
-    local r, g, b = unpack(expansionColor)
-    local imageSize = "14:14"
-    local image = "|T%s:" .. imageSize .. ":0:0:64:64:4:60:4:60|t"
-    local logo = (image):format(ItemEra.Utils:GetExpansionLogoById(expansionID))
-
-    return L["EXPANSION"] .. "  " .. ("%s |cff%02x%02x%02x%s|r"):format(logo, r, g, b, expansionName)
-end
-
 local function AddExpansionLine(tooltip, item)
     if not tooltip or not item then return end
 
-    local expansionText = GetExpansionTextByExpansionID(item.expansionID)
+    local expansionText = ItemEra.Utils:GetExpansionTextByExpansionID(item.expansionID)
     tooltip:AddLine(" ")
     tooltip:AddLine(expansionText)
 
