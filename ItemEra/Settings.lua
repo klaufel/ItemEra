@@ -22,6 +22,11 @@ local defaults = {
 local function HandleUpdateSettingsValue(info, value)
     local key = info[#info]
     ItemEra.DB_SETTINGS.global.settings[key] = value
+
+    if key == "enabledFiltersInventory" or key == "enabledFiltersBank" or key == "enabledFiltersGuildBank" then
+        StaticPopup_Show("ITEMERA_RELOAD_UI")
+    end
+
     LibStub("AceConfigRegistry-3.0"):NotifyChange("ItemEra")
 end
 
@@ -59,7 +64,7 @@ local function GetOptions()
             },
             tooltipDescription = {
                 type = "description",
-                name = "\n\n" .. L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"],
+                name = "\n\n" .. L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] .. "\n\n",
                 order = 2,
             },
             showExpansionLiteral = {
@@ -202,12 +207,30 @@ local function GetOptions()
                 desc = L["SETTINGS_RESET_DESC"],
                 order = 901,
                 func = function()
+                    if ItemEra.DB_SETTINGS.global.settings.enabledFiltersInventory ~= defaults.global.settings.enabledFiltersInventory or
+                        ItemEra.DB_SETTINGS.global.settings.enabledFiltersBank ~= defaults.global.settings.enabledFiltersBank or
+                        ItemEra.DB_SETTINGS.global.settings.enabledFiltersGuildBank ~= defaults.global.settings.enabledFiltersGuildBank then
+                        StaticPopup_Show("ITEMERA_RELOAD_UI")
+                    end
                     ItemEra.DB_SETTINGS:ResetDB()
                 end
             },
         },
     }
 end
+
+StaticPopupDialogs["ITEMERA_RELOAD_UI"] = {
+    text = L["SETTINGS_RELOAD_POPUP_TEXT"],
+    button1 = L["SETTINGS_RELOAD_POPUP_BUTTON1"],
+    button2 = L["SETTINGS_RELOAD_POPUP_BUTTON2"],
+    OnAccept = function()
+        ReloadUI()
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3,
+}
 
 function ItemEra.Settings:Initialize()
     ItemEra.DB_SETTINGS = LibStub("AceDB-3.0"):New("ItemEraDB", defaults, true)
