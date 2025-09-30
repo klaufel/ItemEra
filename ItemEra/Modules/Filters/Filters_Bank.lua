@@ -27,7 +27,10 @@ end
 function FiltersBank.Reset()
     FiltersBank.Update(nil)
     bankExpansionFilter = nil
-    if bankFilterDropdown then bankFilterDropdown:Reset() end
+    if bankFilterDropdown then
+        bankFilterDropdown:Hide()
+        bankFilterDropdown:Reset()
+    end
 end
 
 function FiltersBank:Initialize()
@@ -40,6 +43,7 @@ function FiltersBank:Initialize()
 
     ItemEra:RegisterEvent("PLAYER_INTERACTION_MANAGER_FRAME_SHOW", function(_, _, arg)
         if arg ~= Enum.PlayerInteractionType.Banker then return end
+        if not BankPanel then return end
         if not bankFilterDropdown then
             local dropdownParams = { x = 72, y = -28, width = 180 }
             bankFilterDropdown = FiltersUtils.CreateDropdown(BankPanel, "bankFilterDropdown",
@@ -49,7 +53,9 @@ function FiltersBank:Initialize()
                     FiltersBank.Update(expansionID)
                 end)
         else
-            bankFilterDropdown:Show()
+            if bankFilterDropdown and bankFilterDropdown:GetParent() then
+                bankFilterDropdown:Show()
+            end
         end
     end)
 
