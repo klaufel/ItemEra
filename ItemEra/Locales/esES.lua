@@ -9,9 +9,8 @@ L["SELECT_EXPANSION"] = "Seleccionar expansión"
 L["ALL_EXPANSION"] = "Todas las expansiones"
 L["EXPANSION"] = "Expansión:"
 
---- Settings
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Visualización de la expansión"
-L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configura las opciones de visualización de ItemEra.\n\n"
+L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configura las opciones de visualización de ItemEra."
 
 L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Mostrar literal 'Expansión'"
 L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"] = "Muestra el literal 'Expansión' antes del nombre y logo en los tooltips"
@@ -49,6 +48,9 @@ L["SETTINGS_FILTERS_BANK_DESC"] = "Habilita los filtros de expansión en el banc
 L["SETTINGS_FILTERS_GUILD_BANK_NAME"] = "Banco de Hermandad"
 L["SETTINGS_FILTERS_GUILD_BANK_DESC"] = "Habilita los filtros de expansión en el banco de la hermandad"
 
-
+L["SETTINGS_RELOAD_REQUIRED"] = "Los cambios en los filtros requieren reiniciar la interfaz (/reload) para aplicarse."
+L["SETTINGS_RELOAD_POPUP_TEXT"] = "Los cambios en los filtros requieren reiniciar la interfaz para aplicarse."
+L["SETTINGS_RELOAD_POPUP_BUTTON1"] = "Reiniciar ahora"
+L["SETTINGS_RELOAD_POPUP_BUTTON2"] = "Más tarde"
 L["SETTINGS_RESET_NAME"] = "Restablecer configuración"
 L["SETTINGS_RESET_DESC"] = "Restablece todas las configuraciones a sus valores predeterminados"
