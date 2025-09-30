@@ -1,4 +1,6 @@
-local _, ItemEra = ...
+local addonName, ItemEra = ...
+local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
+
 ItemEra.Utils = {}
 
 ItemEra.Utils.ExpansionDictionary = {
@@ -29,6 +31,20 @@ ItemEra.Utils.ExpansionNames = {
     [ItemEra.Utils.ExpansionDictionary.TWW]     = "The War Within"
 }
 
+ItemEra.Utils.ExpansionNamesShort = {
+    [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "Classic",
+    [ItemEra.Utils.ExpansionDictionary.TBC]     = "TBC",
+    [ItemEra.Utils.ExpansionDictionary.WOTLK]   = "WoTLK",
+    [ItemEra.Utils.ExpansionDictionary.CATA]    = "Cata",
+    [ItemEra.Utils.ExpansionDictionary.MOP]     = "MoP",
+    [ItemEra.Utils.ExpansionDictionary.WOD]     = "WoD",
+    [ItemEra.Utils.ExpansionDictionary.LEGION]  = "Legion",
+    [ItemEra.Utils.ExpansionDictionary.BFA]     = "BFA",
+    [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "SL",
+    [ItemEra.Utils.ExpansionDictionary.DF]      = "DF",
+    [ItemEra.Utils.ExpansionDictionary.TWW]     = "TWW"
+}
+
 ItemEra.Utils.ExpansionVersionPatch = {
     [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "1.0.0.0",
     [ItemEra.Utils.ExpansionDictionary.TBC]     = "2.0.0.0",
@@ -57,6 +73,11 @@ ItemEra.Utils.ExpansionColorsHex = {
     [ItemEra.Utils.ExpansionDictionary.TWW]     = "#EA551F",
 }
 
+ItemEra.Utils.KeyModifiers = {
+    SHIFT = "SHIFT",
+    CTRL = "CTRL",
+    ALT = "ALT"
+}
 
 function ItemEra.Utils:toRGB(hex)
     hex = hex:gsub("#", "")
@@ -84,4 +105,35 @@ ItemEra.Utils.PathAssets = "Interface\\AddOns\\ItemEra\\Assets\\"
 
 function ItemEra.Utils:GetExpansionLogoById(expansionID)
     return ItemEra.Utils.PathAssets .. "Icons\\Exp_Logo_" .. expansionID .. ".tga"
+end
+
+function ItemEra.Utils:GetExpansionTextByExpansionID(expansionID)
+    if not expansionID then return end
+
+    local showExpansionLiteral = true
+    local showExpansionName = true
+    local showExpansionLogo = true
+
+    if ItemEra.DB_SETTINGS and ItemEra.DB_SETTINGS.global and ItemEra.DB_SETTINGS.global.settings then
+        showExpansionLiteral = ItemEra.DB_SETTINGS.global.settings.showExpansionLiteral
+        showExpansionName = ItemEra.DB_SETTINGS.global.settings.showExpansionName
+        showExpansionLogo = ItemEra.DB_SETTINGS.global.settings.showExpansionLogo
+    end
+
+    local expansionColor = ItemEra.Utils.ExpansionColors[expansionID]
+    local expansionName = showExpansionName and ItemEra.Utils.ExpansionNames[expansionID] or ""
+    local expansionLiteral = showExpansionLiteral and ("|cffffd100" .. L["EXPANSION"] .. "|r") or ""
+
+    if not expansionColor or not expansionName then return end
+
+    local r, g, b = unpack(expansionColor)
+    local imageSize = "14:14"
+    local image = "|T%s:" .. imageSize .. ":0:0:64:64:4:60:4:60|t"
+    local expansionLogo = showExpansionLogo and (image):format(ItemEra.Utils:GetExpansionLogoById(expansionID)) or ""
+
+    local coloredExpansionName = (expansionName ~= "") and ("|cff%02x%02x%02x%s|r"):format(r, g, b, expansionName) or ""
+
+    local expansionText = expansionLiteral .. " " .. expansionLogo .. "  " .. coloredExpansionName
+    expansionText = expansionText:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
+    return expansionText
 end
