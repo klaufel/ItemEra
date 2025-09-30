@@ -4,7 +4,7 @@ local version = GetBuildInfo()
 local major, minor, patch = version:match("^(%d+)%.(%d+)%.(%d+)")
 
 ItemEra.CONFIG = {
-    DEBUG = true,
+    DEBUG = false,
     DISABLED_DB = false,
     VERSION = version,
     VERSION_MAJOR = tonumber(major),

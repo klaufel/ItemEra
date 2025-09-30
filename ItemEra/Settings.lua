@@ -19,16 +19,17 @@ local defaults = {
     }
 }
 
-local function handleUpdateSettingsValue(info, value)
+local function HandleUpdateSettingsValue(info, value)
     local key = info[#info]
     ItemEra.DB_SETTINGS.global.settings[key] = value
     LibStub("AceConfigRegistry-3.0"):NotifyChange("ItemEra")
 end
 
-local function handleGetSettingsValue(info)
+local function HandleGetSettingsValue(info)
     local key = info[#info]
     return ItemEra.DB_SETTINGS.global.settings[key]
 end
+
 
 local function GetTooltipPreview()
     local isDisabled = not ItemEra.DB_SETTINGS.global.settings.showExpansionName and
@@ -41,12 +42,16 @@ local function GetTooltipPreview()
     return L["SETTINGS_TOOLTIP_PREVIEW_NAME"] .. "\n\n\n" .. tooltipPreview
 end
 
-
 local function GetOptions()
     return {
         type = "group",
         name = "ItemEra - Filter Expansion Items",
         args = {
+            br01 = {
+                type = "description",
+                name = "\n",
+                order = 0,
+            },
             tooltipHeader = {
                 type = "header",
                 name = L["SETTINGS_TOOLTIP_HEADER_NAME"],
@@ -54,7 +59,7 @@ local function GetOptions()
             },
             tooltipDescription = {
                 type = "description",
-                name = L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"],
+                name = "\n\n" .. L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"],
                 order = 2,
             },
             showExpansionLiteral = {
@@ -67,8 +72,8 @@ local function GetOptions()
                         not ItemEra.DB_SETTINGS.global.settings.showExpansionLogo
                 end,
                 order = 10,
-                get = handleGetSettingsValue,
-                set = handleUpdateSettingsValue,
+                get = HandleGetSettingsValue,
+                set = HandleUpdateSettingsValue,
             },
             showExpansionName = {
                 type = "toggle",
@@ -76,8 +81,8 @@ local function GetOptions()
                 desc = L["SETTINGS_SHOW_EXPANSION_NAME_DESC"],
                 width = "full",
                 order = 10,
-                get = handleGetSettingsValue,
-                set = handleUpdateSettingsValue,
+                get = HandleGetSettingsValue,
+                set = HandleUpdateSettingsValue,
             },
             showExpansionLogo = {
                 type = "toggle",
@@ -85,8 +90,8 @@ local function GetOptions()
                 desc = L["SETTINGS_SHOW_EXPANSION_LOGO_DESC"],
                 width = "full",
                 order = 10,
-                get = handleGetSettingsValue,
-                set = handleUpdateSettingsValue,
+                get = HandleGetSettingsValue,
+                set = HandleUpdateSettingsValue,
             },
             spacer1 = {
                 type = "description",
@@ -102,12 +107,12 @@ local function GetOptions()
             },
             spacer2 = {
                 type = "description",
-                name = "\n",
+                name = "\n\n",
                 order = 50,
             },
             keyModifierHeader = {
                 type = "header",
-                name = L["SETTINGS_KEY_MODIFIER_HEADER_NAME"],
+                name = L["SETTINGS_KEY_MODIFIER_HEADER_NAME"] .. "\n",
                 order = 60,
             },
             useKeyModifier = {
@@ -116,14 +121,14 @@ local function GetOptions()
                 desc = "Solo muestra la información de expansión cuando se mantiene presionada una tecla modificadora",
                 width = "full",
                 order = 70,
-                get = handleGetSettingsValue,
-                set = handleUpdateSettingsValue,
+                get = HandleGetSettingsValue,
+                set = HandleUpdateSettingsValue,
             },
             keyModifier = {
                 type = "select",
-                name = L["SETTINGS_KEY_MODIFIER_NAME"],
+                name = L["SETTINGS_KEY_MODIFIER_NAME"] .. "\n",
                 desc = L["SETTINGS_KEY_MODIFIER_DESC"],
-                width = "full",
+                width = "80",
                 order = 80,
                 disabled = function() return not ItemEra.DB_SETTINGS.global.settings.useKeyModifier end,
                 values = {
@@ -131,8 +136,74 @@ local function GetOptions()
                     [ItemEra.Utils.KeyModifiers.CTRL] = "Control",
                     [ItemEra.Utils.KeyModifiers.SHIFT] = "Shift",
                 },
-                get = handleGetSettingsValue,
-                set = handleUpdateSettingsValue,
+                get = HandleGetSettingsValue,
+                set = HandleUpdateSettingsValue,
+            },
+            spacer3 = {
+                type = "description",
+                name = "\n\n",
+                order = 90,
+            },
+            filtersHeader = {
+                type = "header",
+                name = L["SETTINGS_FILTERS_HEADER_NAME"],
+                order = 100,
+            },
+            filtersDescription = {
+                type = "description",
+                name = "\n\n" .. L["SETTINGS_FILTERS_DESCRIPTION_NAME"] .. "\n\n",
+                order = 110,
+            },
+            enabledFiltersInventory = {
+                type = "toggle",
+                name = L["SETTINGS_FILTERS_INVENTORY_NAME"],
+                desc = L["SETTINGS_FILTERS_INVENTORY_DESC"],
+                width = "auto",
+                order = 120,
+                get = HandleGetSettingsValue,
+                set = HandleUpdateSettingsValue,
+            },
+            enabledFiltersBank = {
+                type = "toggle",
+                name = L["SETTINGS_FILTERS_BANK_NAME"],
+                desc = L["SETTINGS_FILTERS_BANK_DESC"],
+                width = "auto",
+                order = 120,
+                get = HandleGetSettingsValue,
+                set = HandleUpdateSettingsValue,
+            },
+            enabledFiltersGuildBank = {
+                type = "toggle",
+                name = L["SETTINGS_FILTERS_GUILD_BANK_NAME"],
+                desc = L["SETTINGS_FILTERS_GUILD_BANK_DESC"],
+                width = "auto",
+                order = 120,
+                get = HandleGetSettingsValue,
+                set = HandleUpdateSettingsValue,
+            },
+            bdes = {
+                type = "description",
+                name = "\n",
+                order = 800,
+            },
+            brlast = {
+                type = "header",
+                name = "",
+                order = 900,
+            },
+            brreset = {
+                type = "description",
+                name = "\n",
+                order = 900,
+            },
+            reset = {
+                type = "execute",
+                name = L["SETTINGS_RESET_NAME"],
+                desc = L["SETTINGS_RESET_DESC"],
+                order = 901,
+                func = function()
+                    ItemEra.DB_SETTINGS:ResetDB()
+                end
             },
         },
     }

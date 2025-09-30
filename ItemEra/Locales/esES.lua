@@ -11,7 +11,7 @@ L["EXPANSION"] = "Expansión:"
 
 --- Settings
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Visualización de la expansión"
-L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "\n\nConfigura las opciones de visualización de ItemEra.\n\n"
+L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configura las opciones de visualización de ItemEra.\n\n"
 
 L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Mostrar literal 'Expansión'"
 L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"] = "Muestra el literal 'Expansión' antes del nombre y logo en los tooltips"
@@ -35,3 +35,20 @@ L['SETTINGS_USE_KEY_MODIFIER_DESC'] =
 L["SETTINGS_KEY_MODIFIER_NAME"] = "Tecla modificadora"
 L["SETTINGS_KEY_MODIFIER_DESC"] =
 "Selecciona la tecla modificadora que se utilizará para mostrar la información de expansión."
+
+L["SETTINGS_FILTERS_HEADER_NAME"] = "Filtros de expansión"
+L["SETTINGS_FILTERS_DESCRIPTION_NAME"] =
+"Habilita o deshabilita los filtros de expansión en diferentes ventanas del juego."
+
+L["SETTINGS_FILTERS_INVENTORY_NAME"] = "Inventario"
+L["SETTINGS_FILTERS_INVENTORY_DESC"] = "Habilita los filtros de expansión en las bolsas del inventario"
+
+L["SETTINGS_FILTERS_BANK_NAME"] = "Banco personal"
+L["SETTINGS_FILTERS_BANK_DESC"] = "Habilita los filtros de expansión en el banco personal"
+
+L["SETTINGS_FILTERS_GUILD_BANK_NAME"] = "Banco de Hermandad"
+L["SETTINGS_FILTERS_GUILD_BANK_DESC"] = "Habilita los filtros de expansión en el banco de la hermandad"
+
+
+L["SETTINGS_RESET_NAME"] = "Restablecer configuración"
+L["SETTINGS_RESET_DESC"] = "Restablece todas las configuraciones a sus valores predeterminados"
