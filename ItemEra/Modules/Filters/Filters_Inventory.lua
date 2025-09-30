@@ -44,12 +44,19 @@ end
 function FiltersInventory.Reset()
     FiltersInventory.Update(nil, true)
     inventoryExpansionFilter = nil
-    if InventoryFilterDropdown then InventoryFilterDropdown:Reset() end
+    if InventoryFilterDropdown then
+        InventoryFilterDropdown:Hide()
+        InventoryFilterDropdown:Reset()
+    end
 end
 
 local function Initialize()
     local containerFrameCombinedBags = _G["ContainerFrameCombinedBags"]
     local containerFrame1 = _G["ContainerFrame1"]
+
+    if not containerFrameCombinedBags or not containerFrame1 then
+        return
+    end
 
     local isCombinedBags = containerFrameCombinedBags:IsShown() == true and containerFrame1:IsShown() == false
 
@@ -68,23 +75,27 @@ local function Initialize()
 
     local dropdownParams = { position = "TOPRIGHT", width = 160, x = -12, y = -64 }
     if not InventoryFilterDropdown then
-        InventoryFilterDropdown = FiltersUtils.CreateDropdown(containerFrameCombinedBags, "InventoryFilterDropdown",
+        local parentFrame = isCombinedBags and containerFrameCombinedBags or containerFrame1
+
+        InventoryFilterDropdown = FiltersUtils.CreateDropdown(parentFrame, "InventoryFilterDropdown",
             dropdownParams, inventoryExpansionFilter,
             function(expansionID)
                 inventoryExpansionFilter = expansionID
                 FiltersInventory.Update(expansionID)
             end)
     else
-        if isCombinedBags then
-            InventoryFilterDropdown:ClearAllPoints()
-            InventoryFilterDropdown:SetParent(containerFrameCombinedBags)
-            InventoryFilterDropdown:SetWidth(160)
-            InventoryFilterDropdown:SetPoint("TOPRIGHT", containerFrameCombinedBags, "TOPRIGHT", -12, -64)
-        else
-            InventoryFilterDropdown:ClearAllPoints()
-            InventoryFilterDropdown:SetParent(containerFrame1)
-            InventoryFilterDropdown:SetWidth(120)
-            InventoryFilterDropdown:SetPoint("TOPRIGHT", containerFrame1, "TOPRIGHT", -12, -64)
+        if InventoryFilterDropdown and InventoryFilterDropdown:GetParent() then
+            if isCombinedBags then
+                InventoryFilterDropdown:ClearAllPoints()
+                InventoryFilterDropdown:SetParent(containerFrameCombinedBags)
+                InventoryFilterDropdown:SetWidth(160)
+                InventoryFilterDropdown:SetPoint("TOPRIGHT", containerFrameCombinedBags, "TOPRIGHT", -12, -64)
+            else
+                InventoryFilterDropdown:ClearAllPoints()
+                InventoryFilterDropdown:SetParent(containerFrame1)
+                InventoryFilterDropdown:SetWidth(120)
+                InventoryFilterDropdown:SetPoint("TOPRIGHT", containerFrame1, "TOPRIGHT", -12, -64)
+            end
         end
         InventoryFilterDropdown:Show()
     end
