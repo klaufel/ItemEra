@@ -201,6 +201,17 @@ local function GetOptions()
                 name = "\n",
                 order = 900,
             },
+            exportData = {
+                type = "execute",
+                name = L["SETTINGS_EXPORT_DATA_NAME"] or "Export Data to JSON",
+                desc = L["SETTINGS_EXPORT_DATA_DESC"] or "Export all database to JSON format",
+                order = 900,
+                func = function()
+                    if ItemEra.ExportModal then
+                        ItemEra.ExportModal:Show()
+                    end
+                end
+            },
             reset = {
                 type = "execute",
                 name = L["SETTINGS_RESET_NAME"],

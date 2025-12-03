@@ -52,6 +52,7 @@ Database\DatabasePatch.lua
 
 ItemData.lua
 Events.lua
+ExportModal.lua
 
 Modules\Tooltip\Tooltip.lua
 
@@ -61,3 +62,4 @@ Modules\Filters\Filters_GuildBank.lua
 Modules\Filters\Filters_Inventory.lua
 Modules\Filters\Filters.lua
 
+WelcomeModal.lua
