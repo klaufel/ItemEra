@@ -50,3 +50,8 @@ L["SETTINGS_RELOAD_POPUP_BUTTON1"] = "Reload now"
 L["SETTINGS_RELOAD_POPUP_BUTTON2"] = "Later"
 L["SETTINGS_RESET_NAME"] = "Reset settings"
 L["SETTINGS_RESET_DESC"] = "Resets all settings to their default values"
+
+L["SETTINGS_DECORATIONS_HEADER_NAME"] = "Item Decorations"
+L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] = "Show expansion icons on items in your inventory."
+L["SETTINGS_DECORATIONS_ENABLED_NAME"] = "Enable item decorations"
+L["SETTINGS_DECORATIONS_ENABLED_DESC"] = "Shows a small expansion icon on each item in your bags. Hover over the icon to see the expansion name."

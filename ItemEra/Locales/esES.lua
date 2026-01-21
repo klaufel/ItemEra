@@ -54,3 +54,8 @@ L["SETTINGS_RELOAD_POPUP_BUTTON1"] = "Reiniciar ahora"
 L["SETTINGS_RELOAD_POPUP_BUTTON2"] = "Más tarde"
 L["SETTINGS_RESET_NAME"] = "Restablecer configuración"
 L["SETTINGS_RESET_DESC"] = "Restablece todas las configuraciones a sus valores predeterminados"
+
+L["SETTINGS_DECORATIONS_HEADER_NAME"] = "Decoraciones de objetos"
+L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] = "Muestra iconos de expansión en los objetos del inventario."
+L["SETTINGS_DECORATIONS_ENABLED_NAME"] = "Habilitar decoraciones de objetos"
+L["SETTINGS_DECORATIONS_ENABLED_DESC"] = "Muestra un pequeño icono de expansión en cada objeto de tus bolsas. Pasa el ratón sobre el icono para ver el nombre de la expansión."

@@ -10,6 +10,7 @@ local defaults = {
             enabledFiltersBank = true,
             enabledFiltersGuildBank = true,
             enabledFiltersInventory = true,
+            enabledDecorations = false,
             showExpansionName = true,
             showExpansionLogo = true,
             showExpansionLiteral = true,
@@ -23,7 +24,7 @@ local function HandleUpdateSettingsValue(info, value)
     local key = info[#info]
     ItemEra.DB_SETTINGS.global.settings[key] = value
 
-    if key == "enabledFiltersInventory" or key == "enabledFiltersBank" or key == "enabledFiltersGuildBank" then
+    if key == "enabledFiltersInventory" or key == "enabledFiltersBank" or key == "enabledFiltersGuildBank" or key == "enabledDecorations" then
         StaticPopup_Show("ITEMERA_RELOAD_UI")
     end
 
@@ -39,7 +40,7 @@ end
 local function GetTooltipPreview()
     local isDisabled = not ItemEra.DB_SETTINGS.global.settings.showExpansionName and
         not ItemEra.DB_SETTINGS.global.settings.showExpansionLogo
-    local expansionID = 10
+    local expansionID = 11 -- MN
     local expansionText = ItemEra.Utils:GetExpansionTextByExpansionID(expansionID)
     local tooltipPreview = not isDisabled and expansionText ~= "" and expansionText or
         "|cffff0000" .. L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] .. "|r"
@@ -186,6 +187,30 @@ local function GetOptions()
                 get = HandleGetSettingsValue,
                 set = HandleUpdateSettingsValue,
             },
+            -- spacer4 = {
+            --     type = "description",
+            --     name = "\n\n",
+            --     order = 130,
+            -- },
+            -- decorationsHeader = {
+            --     type = "header",
+            --     name = L["SETTINGS_DECORATIONS_HEADER_NAME"],
+            --     order = 140,
+            -- },
+            -- decorationsDescription = {
+            --     type = "description",
+            --     name = "\n\n" .. L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] .. "\n\n",
+            --     order = 150,
+            -- },
+            -- enabledDecorations = {
+            --     type = "toggle",
+            --     name = L["SETTINGS_DECORATIONS_ENABLED_NAME"],
+            --     desc = L["SETTINGS_DECORATIONS_ENABLED_DESC"],
+            --     width = "full",
+            --     order = 160,
+            --     get = HandleGetSettingsValue,
+            --     set = HandleUpdateSettingsValue,
+            -- },
             bdes = {
                 type = "description",
                 name = "\n",
