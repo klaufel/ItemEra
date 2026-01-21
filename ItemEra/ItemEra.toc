@@ -1,9 +1,9 @@
-## Interface: 110207
+## Interface: 120000, 120010
 ## Name: ItemEra - Filter Expansion Items
 ## Title: ItemEra - Filter Expansion Items
 ## Notes: Adds expansion filters and information to all item tooltips with color-coded names and visual icons for instant recognition.
 ## Author: Klaufel
-## Version: 1.2.1
+## Version: 2.0.0
 ## SavedVariables: ItemEraDB
 ## IconTexture: Interface\AddOns\ItemEra\Assets\Addon\Logo.tga
 ## X-Website: https://www.curseforge.com/wow/addons/itemera
