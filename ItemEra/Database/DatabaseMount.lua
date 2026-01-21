@@ -95,9 +95,12 @@ local MOUNT_EXPANSION_CONFIG = {
         2189,
     }
     },
-    { ExpansionDictionary.TWW, 2116, 3000, {
+    { ExpansionDictionary.TWW, 2116, 2732, {
         1550,
         1792,
+    } },
+    { ExpansionDictionary.MN, 2733, 4000, {
+        16, 1946, 2161, 2220, 2492, 2595, 2607, 2608, 2614, 2615, 2693, 2694, 2708, 2710, 2713
     } },
 }
 

@@ -14,7 +14,8 @@ ItemEra.Utils.ExpansionDictionary = {
     BFA = 7,
     SHADOW = 8,
     DF = 9,
-    TWW = 10
+    TWW = 10,
+    MN = 11
 }
 
 ItemEra.Utils.ExpansionNames = {
@@ -28,7 +29,8 @@ ItemEra.Utils.ExpansionNames = {
     [ItemEra.Utils.ExpansionDictionary.BFA]     = "Battle for Azeroth",
     [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "Shadowlands",
     [ItemEra.Utils.ExpansionDictionary.DF]      = "Dragonflight",
-    [ItemEra.Utils.ExpansionDictionary.TWW]     = "The War Within"
+    [ItemEra.Utils.ExpansionDictionary.TWW]     = "The War Within",
+    [ItemEra.Utils.ExpansionDictionary.MN]      = "Midnight"
 }
 
 ItemEra.Utils.ExpansionNamesShort = {
@@ -42,7 +44,8 @@ ItemEra.Utils.ExpansionNamesShort = {
     [ItemEra.Utils.ExpansionDictionary.BFA]     = "BFA",
     [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "SL",
     [ItemEra.Utils.ExpansionDictionary.DF]      = "DF",
-    [ItemEra.Utils.ExpansionDictionary.TWW]     = "TWW"
+    [ItemEra.Utils.ExpansionDictionary.TWW]     = "TWW",
+    [ItemEra.Utils.ExpansionDictionary.MN]      = "Midnight"
 }
 
 ItemEra.Utils.ExpansionVersionPatch = {
@@ -57,6 +60,7 @@ ItemEra.Utils.ExpansionVersionPatch = {
     [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "9.0.0.0",
     [ItemEra.Utils.ExpansionDictionary.DF]      = "10.0.0.0",
     [ItemEra.Utils.ExpansionDictionary.TWW]     = "11.0.0.0",
+    [ItemEra.Utils.ExpansionDictionary.MN]      = "12.0.0.0",
 }
 
 ItemEra.Utils.ExpansionColorsHex = {
@@ -71,6 +75,7 @@ ItemEra.Utils.ExpansionColorsHex = {
     [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "#F9F8F6",
     [ItemEra.Utils.ExpansionDictionary.DF]      = "#B6B6BA",
     [ItemEra.Utils.ExpansionDictionary.TWW]     = "#EA551F",
+    [ItemEra.Utils.ExpansionDictionary.MN]      = "#5C1FEA",
 }
 
 ItemEra.Utils.KeyModifiers = {
@@ -93,7 +98,7 @@ end
 
 function ItemEra.Utils:GetExpansionsInOrder()
     local ordered = {}
-    for id = 0, 10 do
+    for id = 0, 11 do
         if ItemEra.Utils.ExpansionNames[id] then
             table.insert(ordered, { id = id, name = ItemEra.Utils.ExpansionNames[id] })
         end
