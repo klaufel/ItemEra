@@ -1,0 +1,8 @@
+package-as: ItemEra
+
+ignore:
+  - .github
+  - scripts
+  - Makefile
+  - README.md
+  - .pkgmeta
