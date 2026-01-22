@@ -8,6 +8,7 @@
 ## IconTexture: Interface\AddOns\ItemEra\Assets\Addon\Logo.tga
 ## X-Website: https://www.curseforge.com/wow/addons/itemera
 ## X-Curse-Project-ID: 1298090
+## X-Wago-ID: 96E7lAGg
 ## DefaultState: Enabled
 ## LoadOnDemand: 0
 
