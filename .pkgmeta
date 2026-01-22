@@ -1,5 +1,8 @@
 package-as: ItemEra
 
+move-folders:
+  ItemEra/ItemEra: ItemEra
+
 ignore:
   - .github
   - scripts
