@@ -9,6 +9,10 @@ L["SELECT_EXPANSION"] = "Sélectionner l'extension"
 L["ALL_EXPANSION"] = "Toutes les extensions"
 L["EXPANSION"] = "Extension:"
 
+L["SETTINGS_MAIN_DESCRIPTION"] = "Filtrer et afficher les informations d'extension pour vos objets."
+L["SETTINGS_SUBPAGE_TOOLTIP"] = "Infobulle"
+L["SETTINGS_SUBPAGE_FILTERS"] = "Filtres"
+
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Affichage de l'extension"
 L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configure les options d'affichage d'ItemEra."
 
@@ -53,3 +57,11 @@ L["SETTINGS_RELOAD_POPUP_BUTTON1"] = "Recharger maintenant"
 L["SETTINGS_RELOAD_POPUP_BUTTON2"] = "Plus tard"
 L["SETTINGS_RESET_NAME"] = "Réinitialiser les paramètres"
 L["SETTINGS_RESET_DESC"] = "Remet tous les paramètres à leurs valeurs par défaut"
+
+L["SETTINGS_BAGANATOR_HEADER_NAME"] = "Intégration Baganator"
+L["SETTINGS_BAGANATOR_DETECTED"] = "Baganator détecté !"
+L["SETTINGS_BAGANATOR_NOT_DETECTED"] = "Baganator non détecté."
+L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] = "ItemEra ajoutera des icônes d'extension aux coins des objets dans Baganator. Les filtres natifs sont désactivés lorsque Baganator est actif."
+L["SETTINGS_BAGANATOR_DESCRIPTION_INACTIVE"] = "Installez Baganator pour utiliser l'intégration des catégories par extension."
+L["SETTINGS_BAGANATOR_ENABLED_NAME"] = "Activer l'intégration Baganator"
+L["SETTINGS_BAGANATOR_ENABLED_DESC"] = "Affiche les icônes d'extension sur les objets lorsque vous utilisez Baganator"

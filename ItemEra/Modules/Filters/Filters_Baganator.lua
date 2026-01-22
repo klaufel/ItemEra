@@ -1,130 +1,83 @@
 local addonName, ItemEra = ...
-local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
 ItemEra.Filters_Baganator = {}
 
--- Mapeo de expansionID de ItemEra a términos de búsqueda de Baganator/Syndicator
-local ExpansionSearchTerms = {
-    [0]  = "classic",           -- Classic
-    [1]  = "tbc",               -- The Burning Crusade
-    [2]  = "wotlk",             -- Wrath of the Lich King
-    [3]  = "cataclysm",         -- Cataclysm
-    [4]  = "mop",               -- Mists of Pandaria
-    [5]  = "wod",               -- Warlords of Draenor
-    [6]  = "legion",            -- Legion
-    [7]  = "bfa",               -- Battle for Azeroth
-    [8]  = "shadowlands",       -- Shadowlands
-    [9]  = "dragonflight",      -- Dragonflight
-    [10] = "tww",               -- The War Within
-    [11] = "midnight",          -- Midnight
-}
+local currentFilter = nil
+local dropdownFrame = nil
 
--- Prefijo para identificar categorías creadas por ItemEra
-local CATEGORY_PREFIX = "itemera_expansion_"
-
--- Prioridades para ordenar las categorías (más reciente = mayor prioridad)
-local ExpansionPriorities = {
-    [0]  = -110,  -- Classic (más antiguo)
-    [1]  = -100,  -- TBC
-    [2]  = -90,   -- WotLK
-    [3]  = -80,   -- Cataclysm
-    [4]  = -70,   -- MoP
-    [5]  = -60,   -- WoD
-    [6]  = -50,   -- Legion
-    [7]  = -40,   -- BfA
-    [8]  = -30,   -- Shadowlands
-    [9]  = -20,   -- Dragonflight
-    [10] = -10,   -- TWW
-    [11] = 0,     -- Midnight (más reciente)
-}
-
-local function GetBaganatorAddonTable()
-    -- Intentar obtener la tabla interna de Baganator
-    -- Baganator expone algunas funciones a través del global Baganator
-    return Baganator
-end
-
-local function IsBaganatorCategoryViewEnabled()
-    -- Verificar si Baganator está en modo de vista de categorías
-    local baganator = GetBaganatorAddonTable()
-    if baganator and baganator.Config and baganator.Config.Get then
-        -- La opción "view_type" determina si está en vista de categorías
-        local viewType = baganator.Config.Get("view_type")
-        return viewType == "category"
+-- Función para aplicar el filtro de búsqueda en Baganator
+local function ApplyExpansionFilter(expansionID)
+    if not Baganator or not Baganator.CallbackRegistry then
+        return
     end
-    return false
+
+    currentFilter = expansionID
+
+    if expansionID == nil then
+        Baganator.CallbackRegistry:TriggerEvent("SearchTextChanged", "")
+    else
+        local searchTerm = ItemEra.Utils.ExpansionSearchTerms[expansionID]
+        if searchTerm then
+            Baganator.CallbackRegistry:TriggerEvent("SearchTextChanged", searchTerm)
+        end
+    end
 end
 
-local function CreateExpansionCategories()
-    local baganator = GetBaganatorAddonTable()
-    if not baganator then
+-- Registrar la región personalizada en Baganator
+local function RegisterExpansionFilterRegion()
+    if not Baganator or not Baganator.API or not Baganator.API.RegisterRegion then
         return false
     end
 
-    -- Verificar que tenemos acceso a la API necesaria
-    if not baganator.API then
-        return false
-    end
+    -- Crear un frame contenedor para el dropdown
+    local container = CreateFrame("Frame", "ItemEraExpansionFilterContainer", UIParent)
+    container:SetSize(150, 26)
 
-    -- Registrar un widget de esquina para mostrar el icono de expansión en los items
-    if baganator.API.RegisterCornerWidget then
-        local function OnUpdate(cornerFrame, details)
-            -- Obtener la expansión del item usando ItemEra
-            if details and details.itemID then
-                local itemData = ItemEra.ItemData:GetItemExpansionID(details.itemID)
-                if itemData and itemData.expansionID then
-                    local expansionID = itemData.expansionID
-                    local logoPath = ItemEra.Utils:GetExpansionLogoById(expansionID)
-                    local color = ItemEra.Utils.ExpansionColors[expansionID]
+    -- Usar el dropdown de ItemEra
+    dropdownFrame = ItemEra.Filters_Utils.CreateDropdown(
+        container,
+        "ItemEraExpansionDropdown",
+        {
+            position = "LEFT",
+            x = 0,
+            y = 0,
+            width = 140,
+            height = 22
+        },
+        nil,
+        function(expansionID)
+            ApplyExpansionFilter(expansionID)
+        end
+    )
 
-                    if logoPath and color then
-                        cornerFrame.Icon:SetTexture(logoPath)
-                        cornerFrame.Icon:SetVertexColor(1, 1, 1, 1)
-                        cornerFrame:Show()
-                        return true
-                    end
-                end
+    -- Registrar la región en Baganator (posición: bottom_left del backpack)
+    Baganator.API.RegisterRegion(
+        "ItemEra",
+        "itemera_expansion",
+        "backpack",
+        "bottom_left",
+        container
+    )
+
+    -- Escuchar cuando se cierra la bolsa para limpiar el filtro
+    if Baganator.CallbackRegistry then
+        Baganator.CallbackRegistry:RegisterCallback("BagHide", function()
+            currentFilter = nil
+            if dropdownFrame and dropdownFrame.Reset then
+                dropdownFrame:Reset()
             end
-            cornerFrame:Hide()
-            return false
-        end
-
-        local function OnInit(cornerFrame)
-            cornerFrame.Icon = cornerFrame:CreateTexture(nil, "ARTWORK")
-            cornerFrame.Icon:SetAllPoints()
-            cornerFrame.Icon:SetTexCoord(0.0625, 0.9375, 0.0625, 0.9375)
-        end
-
-        -- Registrar el widget con posición por defecto en la esquina inferior derecha
-        baganator.API.RegisterCornerWidget(
-            "ItemEra Expansion",      -- label
-            "itemera_expansion",      -- id
-            OnUpdate,                  -- onUpdate callback
-            OnInit,                    -- onInit callback
-            "bottom_right"            -- defaultPosition
-        )
+        end, "ItemEraFilter")
     end
 
     return true
 end
 
 local function SetupBaganatorIntegration()
-    -- Esta función se ejecutará cuando Baganator esté completamente cargado
     if not Baganator then
         return
     end
 
-    -- Crear las categorías de expansión
-    CreateExpansionCategories()
-
-    -- Registrar callbacks para cuando cambie la configuración
-    if Baganator.CallbackRegistry then
-        Baganator.CallbackRegistry:RegisterCallback("SettingChanged", function(_, settingName)
-            if settingName == "corner_widgets" then
-                -- Actualizar si cambian los widgets de esquina
-            end
-        end, "ItemEra")
-    end
+    RegisterExpansionFilterRegion()
 end
 
 function ItemEra.Filters_Baganator:Initialize()
@@ -132,23 +85,23 @@ function ItemEra.Filters_Baganator:Initialize()
         return
     end
 
-    -- Esperar a que el jugador entre al juego para asegurar que Baganator está inicializado
     local frame = CreateFrame("Frame")
     frame:RegisterEvent("PLAYER_ENTERING_WORLD")
-    frame:SetScript("OnEvent", function(self, event)
+    frame:SetScript("OnEvent", function(self)
         self:UnregisterEvent("PLAYER_ENTERING_WORLD")
-
-        -- Dar tiempo a Baganator para inicializarse completamente
         C_Timer.After(1, function()
             SetupBaganatorIntegration()
         end)
     end)
 end
 
--- Función para verificar si las categorías de ItemEra están activas en Baganator
-function ItemEra.Filters_Baganator:IsExpansionWidgetActive()
-    if Baganator and Baganator.API and Baganator.API.IsCornerWidgetActive then
-        return Baganator.API.IsCornerWidgetActive("itemera_expansion")
+function ItemEra.Filters_Baganator:GetCurrentFilter()
+    return currentFilter
+end
+
+function ItemEra.Filters_Baganator:ClearFilter()
+    ApplyExpansionFilter(nil)
+    if dropdownFrame and dropdownFrame.Reset then
+        dropdownFrame:Reset()
     end
-    return false
 end

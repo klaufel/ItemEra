@@ -9,6 +9,10 @@ L["SELECT_EXPANSION"] = "Seleccionar expansión"
 L["ALL_EXPANSION"] = "Todas las expansiones"
 L["EXPANSION"] = "Expansión:"
 
+L["SETTINGS_MAIN_DESCRIPTION"] = "Filtra y muestra información de la expansión de tus objetos."
+L["SETTINGS_SUBPAGE_TOOLTIP"] = "Tooltip"
+L["SETTINGS_SUBPAGE_FILTERS"] = "Filtros"
+
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Visualización de la expansión"
 L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configura las opciones de visualización de ItemEra."
 

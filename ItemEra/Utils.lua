@@ -33,6 +33,22 @@ ItemEra.Utils.ExpansionNames = {
     [ItemEra.Utils.ExpansionDictionary.MN]      = "Midnight"
 }
 
+ItemEra.Utils.ExpansionSearchTerms = {
+    [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "classic",
+    [ItemEra.Utils.ExpansionDictionary.TBC]     = "tbc",
+    [ItemEra.Utils.ExpansionDictionary.WOTLK]   = "wotlk",
+    [ItemEra.Utils.ExpansionDictionary.CATA]    = "cataclysm",
+    [ItemEra.Utils.ExpansionDictionary.MOP]     = "mop",
+    [ItemEra.Utils.ExpansionDictionary.WOD]     = "wod",
+    [ItemEra.Utils.ExpansionDictionary.LEGION]  = "legion",
+    [ItemEra.Utils.ExpansionDictionary.BFA]     = "bfa",
+    [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "shadowlands",
+    [ItemEra.Utils.ExpansionDictionary.DF]      = "dragonflight",
+    [ItemEra.Utils.ExpansionDictionary.TWW]     = "tww",
+    [ItemEra.Utils.ExpansionDictionary.MN]      = "midnight",
+}
+
+
 ItemEra.Utils.ExpansionNamesShort = {
     [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "Classic",
     [ItemEra.Utils.ExpansionDictionary.TBC]     = "TBC",
