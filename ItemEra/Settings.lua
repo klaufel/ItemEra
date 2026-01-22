@@ -11,6 +11,7 @@ local defaults = {
             enabledFiltersGuildBank = true,
             enabledFiltersInventory = true,
             enabledDecorations = false,
+            enabledBaganatorIntegration = true,
             showExpansionName = true,
             showExpansionLogo = true,
             showExpansionLiteral = true,
@@ -24,7 +25,7 @@ local function HandleUpdateSettingsValue(info, value)
     local key = info[#info]
     ItemEra.DB_SETTINGS.global.settings[key] = value
 
-    if key == "enabledFiltersInventory" or key == "enabledFiltersBank" or key == "enabledFiltersGuildBank" or key == "enabledDecorations" then
+    if key == "enabledFiltersInventory" or key == "enabledFiltersBank" or key == "enabledFiltersGuildBank" or key == "enabledDecorations" or key == "enabledBaganatorIntegration" then
         StaticPopup_Show("ITEMERA_RELOAD_UI")
     end
 
@@ -166,6 +167,7 @@ local function GetOptions()
                 desc = L["SETTINGS_FILTERS_INVENTORY_DESC"],
                 width = "auto",
                 order = 120,
+                disabled = function() return ItemEra.Utils:IsBaganatorLoaded() end,
                 get = HandleGetSettingsValue,
                 set = HandleUpdateSettingsValue,
             },
@@ -175,6 +177,7 @@ local function GetOptions()
                 desc = L["SETTINGS_FILTERS_BANK_DESC"],
                 width = "auto",
                 order = 120,
+                disabled = function() return ItemEra.Utils:IsBaganatorLoaded() end,
                 get = HandleGetSettingsValue,
                 set = HandleUpdateSettingsValue,
             },
@@ -184,10 +187,42 @@ local function GetOptions()
                 desc = L["SETTINGS_FILTERS_GUILD_BANK_DESC"],
                 width = "auto",
                 order = 120,
+                disabled = function() return ItemEra.Utils:IsBaganatorLoaded() end,
                 get = HandleGetSettingsValue,
                 set = HandleUpdateSettingsValue,
             },
-            -- spacer4 = {
+            spacer4 = {
+                type = "description",
+                name = "\n\n",
+                order = 130,
+            },
+            baganatorHeader = {
+                type = "header",
+                name = L["SETTINGS_BAGANATOR_HEADER_NAME"] or "Baganator Integration",
+                order = 140,
+            },
+            baganatorDescription = {
+                type = "description",
+                name = function()
+                    if ItemEra.Utils:IsBaganatorLoaded() then
+                        return "\n\n|cff00ff00" .. (L["SETTINGS_BAGANATOR_DETECTED"] or "Baganator detected!") .. "|r " .. (L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] or "ItemEra will add expansion icons to item corners in Baganator. Native filters are disabled when Baganator is active.") .. "\n\n"
+                    else
+                        return "\n\n|cff888888" .. (L["SETTINGS_BAGANATOR_NOT_DETECTED"] or "Baganator not detected.") .. "|r " .. (L["SETTINGS_BAGANATOR_DESCRIPTION_INACTIVE"] or "Install Baganator to use expansion category integration.") .. "\n\n"
+                    end
+                end,
+                order = 150,
+            },
+            enabledBaganatorIntegration = {
+                type = "toggle",
+                name = L["SETTINGS_BAGANATOR_ENABLED_NAME"] or "Enable Baganator Integration",
+                desc = L["SETTINGS_BAGANATOR_ENABLED_DESC"] or "Show expansion icons on items when using Baganator",
+                width = "full",
+                order = 160,
+                disabled = function() return not ItemEra.Utils:IsBaganatorLoaded() end,
+                get = HandleGetSettingsValue,
+                set = HandleUpdateSettingsValue,
+            },
+            -- spacer5 = {
             --     type = "description",
             --     name = "\n\n",
             --     order = 130,

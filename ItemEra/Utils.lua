@@ -112,6 +112,25 @@ function ItemEra.Utils:GetExpansionLogoById(expansionID)
     return ItemEra.Utils.PathAssets .. "Icons\\Exp_Logo_" .. expansionID .. ".tga"
 end
 
+-- Detectar si Baganator está cargado
+function ItemEra.Utils:IsBaganatorLoaded()
+    local isLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+    if isLoaded then
+        local loaded = select(2, isLoaded("Baganator"))
+        return loaded == true
+    end
+    return false
+end
+
+-- Verificar si Baganator existe (puede no estar cargado aún)
+function ItemEra.Utils:DoesBaganatorExist()
+    local doesExist = C_AddOns and C_AddOns.DoesAddOnExist or DoesAddOnExist
+    if doesExist then
+        return doesExist("Baganator")
+    end
+    return false
+end
+
 function ItemEra.Utils:GetExpansionTextByExpansionID(expansionID)
     if not expansionID then return end
 
