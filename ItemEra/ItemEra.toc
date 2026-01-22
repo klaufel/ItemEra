@@ -1,4 +1,4 @@
-## Interface: 120000, 120010
+## Interface: 120000, 120001
 ## Name: ItemEra - Filter Expansion Items
 ## Title: ItemEra - Filter Expansion Items
 ## Notes: Adds expansion filters and information to all item tooltips with color-coded names and visual icons for instant recognition.
