@@ -3,7 +3,7 @@
 ## Title: ItemEra - Filter Expansion Items
 ## Notes: Adds expansion filters and information to all item tooltips with color-coded names and visual icons for instant recognition.
 ## Author: Klaufel
-## Version: 2.0.8
+## Version: 2.0.9
 ## SavedVariables: ItemEraDB
 ## IconTexture: Interface\AddOns\ItemEra\Assets\Addon\Logo.tga
 ## X-Website: https://www.curseforge.com/wow/addons/itemera
