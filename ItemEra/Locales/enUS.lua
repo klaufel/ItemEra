@@ -9,6 +9,10 @@ L["SELECT_EXPANSION"] = "Select expansion"
 L["ALL_EXPANSION"] = "All expansions"
 L["EXPANSION"] = "Expansion:"
 
+L["SETTINGS_MAIN_DESCRIPTION"] = "Filter and display expansion information for your items."
+L["SETTINGS_SUBPAGE_TOOLTIP"] = "Tooltip"
+L["SETTINGS_SUBPAGE_FILTERS"] = "Filters"
+
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Expansion Display"
 L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configure ItemEra display options."
 
@@ -48,10 +52,30 @@ L["SETTINGS_RELOAD_REQUIRED"] = "Filter changes require reloading the interface 
 L["SETTINGS_RELOAD_POPUP_TEXT"] = "Filter changes require reloading the interface to apply."
 L["SETTINGS_RELOAD_POPUP_BUTTON1"] = "Reload now"
 L["SETTINGS_RELOAD_POPUP_BUTTON2"] = "Later"
-L["SETTINGS_RESET_NAME"] = "Reset settings"
+L["SETTINGS_RESET_NAME"] = "Default settings"
 L["SETTINGS_RESET_DESC"] = "Resets all settings to their default values"
+
+L["SETTINGS_DISCORD_NAME"] = "Join Discord"
+L["SETTINGS_DISCORD_DESC"] = "Join our Discord community for support and updates"
+L["SETTINGS_DISCORD_POPUP_TEXT"] = "Copy this link to join our Discord:"
 
 L["SETTINGS_DECORATIONS_HEADER_NAME"] = "Item Decorations"
 L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] = "Show expansion icons on items in your inventory."
 L["SETTINGS_DECORATIONS_ENABLED_NAME"] = "Enable item decorations"
 L["SETTINGS_DECORATIONS_ENABLED_DESC"] = "Shows a small expansion icon on each item in your bags. Hover over the icon to see the expansion name."
+
+L["SETTINGS_BAGANATOR_HEADER_NAME"] = "Baganator Integration"
+L["SETTINGS_BAGANATOR_DETECTED"] = "Baganator detected!"
+L["SETTINGS_BAGANATOR_NOT_DETECTED"] = "Baganator not detected."
+L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] = "ItemEra will add expansion icons to item corners in Baganator. Native filters are disabled when Baganator is active."
+L["SETTINGS_BAGANATOR_DESCRIPTION_INACTIVE"] = "Install Baganator to use expansion category integration."
+L["SETTINGS_BAGANATOR_ENABLED_NAME"] = "Enable Baganator Integration"
+L["SETTINGS_BAGANATOR_ENABLED_DESC"] = "Show expansion icons on items when using Baganator"
+
+L["SETTINGS_BAGNON_HEADER_NAME"] = "Bagnon Integration"
+L["SETTINGS_BAGNON_DETECTED"] = "Bagnon detected!"
+L["SETTINGS_BAGNON_NOT_DETECTED"] = "Bagnon not detected."
+L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] = "ItemEra will add expansion filters to Bagnon. Native filters are disabled when Bagnon is active."
+L["SETTINGS_BAGNON_DESCRIPTION_INACTIVE"] = "Install Bagnon to use expansion filter integration."
+L["SETTINGS_BAGNON_ENABLED_NAME"] = "Enable Bagnon Integration"
+L["SETTINGS_BAGNON_ENABLED_DESC"] = "Show expansion filter dropdown when using Bagnon"

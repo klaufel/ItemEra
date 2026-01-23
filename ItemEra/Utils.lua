@@ -33,6 +33,37 @@ ItemEra.Utils.ExpansionNames = {
     [ItemEra.Utils.ExpansionDictionary.MN]      = "Midnight"
 }
 
+ItemEra.Utils.ExpansionSearchTermsBaganator = {
+    [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "classic",
+    [ItemEra.Utils.ExpansionDictionary.TBC]     = "tbc",
+    [ItemEra.Utils.ExpansionDictionary.WOTLK]   = "wotlk",
+    [ItemEra.Utils.ExpansionDictionary.CATA]    = "cataclysm",
+    [ItemEra.Utils.ExpansionDictionary.MOP]     = "mop",
+    [ItemEra.Utils.ExpansionDictionary.WOD]     = "wod",
+    [ItemEra.Utils.ExpansionDictionary.LEGION]  = "legion",
+    [ItemEra.Utils.ExpansionDictionary.BFA]     = "bfa",
+    [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "shadowlands",
+    [ItemEra.Utils.ExpansionDictionary.DF]      = "dragonflight",
+    [ItemEra.Utils.ExpansionDictionary.TWW]     = "tww",
+    [ItemEra.Utils.ExpansionDictionary.MN]      = "midnight",
+}
+
+
+ItemEra.Utils.ExpansionSearchTermsBagnon = {
+    [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "classic",
+    [ItemEra.Utils.ExpansionDictionary.TBC]     = "burning crusade",
+    [ItemEra.Utils.ExpansionDictionary.WOTLK]   = "lich king",
+    [ItemEra.Utils.ExpansionDictionary.CATA]    = "cataclysm",
+    [ItemEra.Utils.ExpansionDictionary.MOP]     = "pandaria",
+    [ItemEra.Utils.ExpansionDictionary.WOD]     = "draenor",
+    [ItemEra.Utils.ExpansionDictionary.LEGION]  = "legion",
+    [ItemEra.Utils.ExpansionDictionary.BFA]     = "azeroth",
+    [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "shadowlands",
+    [ItemEra.Utils.ExpansionDictionary.DF]      = "dragonflight",
+    [ItemEra.Utils.ExpansionDictionary.TWW]     = "within",
+    [ItemEra.Utils.ExpansionDictionary.MN]      = "midnight",
+}
+
 ItemEra.Utils.ExpansionNamesShort = {
     [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "Classic",
     [ItemEra.Utils.ExpansionDictionary.TBC]     = "TBC",
@@ -110,6 +141,44 @@ ItemEra.Utils.PathAssets = "Interface\\AddOns\\ItemEra\\Assets\\"
 
 function ItemEra.Utils:GetExpansionLogoById(expansionID)
     return ItemEra.Utils.PathAssets .. "Icons\\Exp_Logo_" .. expansionID .. ".tga"
+end
+
+-- Detectar si Baganator está cargado
+function ItemEra.Utils:IsBaganatorLoaded()
+    local isLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+    if isLoaded then
+        local loaded = select(2, isLoaded("Baganator"))
+        return loaded == true
+    end
+    return false
+end
+
+-- Verificar si Baganator existe (puede no estar cargado aún)
+function ItemEra.Utils:DoesBaganatorExist()
+    local doesExist = C_AddOns and C_AddOns.DoesAddOnExist or DoesAddOnExist
+    if doesExist then
+        return doesExist("Baganator")
+    end
+    return false
+end
+
+-- Detectar si Bagnon está cargado
+function ItemEra.Utils:IsBagnonLoaded()
+    local isLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+    if isLoaded then
+        local loaded = select(2, isLoaded("Bagnon"))
+        return loaded == true
+    end
+    return false
+end
+
+-- Verificar si Bagnon existe (puede no estar cargado aún)
+function ItemEra.Utils:DoesBagnonExist()
+    local doesExist = C_AddOns and C_AddOns.DoesAddOnExist or DoesAddOnExist
+    if doesExist then
+        return doesExist("Bagnon")
+    end
+    return false
 end
 
 function ItemEra.Utils:GetExpansionTextByExpansionID(expansionID)

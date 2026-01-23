@@ -11,6 +11,8 @@ local defaults = {
             enabledFiltersGuildBank = true,
             enabledFiltersInventory = true,
             enabledDecorations = false,
+            enabledBaganatorIntegration = true,
+            enabledBagnonIntegration = true,
             showExpansionName = true,
             showExpansionLogo = true,
             showExpansionLiteral = true,
@@ -24,7 +26,7 @@ local function HandleUpdateSettingsValue(info, value)
     local key = info[#info]
     ItemEra.DB_SETTINGS.global.settings[key] = value
 
-    if key == "enabledFiltersInventory" or key == "enabledFiltersBank" or key == "enabledFiltersGuildBank" or key == "enabledDecorations" then
+    if key == "enabledFiltersInventory" or key == "enabledFiltersBank" or key == "enabledFiltersGuildBank" or key == "enabledDecorations" or key == "enabledBaganatorIntegration" or key == "enabledBagnonIntegration" then
         StaticPopup_Show("ITEMERA_RELOAD_UI")
     end
 
@@ -52,185 +54,230 @@ local function GetOptions()
     return {
         type = "group",
         name = "ItemEra - Filter Expansion Items",
+        childGroups = "tab",
         args = {
-            br01 = {
-                type = "description",
-                name = "\n",
-                order = 0,
-            },
-            tooltipHeader = {
-                type = "header",
-                name = L["SETTINGS_TOOLTIP_HEADER_NAME"],
+            tooltip = {
+                type = "group",
+                name = L["SETTINGS_SUBPAGE_TOOLTIP"],
                 order = 1,
-            },
-            tooltipDescription = {
-                type = "description",
-                name = "\n\n" .. L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] .. "\n\n",
-                order = 2,
-            },
-            showExpansionLiteral = {
-                type = "toggle",
-                name = L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"],
-                desc = L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"],
-                width = "full",
-                disabled = function()
-                    return not ItemEra.DB_SETTINGS.global.settings.showExpansionName and
-                        not ItemEra.DB_SETTINGS.global.settings.showExpansionLogo
-                end,
-                order = 10,
-                get = HandleGetSettingsValue,
-                set = HandleUpdateSettingsValue,
-            },
-            showExpansionName = {
-                type = "toggle",
-                name = L["SETTINGS_SHOW_EXPANSION_NAME_NAME"],
-                desc = L["SETTINGS_SHOW_EXPANSION_NAME_DESC"],
-                width = "full",
-                order = 10,
-                get = HandleGetSettingsValue,
-                set = HandleUpdateSettingsValue,
-            },
-            showExpansionLogo = {
-                type = "toggle",
-                name = L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"],
-                desc = L["SETTINGS_SHOW_EXPANSION_LOGO_DESC"],
-                width = "full",
-                order = 10,
-                get = HandleGetSettingsValue,
-                set = HandleUpdateSettingsValue,
-            },
-            spacer1 = {
-                type = "description",
-                name = "\n\n\n",
-                order = 11,
-            },
-            preview = {
-                type = "description",
-                name = GetTooltipPreview,
-                order = 12,
-                fontSize = "medium",
-                width = "full",
-            },
-            spacer2 = {
-                type = "description",
-                name = "\n\n",
-                order = 50,
-            },
-            keyModifierHeader = {
-                type = "header",
-                name = L["SETTINGS_KEY_MODIFIER_HEADER_NAME"] .. "\n",
-                order = 60,
-            },
-            useKeyModifier = {
-                type = "toggle",
-                name = L["SETTINGS_USE_KEY_MODIFIER_NAME"],
-                desc = "Solo muestra la información de expansión cuando se mantiene presionada una tecla modificadora",
-                width = "full",
-                order = 70,
-                get = HandleGetSettingsValue,
-                set = HandleUpdateSettingsValue,
-            },
-            keyModifier = {
-                type = "select",
-                name = L["SETTINGS_KEY_MODIFIER_NAME"] .. "\n",
-                desc = L["SETTINGS_KEY_MODIFIER_DESC"],
-                width = "80",
-                order = 80,
-                disabled = function() return not ItemEra.DB_SETTINGS.global.settings.useKeyModifier end,
-                values = {
-                    [ItemEra.Utils.KeyModifiers.ALT] = "Alt",
-                    [ItemEra.Utils.KeyModifiers.CTRL] = "Control",
-                    [ItemEra.Utils.KeyModifiers.SHIFT] = "Shift",
+                args = {
+                    tooltipHeader = {
+                        type = "header",
+                        name = L["SETTINGS_TOOLTIP_HEADER_NAME"],
+                        order = 1,
+                    },
+                    tooltipDescription = {
+                        type = "description",
+                        name = "\n" .. L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] .. "\n\n",
+                        order = 2,
+                    },
+                    showExpansionLiteral = {
+                        type = "toggle",
+                        name = L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"],
+                        desc = L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"],
+                        width = "full",
+                        disabled = function()
+                            return not ItemEra.DB_SETTINGS.global.settings.showExpansionName and
+                                not ItemEra.DB_SETTINGS.global.settings.showExpansionLogo
+                        end,
+                        order = 10,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    showExpansionName = {
+                        type = "toggle",
+                        name = L["SETTINGS_SHOW_EXPANSION_NAME_NAME"],
+                        desc = L["SETTINGS_SHOW_EXPANSION_NAME_DESC"],
+                        width = "full",
+                        order = 11,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    showExpansionLogo = {
+                        type = "toggle",
+                        name = L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"],
+                        desc = L["SETTINGS_SHOW_EXPANSION_LOGO_DESC"],
+                        width = "full",
+                        order = 12,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    spacer1 = {
+                        type = "description",
+                        name = "\n\n",
+                        order = 20,
+                    },
+                    preview = {
+                        type = "description",
+                        name = GetTooltipPreview,
+                        order = 21,
+                        fontSize = "medium",
+                        width = "full",
+                    },
+                    spacer2 = {
+                        type = "description",
+                        name = "\n\n",
+                        order = 50,
+                    },
+                    keyModifierHeader = {
+                        type = "header",
+                        name = L["SETTINGS_KEY_MODIFIER_HEADER_NAME"],
+                        order = 60,
+                    },
+                    keyModifierDescription = {
+                        type = "description",
+                        name = "\n" .. L["SETTINGS_USE_KEY_MODIFIER_DESC"] .. "\n\n",
+                        order = 61,
+                    },
+                    useKeyModifier = {
+                        type = "toggle",
+                        name = L["SETTINGS_USE_KEY_MODIFIER_NAME"],
+                        desc = L["SETTINGS_USE_KEY_MODIFIER_DESC"],
+                        width = "full",
+                        order = 70,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    keyModifier = {
+                        type = "select",
+                        name = L["SETTINGS_KEY_MODIFIER_NAME"],
+                        desc = L["SETTINGS_KEY_MODIFIER_DESC"],
+                        width = "normal",
+                        order = 80,
+                        disabled = function() return not ItemEra.DB_SETTINGS.global.settings.useKeyModifier end,
+                        values = {
+                            [ItemEra.Utils.KeyModifiers.ALT] = "Alt",
+                            [ItemEra.Utils.KeyModifiers.CTRL] = "Control",
+                            [ItemEra.Utils.KeyModifiers.SHIFT] = "Shift",
+                        },
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
                 },
-                get = HandleGetSettingsValue,
-                set = HandleUpdateSettingsValue,
             },
-            spacer3 = {
-                type = "description",
-                name = "\n\n",
-                order = 90,
+            filters = {
+                type = "group",
+                name = L["SETTINGS_SUBPAGE_FILTERS"],
+                order = 2,
+                args = {
+                    filtersHeader = {
+                        type = "header",
+                        name = L["SETTINGS_FILTERS_HEADER_NAME"],
+                        order = 1,
+                    },
+                    filtersDescription = {
+                        type = "description",
+                        name = "\n" .. L["SETTINGS_FILTERS_DESCRIPTION_NAME"] .. "\n\n",
+                        order = 2,
+                    },
+                    enabledFiltersInventory = {
+                        type = "toggle",
+                        name = L["SETTINGS_FILTERS_INVENTORY_NAME"],
+                        desc = L["SETTINGS_FILTERS_INVENTORY_DESC"],
+                        width = "full",
+                        order = 10,
+                        disabled = function() return ItemEra.Utils:IsBaganatorLoaded() end,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    enabledFiltersBank = {
+                        type = "toggle",
+                        name = L["SETTINGS_FILTERS_BANK_NAME"],
+                        desc = L["SETTINGS_FILTERS_BANK_DESC"],
+                        width = "full",
+                        order = 11,
+                        disabled = function() return ItemEra.Utils:IsBaganatorLoaded() end,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    enabledFiltersGuildBank = {
+                        type = "toggle",
+                        name = L["SETTINGS_FILTERS_GUILD_BANK_NAME"],
+                        desc = L["SETTINGS_FILTERS_GUILD_BANK_DESC"],
+                        width = "full",
+                        order = 12,
+                        disabled = function() return ItemEra.Utils:IsBaganatorLoaded() end,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    spacer1 = {
+                        type = "description",
+                        name = "\n\n",
+                        order = 50,
+                    },
+                    baganatorHeader = {
+                        type = "header",
+                        name = L["SETTINGS_BAGANATOR_HEADER_NAME"],
+                        order = 100,
+                    },
+                    baganatorDescription = {
+                        type = "description",
+                        name = function()
+                            if ItemEra.Utils:IsBaganatorLoaded() then
+                                return "\n|cff00ff00" ..
+                                    L["SETTINGS_BAGANATOR_DETECTED"] ..
+                                    "|r " .. L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] .. "\n\n"
+                            else
+                                return "\n|cff888888" ..
+                                    L["SETTINGS_BAGANATOR_NOT_DETECTED"] ..
+                                    "|r " .. L["SETTINGS_BAGANATOR_DESCRIPTION_INACTIVE"] .. "\n\n"
+                            end
+                        end,
+                        order = 101,
+                    },
+                    enabledBaganatorIntegration = {
+                        type = "toggle",
+                        name = '(Experimental) ' .. L["SETTINGS_BAGANATOR_ENABLED_NAME"],
+                        desc = L["SETTINGS_BAGANATOR_ENABLED_DESC"],
+                        width = "full",
+                        order = 110,
+                        disabled = function() return not ItemEra.Utils:IsBaganatorLoaded() end,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    spacer2 = {
+                        type = "description",
+                        name = "\n\n",
+                        order = 150,
+                    },
+                    bagnonHeader = {
+                        type = "header",
+                        name = L["SETTINGS_BAGNON_HEADER_NAME"],
+                        order = 200,
+                    },
+                    bagnonDescription = {
+                        type = "description",
+                        name = function()
+                            if ItemEra.Utils:IsBagnonLoaded() then
+                                return "\n|cff00ff00" ..
+                                    L["SETTINGS_BAGNON_DETECTED"] ..
+                                    "|r " .. L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] .. "\n\n"
+                            else
+                                return "\n|cff888888" ..
+                                    L["SETTINGS_BAGNON_NOT_DETECTED"] ..
+                                    "|r " .. L["SETTINGS_BAGNON_DESCRIPTION_INACTIVE"] .. "\n\n"
+                            end
+                        end,
+                        order = 201,
+                    },
+                    enabledBagnonIntegration = {
+                        type = "toggle",
+                        name = '(Experimental) ' .. L["SETTINGS_BAGNON_ENABLED_NAME"],
+                        desc = L["SETTINGS_BAGNON_ENABLED_DESC"],
+                        width = "full",
+                        order = 210,
+                        disabled = function() return not ItemEra.Utils:IsBagnonLoaded() end,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                },
             },
-            filtersHeader = {
-                type = "header",
-                name = L["SETTINGS_FILTERS_HEADER_NAME"],
-                order = 100,
-            },
-            filtersDescription = {
-                type = "description",
-                name = "\n\n" .. L["SETTINGS_FILTERS_DESCRIPTION_NAME"] .. "\n\n",
-                order = 110,
-            },
-            enabledFiltersInventory = {
-                type = "toggle",
-                name = L["SETTINGS_FILTERS_INVENTORY_NAME"],
-                desc = L["SETTINGS_FILTERS_INVENTORY_DESC"],
-                width = "auto",
-                order = 120,
-                get = HandleGetSettingsValue,
-                set = HandleUpdateSettingsValue,
-            },
-            enabledFiltersBank = {
-                type = "toggle",
-                name = L["SETTINGS_FILTERS_BANK_NAME"],
-                desc = L["SETTINGS_FILTERS_BANK_DESC"],
-                width = "auto",
-                order = 120,
-                get = HandleGetSettingsValue,
-                set = HandleUpdateSettingsValue,
-            },
-            enabledFiltersGuildBank = {
-                type = "toggle",
-                name = L["SETTINGS_FILTERS_GUILD_BANK_NAME"],
-                desc = L["SETTINGS_FILTERS_GUILD_BANK_DESC"],
-                width = "auto",
-                order = 120,
-                get = HandleGetSettingsValue,
-                set = HandleUpdateSettingsValue,
-            },
-            -- spacer4 = {
-            --     type = "description",
-            --     name = "\n\n",
-            --     order = 130,
-            -- },
-            -- decorationsHeader = {
-            --     type = "header",
-            --     name = L["SETTINGS_DECORATIONS_HEADER_NAME"],
-            --     order = 140,
-            -- },
-            -- decorationsDescription = {
-            --     type = "description",
-            --     name = "\n\n" .. L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] .. "\n\n",
-            --     order = 150,
-            -- },
-            -- enabledDecorations = {
-            --     type = "toggle",
-            --     name = L["SETTINGS_DECORATIONS_ENABLED_NAME"],
-            --     desc = L["SETTINGS_DECORATIONS_ENABLED_DESC"],
-            --     width = "full",
-            --     order = 160,
-            --     get = HandleGetSettingsValue,
-            --     set = HandleUpdateSettingsValue,
-            -- },
-            bdes = {
-                type = "description",
-                name = "\n",
-                order = 800,
-            },
-            brlast = {
-                type = "header",
-                name = "",
-                order = 900,
-            },
-            brreset = {
-                type = "description",
-                name = "\n",
-                order = 900,
-            },
-            reset = {
+            resetButton = {
                 type = "execute",
                 name = L["SETTINGS_RESET_NAME"],
                 desc = L["SETTINGS_RESET_DESC"],
-                order = 901,
+                order = 0,
+                width = 1.2,
                 func = function()
                     if ItemEra.DB_SETTINGS.global.settings.enabledFiltersInventory ~= defaults.global.settings.enabledFiltersInventory or
                         ItemEra.DB_SETTINGS.global.settings.enabledFiltersBank ~= defaults.global.settings.enabledFiltersBank or
@@ -238,6 +285,16 @@ local function GetOptions()
                         StaticPopup_Show("ITEMERA_RELOAD_UI")
                     end
                     ItemEra.DB_SETTINGS:ResetDB()
+                end
+            },
+            discordButton = {
+                type = "execute",
+                name = L["SETTINGS_DISCORD_NAME"],
+                desc = L["SETTINGS_DISCORD_DESC"],
+                order = 0.1,
+                width = 1.2,
+                func = function()
+                    StaticPopup_Show("ITEMERA_DISCORD_LINK")
                 end
             },
         },
@@ -257,9 +314,31 @@ StaticPopupDialogs["ITEMERA_RELOAD_UI"] = {
     preferredIndex = 3,
 }
 
+StaticPopupDialogs["ITEMERA_DISCORD_LINK"] = {
+    text = L["SETTINGS_DISCORD_POPUP_TEXT"],
+    button1 = "OK",
+    hasEditBox = true,
+    editBoxWidth = 250,
+    OnShow = function(self, data)
+        local editBox = self.editBox or _G[self:GetName() .. "EditBox"]
+        if editBox then
+            editBox:SetText("https://discord.gg/xABSSjqpNW")
+            editBox:HighlightText()
+            editBox:SetFocus()
+        end
+    end,
+    EditBoxOnEscapePressed = function(self)
+        self:GetParent():Hide()
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3,
+}
+
 function ItemEra.Settings:Initialize()
     ItemEra.DB_SETTINGS = LibStub("AceDB-3.0"):New("ItemEraDB", defaults, true)
-    LibStub("AceConfig-3.0"):RegisterOptionsTable("ItemEra", GetOptions)
 
+    LibStub("AceConfig-3.0"):RegisterOptionsTable("ItemEra", GetOptions)
     self.optionsFrame = LibStub("AceConfigDialog-3.0"):AddToBlizOptions("ItemEra", "ItemEra")
 end

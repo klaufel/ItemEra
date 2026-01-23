@@ -9,6 +9,10 @@ L["SELECT_EXPANSION"] = "Seleccionar expansión"
 L["ALL_EXPANSION"] = "Todas las expansiones"
 L["EXPANSION"] = "Expansión:"
 
+L["SETTINGS_MAIN_DESCRIPTION"] = "Filtra y muestra información de la expansión de tus objetos."
+L["SETTINGS_SUBPAGE_TOOLTIP"] = "Tooltip"
+L["SETTINGS_SUBPAGE_FILTERS"] = "Filtros"
+
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Visualización de la expansión"
 L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configura las opciones de visualización de ItemEra."
 
@@ -52,10 +56,30 @@ L["SETTINGS_RELOAD_REQUIRED"] = "Los cambios en los filtros requieren reiniciar 
 L["SETTINGS_RELOAD_POPUP_TEXT"] = "Los cambios en los filtros requieren reiniciar la interfaz para aplicarse."
 L["SETTINGS_RELOAD_POPUP_BUTTON1"] = "Reiniciar ahora"
 L["SETTINGS_RELOAD_POPUP_BUTTON2"] = "Más tarde"
-L["SETTINGS_RESET_NAME"] = "Restablecer configuración"
+L["SETTINGS_RESET_NAME"] = "Ajustes predeterminados"
 L["SETTINGS_RESET_DESC"] = "Restablece todas las configuraciones a sus valores predeterminados"
+
+L["SETTINGS_DISCORD_NAME"] = "Únete al Discord"
+L["SETTINGS_DISCORD_DESC"] = "Únete a nuestra comunidad de Discord para soporte y actualizaciones"
+L["SETTINGS_DISCORD_POPUP_TEXT"] = "Copia este enlace para unirte a nuestro Discord:"
 
 L["SETTINGS_DECORATIONS_HEADER_NAME"] = "Decoraciones de objetos"
 L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] = "Muestra iconos de expansión en los objetos del inventario."
 L["SETTINGS_DECORATIONS_ENABLED_NAME"] = "Habilitar decoraciones de objetos"
 L["SETTINGS_DECORATIONS_ENABLED_DESC"] = "Muestra un pequeño icono de expansión en cada objeto de tus bolsas. Pasa el ratón sobre el icono para ver el nombre de la expansión."
+
+L["SETTINGS_BAGANATOR_HEADER_NAME"] = "Integración con Baganator"
+L["SETTINGS_BAGANATOR_DETECTED"] = "¡Baganator detectado!"
+L["SETTINGS_BAGANATOR_NOT_DETECTED"] = "Baganator no detectado."
+L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] = "ItemEra añadirá iconos de expansión en las esquinas de los objetos en Baganator. Los filtros nativos se desactivan cuando Baganator está activo."
+L["SETTINGS_BAGANATOR_DESCRIPTION_INACTIVE"] = "Instala Baganator para usar la integración de categorías por expansión."
+L["SETTINGS_BAGANATOR_ENABLED_NAME"] = "Habilitar integración con Baganator"
+L["SETTINGS_BAGANATOR_ENABLED_DESC"] = "Muestra iconos de expansión en los objetos cuando usas Baganator"
+
+L["SETTINGS_BAGNON_HEADER_NAME"] = "Integración con Bagnon"
+L["SETTINGS_BAGNON_DETECTED"] = "¡Bagnon detectado!"
+L["SETTINGS_BAGNON_NOT_DETECTED"] = "Bagnon no detectado."
+L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] = "ItemEra añadirá filtros de expansión a Bagnon. Los filtros nativos se desactivan cuando Bagnon está activo."
+L["SETTINGS_BAGNON_DESCRIPTION_INACTIVE"] = "Instala Bagnon para usar la integración de filtros por expansión."
+L["SETTINGS_BAGNON_ENABLED_NAME"] = "Habilitar integración con Bagnon"
+L["SETTINGS_BAGNON_ENABLED_DESC"] = "Muestra el selector de filtro por expansión cuando usas Bagnon"
