@@ -5,6 +5,25 @@ ItemEra.Filters_Bagnon = {}
 local currentFilter = nil
 local dropdownFrame = nil
 local containerFrame = nil
+local isApplyingFilter = false
+local currentSearchTerm = nil
+
+-- Reset the dropdown when user types manually
+local function ResetDropdownIfNeeded()
+    currentFilter = nil
+    currentSearchTerm = nil
+    if dropdownFrame and dropdownFrame.Reset then
+        dropdownFrame:Reset()
+    end
+end
+
+-- Clear focus from search box
+local function ClearSearchFocus()
+    -- Try to clear focus from any active edit box
+    if GetCurrentKeyBoardFocus and GetCurrentKeyBoardFocus() then
+        GetCurrentKeyBoardFocus():ClearFocus()
+    end
+end
 
 -- Function to apply the expansion filter in Bagnon
 local function ApplyExpansionFilter(expansionID)
@@ -13,9 +32,11 @@ local function ApplyExpansionFilter(expansionID)
     end
 
     currentFilter = expansionID
+    isApplyingFilter = true
 
     if expansionID == nil then
         -- Clear the search filter
+        currentSearchTerm = nil
         Bagnon.canSearch = nil
         Bagnon.search = nil
         Bagnon:SendSignal('SEARCH_TOGGLED', nil)
@@ -23,6 +44,7 @@ local function ApplyExpansionFilter(expansionID)
     else
         local searchTerm = ItemEra.Utils.ExpansionSearchTermsBagnon[expansionID]
         if searchTerm then
+            currentSearchTerm = searchTerm
             -- Enable search mode first
             Bagnon.canSearch = true
             Bagnon:SendSignal('SEARCH_TOGGLED', 'inventory')
@@ -31,6 +53,11 @@ local function ApplyExpansionFilter(expansionID)
             Bagnon:SendSignal('SEARCH_CHANGED', searchTerm)
         end
     end
+
+    isApplyingFilter = false
+
+    -- Clear focus from search box after a short delay
+    C_Timer.After(0.01, ClearSearchFocus)
 end
 
 -- Create and attach the dropdown to Bagnon's inventory frame
@@ -100,17 +127,7 @@ local function HookBagnonFrames()
                 containerFrame:Hide()
             end
             -- Clear the filter when the bag is closed
-            currentFilter = nil
-            if dropdownFrame and dropdownFrame.Reset then
-                dropdownFrame:Reset()
-            end
-            -- Clear the search
-            if Bagnon then
-                Bagnon.canSearch = nil
-                Bagnon.search = nil
-                Bagnon:SendSignal('SEARCH_TOGGLED', nil)
-                Bagnon:SendSignal('SEARCH_CHANGED', nil)
-            end
+            ResetDropdownIfNeeded()
         end)
 
         -- If the frame is already shown, position the dropdown
@@ -122,6 +139,23 @@ local function HookBagnonFrames()
     end
 
     return false
+end
+
+-- Listen for manual search text changes
+local function SetupSearchListener()
+    if not Bagnon or not Bagnon.RegisterSignal then
+        return
+    end
+
+    Bagnon:RegisterSignal('SEARCH_CHANGED', function(_, searchText)
+        -- If we're not the ones applying the filter, reset the dropdown
+        if not isApplyingFilter then
+            -- Check if the search text is different from what we set
+            if currentSearchTerm == nil or searchText ~= currentSearchTerm then
+                ResetDropdownIfNeeded()
+            end
+        end
+    end)
 end
 
 local function SetupBagnonIntegration()
@@ -139,6 +173,9 @@ local function SetupBagnonIntegration()
             HookBagnonFrames()
         end)
     end
+
+    -- Setup listener for manual search changes
+    SetupSearchListener()
 end
 
 function ItemEra.Filters_Bagnon:Initialize()

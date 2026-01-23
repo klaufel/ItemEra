@@ -4,6 +4,21 @@ ItemEra.Filters_Baganator = {}
 
 local currentFilter = nil
 local dropdownFrame = nil
+local isApplyingFilter = false
+local currentSearchTerm = nil
+
+-- Clear focus from search box
+local function ClearSearchFocus()
+    -- Try to clear focus from any active edit box
+    local searchBox = BaganatorSearchBox or _G["BaganatorSearchBox"]
+    if searchBox and searchBox.ClearFocus then
+        searchBox:ClearFocus()
+    end
+    -- Also try the global focus clear
+    if GetCurrentKeyBoardFocus and GetCurrentKeyBoardFocus() then
+        GetCurrentKeyBoardFocus():ClearFocus()
+    end
+end
 
 -- Function to apply the search filter in Baganator
 local function ApplyExpansionFilter(expansionID)
@@ -12,14 +27,31 @@ local function ApplyExpansionFilter(expansionID)
     end
 
     currentFilter = expansionID
+    isApplyingFilter = true
 
     if expansionID == nil then
+        currentSearchTerm = nil
         Baganator.CallbackRegistry:TriggerEvent("SearchTextChanged", "")
     else
         local searchTerm = ItemEra.Utils.ExpansionSearchTermsBaganator[expansionID]
         if searchTerm then
+            currentSearchTerm = searchTerm
             Baganator.CallbackRegistry:TriggerEvent("SearchTextChanged", searchTerm)
         end
+    end
+
+    isApplyingFilter = false
+
+    -- Clear focus from search box after a short delay
+    C_Timer.After(0.01, ClearSearchFocus)
+end
+
+-- Reset the dropdown when user types manually
+local function ResetDropdownIfNeeded()
+    currentFilter = nil
+    currentSearchTerm = nil
+    if dropdownFrame and dropdownFrame.Reset then
+        dropdownFrame:Reset()
     end
 end
 
@@ -62,11 +94,19 @@ local function RegisterExpansionFilterRegion()
     -- Listen for bag close to clear the filter
     if Baganator.CallbackRegistry then
         Baganator.CallbackRegistry:RegisterCallback("BagHide", function()
-            currentFilter = nil
-            if dropdownFrame and dropdownFrame.Reset then
-                dropdownFrame:Reset()
-            end
+            ResetDropdownIfNeeded()
         end, "ItemEraFilter")
+
+        -- Listen for manual search text changes to reset the dropdown
+        Baganator.CallbackRegistry:RegisterCallback("SearchTextChanged", function(_, searchText)
+            -- If we're not the ones applying the filter, reset the dropdown
+            if not isApplyingFilter then
+                -- Check if the search text is different from what we set
+                if currentSearchTerm == nil or searchText ~= currentSearchTerm then
+                    ResetDropdownIfNeeded()
+                end
+            end
+        end, "ItemEraSearchListener")
     end
 
     return true
