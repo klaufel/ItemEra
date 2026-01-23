@@ -5,7 +5,7 @@ ItemEra.Filters_Baganator = {}
 local currentFilter = nil
 local dropdownFrame = nil
 
--- Función para aplicar el filtro de búsqueda en Baganator
+-- Function to apply the search filter in Baganator
 local function ApplyExpansionFilter(expansionID)
     if not Baganator or not Baganator.CallbackRegistry then
         return
@@ -16,31 +16,31 @@ local function ApplyExpansionFilter(expansionID)
     if expansionID == nil then
         Baganator.CallbackRegistry:TriggerEvent("SearchTextChanged", "")
     else
-        local searchTerm = ItemEra.Utils.ExpansionSearchTerms[expansionID]
+        local searchTerm = ItemEra.Utils.ExpansionSearchTermsBaganator[expansionID]
         if searchTerm then
             Baganator.CallbackRegistry:TriggerEvent("SearchTextChanged", searchTerm)
         end
     end
 end
 
--- Registrar la región personalizada en Baganator
+-- Register the custom region in Baganator
 local function RegisterExpansionFilterRegion()
     if not Baganator or not Baganator.API or not Baganator.API.RegisterRegion then
         return false
     end
 
-    -- Crear un frame contenedor para el dropdown
+    -- Create a container frame for the dropdown
     local container = CreateFrame("Frame", "ItemEraExpansionFilterContainer", UIParent)
     container:SetSize(150, 26)
 
-    -- Usar el dropdown de ItemEra
+    -- Use ItemEra's dropdown
     dropdownFrame = ItemEra.Filters_Utils.CreateDropdown(
         container,
         "ItemEraExpansionDropdown",
         {
             position = "LEFT",
-            x = 0,
-            y = 0,
+            x = -130,
+            y = 24,
             width = 140,
             height = 22
         },
@@ -50,16 +50,16 @@ local function RegisterExpansionFilterRegion()
         end
     )
 
-    -- Registrar la región en Baganator (posición: bottom_left del backpack)
+    -- Register the region in Baganator (position: top_left of backpack)
     Baganator.API.RegisterRegion(
         "ItemEra",
         "itemera_expansion",
         "backpack",
-        "bottom_left",
+        "top_left",
         container
     )
 
-    -- Escuchar cuando se cierra la bolsa para limpiar el filtro
+    -- Listen for bag close to clear the filter
     if Baganator.CallbackRegistry then
         Baganator.CallbackRegistry:RegisterCallback("BagHide", function()
             currentFilter = nil

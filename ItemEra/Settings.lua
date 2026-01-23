@@ -12,6 +12,7 @@ local defaults = {
             enabledFiltersInventory = true,
             enabledDecorations = false,
             enabledBaganatorIntegration = true,
+            enabledBagnonIntegration = true,
             showExpansionName = true,
             showExpansionLogo = true,
             showExpansionLiteral = true,
@@ -25,7 +26,7 @@ local function HandleUpdateSettingsValue(info, value)
     local key = info[#info]
     ItemEra.DB_SETTINGS.global.settings[key] = value
 
-    if key == "enabledFiltersInventory" or key == "enabledFiltersBank" or key == "enabledFiltersGuildBank" or key == "enabledDecorations" or key == "enabledBaganatorIntegration" then
+    if key == "enabledFiltersInventory" or key == "enabledFiltersBank" or key == "enabledFiltersGuildBank" or key == "enabledDecorations" or key == "enabledBaganatorIntegration" or key == "enabledBagnonIntegration" then
         StaticPopup_Show("ITEMERA_RELOAD_UI")
     end
 
@@ -52,7 +53,7 @@ end
 local function GetOptions()
     return {
         type = "group",
-        name = "ItemEra",
+        name = "ItemEra - Filter Expansion Items",
         childGroups = "tab",
         args = {
             tooltip = {
@@ -213,9 +214,13 @@ local function GetOptions()
                         type = "description",
                         name = function()
                             if ItemEra.Utils:IsBaganatorLoaded() then
-                                return "\n|cff00ff00" .. L["SETTINGS_BAGANATOR_DETECTED"] .. "|r " .. L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] .. "\n\n"
+                                return "\n|cff00ff00" ..
+                                    L["SETTINGS_BAGANATOR_DETECTED"] ..
+                                    "|r " .. L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] .. "\n\n"
                             else
-                                return "\n|cff888888" .. L["SETTINGS_BAGANATOR_NOT_DETECTED"] .. "|r " .. L["SETTINGS_BAGANATOR_DESCRIPTION_INACTIVE"] .. "\n\n"
+                                return "\n|cff888888" ..
+                                    L["SETTINGS_BAGANATOR_NOT_DETECTED"] ..
+                                    "|r " .. L["SETTINGS_BAGANATOR_DESCRIPTION_INACTIVE"] .. "\n\n"
                             end
                         end,
                         order = 101,
@@ -230,33 +235,67 @@ local function GetOptions()
                         get = HandleGetSettingsValue,
                         set = HandleUpdateSettingsValue,
                     },
+                    spacer2 = {
+                        type = "description",
+                        name = "\n\n",
+                        order = 150,
+                    },
+                    bagnonHeader = {
+                        type = "header",
+                        name = L["SETTINGS_BAGNON_HEADER_NAME"],
+                        order = 200,
+                    },
+                    bagnonDescription = {
+                        type = "description",
+                        name = function()
+                            if ItemEra.Utils:IsBagnonLoaded() then
+                                return "\n|cff00ff00" ..
+                                    L["SETTINGS_BAGNON_DETECTED"] ..
+                                    "|r " .. L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] .. "\n\n"
+                            else
+                                return "\n|cff888888" ..
+                                    L["SETTINGS_BAGNON_NOT_DETECTED"] ..
+                                    "|r " .. L["SETTINGS_BAGNON_DESCRIPTION_INACTIVE"] .. "\n\n"
+                            end
+                        end,
+                        order = 201,
+                    },
+                    enabledBagnonIntegration = {
+                        type = "toggle",
+                        name = L["SETTINGS_BAGNON_ENABLED_NAME"],
+                        desc = L["SETTINGS_BAGNON_ENABLED_DESC"],
+                        width = "full",
+                        order = 210,
+                        disabled = function() return not ItemEra.Utils:IsBagnonLoaded() end,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
                 },
             },
-            reset = {
-                type = "group",
+            resetButton = {
+                type = "execute",
                 name = L["SETTINGS_RESET_NAME"],
-                order = 3,
-                args = {
-                    resetDescription = {
-                        type = "description",
-                        name = L["SETTINGS_RESET_DESC"] .. "\n\n",
-                        order = 1,
-                    },
-                    resetButton = {
-                        type = "execute",
-                        name = L["SETTINGS_RESET_NAME"],
-                        desc = L["SETTINGS_RESET_DESC"],
-                        order = 2,
-                        func = function()
-                            if ItemEra.DB_SETTINGS.global.settings.enabledFiltersInventory ~= defaults.global.settings.enabledFiltersInventory or
-                                ItemEra.DB_SETTINGS.global.settings.enabledFiltersBank ~= defaults.global.settings.enabledFiltersBank or
-                                ItemEra.DB_SETTINGS.global.settings.enabledFiltersGuildBank ~= defaults.global.settings.enabledFiltersGuildBank then
-                                StaticPopup_Show("ITEMERA_RELOAD_UI")
-                            end
-                            ItemEra.DB_SETTINGS:ResetDB()
-                        end
-                    },
-                },
+                desc = L["SETTINGS_RESET_DESC"],
+                order = 0,
+                width = 1.2,
+                func = function()
+                    if ItemEra.DB_SETTINGS.global.settings.enabledFiltersInventory ~= defaults.global.settings.enabledFiltersInventory or
+                        ItemEra.DB_SETTINGS.global.settings.enabledFiltersBank ~= defaults.global.settings.enabledFiltersBank or
+                        ItemEra.DB_SETTINGS.global.settings.enabledFiltersGuildBank ~= defaults.global.settings.enabledFiltersGuildBank then
+                        StaticPopup_Show("ITEMERA_RELOAD_UI")
+                    end
+                    ItemEra.DB_SETTINGS:ResetDB()
+                end
+            },
+            discordButton = {
+                type = "execute",
+                name = L["SETTINGS_DISCORD_NAME"],
+                desc = L["SETTINGS_DISCORD_DESC"],
+                order = 0.1,
+                width = 1.2,
+                func = function()
+                    StaticPopup_Show("ITEMERA_DISCORD_LINK")
+                end
             },
         },
     }
@@ -268,6 +307,28 @@ StaticPopupDialogs["ITEMERA_RELOAD_UI"] = {
     button2 = L["SETTINGS_RELOAD_POPUP_BUTTON2"],
     OnAccept = function()
         ReloadUI()
+    end,
+    timeout = 0,
+    whileDead = true,
+    hideOnEscape = true,
+    preferredIndex = 3,
+}
+
+StaticPopupDialogs["ITEMERA_DISCORD_LINK"] = {
+    text = L["SETTINGS_DISCORD_POPUP_TEXT"],
+    button1 = "OK",
+    hasEditBox = true,
+    editBoxWidth = 250,
+    OnShow = function(self, data)
+        local editBox = self.editBox or _G[self:GetName() .. "EditBox"]
+        if editBox then
+            editBox:SetText("https://discord.gg/xABSSjqpNW")
+            editBox:HighlightText()
+            editBox:SetFocus()
+        end
+    end,
+    EditBoxOnEscapePressed = function(self)
+        self:GetParent():Hide()
     end,
     timeout = 0,
     whileDead = true,

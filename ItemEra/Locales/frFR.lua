@@ -31,12 +31,10 @@ L["SETTINGS_TOOLTIP_PREVIEW_NAME"] = "Aperçu de l'infobulle:"
 L["SETTINGS_KEY_MODIFIER_HEADER_NAME"] = "Touche modificatrice"
 
 L["SETTINGS_USE_KEY_MODIFIER_NAME"] = "Utiliser une touche modificatrice"
-L["SETTINGS_USE_KEY_MODIFIER_DESC"] =
-"Affiche les informations d'extension seulement quand une touche modificatrice est maintenue."
+L["SETTINGS_USE_KEY_MODIFIER_DESC"] = "Affiche les informations d'extension seulement quand une touche modificatrice est maintenue."
 
 L["SETTINGS_KEY_MODIFIER_NAME"] = "Touche modificatrice"
-L["SETTINGS_KEY_MODIFIER_DESC"] =
-"Sélectionnez la touche modificatrice qui sera utilisée pour afficher les informations d'extension."
+L["SETTINGS_KEY_MODIFIER_DESC"] = "Sélectionnez la touche modificatrice qui sera utilisée pour afficher les informations d'extension."
 
 L["SETTINGS_FILTERS_HEADER_NAME"] = "Filtres d'extension"
 L["SETTINGS_FILTERS_DESCRIPTION_NAME"] = "Active ou désactive les filtres d'extension dans différentes fenêtres du jeu."
@@ -50,13 +48,21 @@ L["SETTINGS_FILTERS_BANK_DESC"] = "Active les filtres d'extension dans la banque
 L["SETTINGS_FILTERS_GUILD_BANK_NAME"] = "Banque de guilde"
 L["SETTINGS_FILTERS_GUILD_BANK_DESC"] = "Active les filtres d'extension dans la banque de guilde"
 
-L["SETTINGS_RELOAD_REQUIRED"] =
-"Les modifications des filtres nécessitent de recharger l'interface (/reload) pour s'appliquer."
+L["SETTINGS_RELOAD_REQUIRED"] = "Les modifications des filtres nécessitent de recharger l'interface (/reload) pour s'appliquer."
 L["SETTINGS_RELOAD_POPUP_TEXT"] = "Les modifications des filtres nécessitent de recharger l'interface pour s'appliquer."
 L["SETTINGS_RELOAD_POPUP_BUTTON1"] = "Recharger maintenant"
 L["SETTINGS_RELOAD_POPUP_BUTTON2"] = "Plus tard"
-L["SETTINGS_RESET_NAME"] = "Réinitialiser les paramètres"
+L["SETTINGS_RESET_NAME"] = "Paramètres par défaut"
 L["SETTINGS_RESET_DESC"] = "Remet tous les paramètres à leurs valeurs par défaut"
+
+L["SETTINGS_DISCORD_NAME"] = "Rejoindre Discord"
+L["SETTINGS_DISCORD_DESC"] = "Rejoignez notre communauté Discord pour le support et les mises à jour"
+L["SETTINGS_DISCORD_POPUP_TEXT"] = "Copiez ce lien pour rejoindre notre Discord:"
+
+L["SETTINGS_DECORATIONS_HEADER_NAME"] = "Décorations d'objets"
+L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] = "Affiche les icônes d'extension sur les objets de votre inventaire."
+L["SETTINGS_DECORATIONS_ENABLED_NAME"] = "Activer les décorations d'objets"
+L["SETTINGS_DECORATIONS_ENABLED_DESC"] = "Affiche une petite icône d'extension sur chaque objet de vos sacs. Survolez l'icône pour voir le nom de l'extension."
 
 L["SETTINGS_BAGANATOR_HEADER_NAME"] = "Intégration Baganator"
 L["SETTINGS_BAGANATOR_DETECTED"] = "Baganator détecté !"
@@ -65,3 +71,11 @@ L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] = "ItemEra ajoutera des icônes d'ext
 L["SETTINGS_BAGANATOR_DESCRIPTION_INACTIVE"] = "Installez Baganator pour utiliser l'intégration des catégories par extension."
 L["SETTINGS_BAGANATOR_ENABLED_NAME"] = "Activer l'intégration Baganator"
 L["SETTINGS_BAGANATOR_ENABLED_DESC"] = "Affiche les icônes d'extension sur les objets lorsque vous utilisez Baganator"
+
+L["SETTINGS_BAGNON_HEADER_NAME"] = "Intégration Bagnon"
+L["SETTINGS_BAGNON_DETECTED"] = "Bagnon détecté !"
+L["SETTINGS_BAGNON_NOT_DETECTED"] = "Bagnon non détecté."
+L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] = "ItemEra ajoutera des filtres d'extension à Bagnon. Les filtres natifs sont désactivés lorsque Bagnon est actif."
+L["SETTINGS_BAGNON_DESCRIPTION_INACTIVE"] = "Installez Bagnon pour utiliser l'intégration des filtres par extension."
+L["SETTINGS_BAGNON_ENABLED_NAME"] = "Activer l'intégration Bagnon"
+L["SETTINGS_BAGNON_ENABLED_DESC"] = "Affiche le sélecteur de filtre par extension lorsque vous utilisez Bagnon"

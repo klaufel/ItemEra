@@ -52,8 +52,12 @@ L["SETTINGS_RELOAD_REQUIRED"] = "Filter changes require reloading the interface 
 L["SETTINGS_RELOAD_POPUP_TEXT"] = "Filter changes require reloading the interface to apply."
 L["SETTINGS_RELOAD_POPUP_BUTTON1"] = "Reload now"
 L["SETTINGS_RELOAD_POPUP_BUTTON2"] = "Later"
-L["SETTINGS_RESET_NAME"] = "Reset settings"
+L["SETTINGS_RESET_NAME"] = "Default settings"
 L["SETTINGS_RESET_DESC"] = "Resets all settings to their default values"
+
+L["SETTINGS_DISCORD_NAME"] = "Join Discord"
+L["SETTINGS_DISCORD_DESC"] = "Join our Discord community for support and updates"
+L["SETTINGS_DISCORD_POPUP_TEXT"] = "Copy this link to join our Discord:"
 
 L["SETTINGS_DECORATIONS_HEADER_NAME"] = "Item Decorations"
 L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] = "Show expansion icons on items in your inventory."
@@ -67,3 +71,11 @@ L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] = "ItemEra will add expansion icons t
 L["SETTINGS_BAGANATOR_DESCRIPTION_INACTIVE"] = "Install Baganator to use expansion category integration."
 L["SETTINGS_BAGANATOR_ENABLED_NAME"] = "Enable Baganator Integration"
 L["SETTINGS_BAGANATOR_ENABLED_DESC"] = "Show expansion icons on items when using Baganator"
+
+L["SETTINGS_BAGNON_HEADER_NAME"] = "Bagnon Integration"
+L["SETTINGS_BAGNON_DETECTED"] = "Bagnon detected!"
+L["SETTINGS_BAGNON_NOT_DETECTED"] = "Bagnon not detected."
+L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] = "ItemEra will add expansion filters to Bagnon. Native filters are disabled when Bagnon is active."
+L["SETTINGS_BAGNON_DESCRIPTION_INACTIVE"] = "Install Bagnon to use expansion filter integration."
+L["SETTINGS_BAGNON_ENABLED_NAME"] = "Enable Bagnon Integration"
+L["SETTINGS_BAGNON_ENABLED_DESC"] = "Show expansion filter dropdown when using Bagnon"
