@@ -227,7 +227,7 @@ local function GetOptions()
                     },
                     enabledBaganatorIntegration = {
                         type = "toggle",
-                        name = L["SETTINGS_BAGANATOR_ENABLED_NAME"],
+                        name = '(Experimental) ' .. L["SETTINGS_BAGANATOR_ENABLED_NAME"],
                         desc = L["SETTINGS_BAGANATOR_ENABLED_DESC"],
                         width = "full",
                         order = 110,
@@ -262,7 +262,7 @@ local function GetOptions()
                     },
                     enabledBagnonIntegration = {
                         type = "toggle",
-                        name = L["SETTINGS_BAGNON_ENABLED_NAME"],
+                        name = '(Experimental) ' .. L["SETTINGS_BAGNON_ENABLED_NAME"],
                         desc = L["SETTINGS_BAGNON_ENABLED_DESC"],
                         width = "full",
                         order = 210,
