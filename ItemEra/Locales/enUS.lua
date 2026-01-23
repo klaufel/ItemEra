@@ -79,3 +79,10 @@ L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] = "ItemEra will add expansion filters to
 L["SETTINGS_BAGNON_DESCRIPTION_INACTIVE"] = "Install Bagnon to use expansion filter integration."
 L["SETTINGS_BAGNON_ENABLED_NAME"] = "Enable Bagnon Integration"
 L["SETTINGS_BAGNON_ENABLED_DESC"] = "Show expansion filter dropdown when using Bagnon"
+
+L["SETTINGS_SUBPAGE_ADVANCED"] = "Advanced"
+L["SETTINGS_API_HOOK_HEADER_NAME"] = "API Override"
+L["SETTINGS_API_HOOK_DESCRIPTION"] = "Override the game's C_Item.GetItemInfo function so that ALL addons receive ItemEra's corrected expansion IDs instead of the game's default values."
+L["SETTINGS_API_HOOK_WARNING"] = "Warning: This is an experimental feature that modifies a core game function. It may cause compatibility issues with other addons. Use at your own risk."
+L["SETTINGS_API_HOOK_ENABLED_NAME"] = "Enable API Override"
+L["SETTINGS_API_HOOK_ENABLED_DESC"] = "Replace C_Item.GetItemInfo to return ItemEra's expansion IDs globally"

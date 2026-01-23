@@ -31,10 +31,12 @@ L["SETTINGS_TOOLTIP_PREVIEW_NAME"] = "Visualização do tooltip:"
 L["SETTINGS_KEY_MODIFIER_HEADER_NAME"] = "Tecla modificadora"
 
 L["SETTINGS_USE_KEY_MODIFIER_NAME"] = "Usar tecla modificadora"
-L["SETTINGS_USE_KEY_MODIFIER_DESC"] = "Mostra as informações da expansão apenas quando uma tecla modificadora é mantida pressionada."
+L["SETTINGS_USE_KEY_MODIFIER_DESC"] =
+"Mostra as informações da expansão apenas quando uma tecla modificadora é mantida pressionada."
 
 L["SETTINGS_KEY_MODIFIER_NAME"] = "Tecla modificadora"
-L["SETTINGS_KEY_MODIFIER_DESC"] = "Seleciona a tecla modificadora que será usada para mostrar as informações da expansão."
+L["SETTINGS_KEY_MODIFIER_DESC"] =
+"Seleciona a tecla modificadora que será usada para mostrar as informações da expansão."
 
 L["SETTINGS_FILTERS_HEADER_NAME"] = "Filtros de expansão"
 L["SETTINGS_FILTERS_DESCRIPTION_NAME"] = "Habilita ou desabilita os filtros de expansão em diferentes janelas do jogo."
@@ -62,12 +64,14 @@ L["SETTINGS_DISCORD_POPUP_TEXT"] = "Copie este link para entrar no nosso Discord
 L["SETTINGS_DECORATIONS_HEADER_NAME"] = "Decorações de itens"
 L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] = "Mostra ícones de expansão nos itens do seu inventário."
 L["SETTINGS_DECORATIONS_ENABLED_NAME"] = "Habilitar decorações de itens"
-L["SETTINGS_DECORATIONS_ENABLED_DESC"] = "Mostra um pequeno ícone de expansão em cada item das suas bolsas. Passe o mouse sobre o ícone para ver o nome da expansão."
+L["SETTINGS_DECORATIONS_ENABLED_DESC"] =
+"Mostra um pequeno ícone de expansão em cada item das suas bolsas. Passe o mouse sobre o ícone para ver o nome da expansão."
 
 L["SETTINGS_BAGANATOR_HEADER_NAME"] = "Integração com Baganator"
 L["SETTINGS_BAGANATOR_DETECTED"] = "Baganator detectado!"
 L["SETTINGS_BAGANATOR_NOT_DETECTED"] = "Baganator não detectado."
-L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] = "ItemEra adicionará ícones de expansão nos cantos dos itens no Baganator. Os filtros nativos são desabilitados quando o Baganator está ativo."
+L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] =
+"ItemEra adicionará ícones de expansão nos cantos dos itens no Baganator. Os filtros nativos são desabilitados quando o Baganator está ativo."
 L["SETTINGS_BAGANATOR_DESCRIPTION_INACTIVE"] = "Instale o Baganator para usar a integração de categorias por expansão."
 L["SETTINGS_BAGANATOR_ENABLED_NAME"] = "Habilitar integração com Baganator"
 L["SETTINGS_BAGANATOR_ENABLED_DESC"] = "Mostra ícones de expansão nos itens quando usa o Baganator"
@@ -75,7 +79,18 @@ L["SETTINGS_BAGANATOR_ENABLED_DESC"] = "Mostra ícones de expansão nos itens qu
 L["SETTINGS_BAGNON_HEADER_NAME"] = "Integração com Bagnon"
 L["SETTINGS_BAGNON_DETECTED"] = "Bagnon detectado!"
 L["SETTINGS_BAGNON_NOT_DETECTED"] = "Bagnon não detectado."
-L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] = "ItemEra adicionará filtros de expansão ao Bagnon. Os filtros nativos são desabilitados quando o Bagnon está ativo."
+L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] =
+"ItemEra adicionará filtros de expansão ao Bagnon. Os filtros nativos são desabilitados quando o Bagnon está ativo."
 L["SETTINGS_BAGNON_DESCRIPTION_INACTIVE"] = "Instale o Bagnon para usar a integração de filtros por expansão."
 L["SETTINGS_BAGNON_ENABLED_NAME"] = "Habilitar integração com Bagnon"
 L["SETTINGS_BAGNON_ENABLED_DESC"] = "Mostra o seletor de filtro por expansão quando usa o Bagnon"
+
+L["SETTINGS_SUBPAGE_ADVANCED"] = "Avançado"
+L["SETTINGS_API_HOOK_HEADER_NAME"] = "Substituição da API"
+L["SETTINGS_API_HOOK_DESCRIPTION"] =
+"Substitui a função C_Item.GetItemInfo do jogo para que TODOS os addons recebam os IDs de expansão corrigidos do ItemEra em vez dos valores padrão do jogo."
+L["SETTINGS_API_HOOK_WARNING"] =
+"Aviso: Este recurso é experimental e modifica uma função principal do jogo. Pode causar problemas de compatibilidade com outros addons. Use por sua conta e risco."
+L["SETTINGS_API_HOOK_ENABLED_NAME"] = "Ativar substituição da API"
+L["SETTINGS_API_HOOK_ENABLED_DESC"] =
+"Substituir C_Item.GetItemInfo para retornar globalmente os IDs de expansão do ItemEra"

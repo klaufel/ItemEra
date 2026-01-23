@@ -81,3 +81,10 @@ L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] = "ItemEra将在Bagnon中添加扩展过
 L["SETTINGS_BAGNON_DESCRIPTION_INACTIVE"] = "安装Bagnon以使用按扩展过滤的集成。"
 L["SETTINGS_BAGNON_ENABLED_NAME"] = "启用Bagnon集成"
 L["SETTINGS_BAGNON_ENABLED_DESC"] = "使用Bagnon时显示扩展过滤器选择器"
+
+L["SETTINGS_SUBPAGE_ADVANCED"] = "高级"
+L["SETTINGS_API_HOOK_HEADER_NAME"] = "API 覆盖"
+L["SETTINGS_API_HOOK_DESCRIPTION"] = "覆盖游戏的 C_Item.GetItemInfo 函数，使所有插件都能接收到 ItemEra 修正后的资料片 ID，而不是游戏的默认值。"
+L["SETTINGS_API_HOOK_WARNING"] = "警告：此功能为实验性功能，会修改游戏的核心函数，可能会导致与其他插件的兼容性问题。请自行承担风险。"
+L["SETTINGS_API_HOOK_ENABLED_NAME"] = "启用 API 覆盖"
+L["SETTINGS_API_HOOK_ENABLED_DESC"] = "替换 C_Item.GetItemInfo 以全局返回 ItemEra 的资料片 ID"

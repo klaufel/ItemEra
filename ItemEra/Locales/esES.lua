@@ -83,3 +83,10 @@ L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] = "ItemEra añadirá filtros de expansi�
 L["SETTINGS_BAGNON_DESCRIPTION_INACTIVE"] = "Instala Bagnon para usar la integración de filtros por expansión."
 L["SETTINGS_BAGNON_ENABLED_NAME"] = "Habilitar integración con Bagnon"
 L["SETTINGS_BAGNON_ENABLED_DESC"] = "Muestra el selector de filtro por expansión cuando usas Bagnon"
+
+L["SETTINGS_SUBPAGE_ADVANCED"] = "Avanzado"
+L["SETTINGS_API_HOOK_HEADER_NAME"] = "Sobrescritura de API"
+L["SETTINGS_API_HOOK_DESCRIPTION"] = "Sobrescribe la función C_Item.GetItemInfo del juego para que TODOS los addons reciban los IDs de expansión corregidos de ItemEra en lugar de los valores predeterminados del juego."
+L["SETTINGS_API_HOOK_WARNING"] = "Advertencia: Esta es una función experimental que modifica una función central del juego. Puede causar problemas de compatibilidad con otros addons. Úsalo bajo tu propio riesgo."
+L["SETTINGS_API_HOOK_ENABLED_NAME"] = "Habilitar sobrescritura de API"
+L["SETTINGS_API_HOOK_ENABLED_DESC"] = "Reemplaza C_Item.GetItemInfo para devolver los IDs de expansión de ItemEra globalmente"

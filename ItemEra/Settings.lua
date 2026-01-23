@@ -13,6 +13,7 @@ local defaults = {
             enabledDecorations = false,
             enabledBaganatorIntegration = true,
             enabledBagnonIntegration = true,
+            enabledAPIHook = true,
             showExpansionName = true,
             showExpansionLogo = true,
             showExpansionLiteral = true,
@@ -26,7 +27,7 @@ local function HandleUpdateSettingsValue(info, value)
     local key = info[#info]
     ItemEra.DB_SETTINGS.global.settings[key] = value
 
-    if key == "enabledFiltersInventory" or key == "enabledFiltersBank" or key == "enabledFiltersGuildBank" or key == "enabledDecorations" or key == "enabledBaganatorIntegration" or key == "enabledBagnonIntegration" then
+    if key == "enabledFiltersInventory" or key == "enabledFiltersBank" or key == "enabledFiltersGuildBank" or key == "enabledDecorations" or key == "enabledBaganatorIntegration" or key == "enabledBagnonIntegration" or key == "enabledAPIHook" then
         StaticPopup_Show("ITEMERA_RELOAD_UI")
     end
 
@@ -267,6 +268,37 @@ local function GetOptions()
                         width = "full",
                         order = 210,
                         disabled = function() return not ItemEra.Utils:IsBagnonLoaded() end,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                },
+            },
+            advanced = {
+                type = "group",
+                name = L["SETTINGS_SUBPAGE_ADVANCED"],
+                order = 3,
+                args = {
+                    apiHookHeader = {
+                        type = "header",
+                        name = L["SETTINGS_API_HOOK_HEADER_NAME"],
+                        order = 1,
+                    },
+                    apiHookDescription = {
+                        type = "description",
+                        name = "\n" .. L["SETTINGS_API_HOOK_DESCRIPTION"] .. "\n\n",
+                        order = 2,
+                    },
+                    apiHookWarning = {
+                        type = "description",
+                        name = "|cffff9900" .. L["SETTINGS_API_HOOK_WARNING"] .. "|r\n\n",
+                        order = 3,
+                    },
+                    enabledAPIHook = {
+                        type = "toggle",
+                        name = '(Experimental) ' .. L["SETTINGS_API_HOOK_ENABLED_NAME"],
+                        desc = L["SETTINGS_API_HOOK_ENABLED_DESC"],
+                        width = "full",
+                        order = 10,
                         get = HandleGetSettingsValue,
                         set = HandleUpdateSettingsValue,
                     },
