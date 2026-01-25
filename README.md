@@ -1,6 +1,8 @@
-# ItemEra - Filter & Tooltip Expansion (Bagnon / Baganator support)
+# ItemEra - Expansion Filter & Tooltip (Bagnon / Baganator support)
 
 [![Discord](https://img.shields.io/badge/Discord-Join%20Community-5865F2?style=for-the-badge&logo=discord&logoColor=white)](https://discord.gg/Q8EF2EgEXY)
+
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/klaufel)
 
 **ItemEra** adds **expansion information to all item tooltips** with color-coded names and visual icons for instant recognition. Works seamlessly across inventory, bank, guild bank, and merchant interfaces, making it easy to identify item origins at a glance.
 
@@ -18,10 +20,10 @@
 
 ItemEra integrates seamlessly with popular bag addons:
 
-| Addon | Features |
-|-------|----------|
+| Addon         | Features                                            |
+| ------------- | --------------------------------------------------- |
 | **Baganator** | Expansion filter dropdown with search query support |
-| **Bagnon** | Expansion filter dropdown with search query support |
+| **Bagnon**    | Expansion filter dropdown with search query support |
 
 When using these addons, ItemEra adds a dropdown selector to filter items by expansion using the addon's native search system.
 
@@ -56,12 +58,14 @@ Show an item tooltip with expansion information displayed and include the expans
 Access settings via `/itemera` or through the AddOns settings panel:
 
 **Tooltip Options:**
+
 - Show/hide expansion name
 - Show/hide expansion logo
 - Show/hide "Expansion:" text prefix
 - Configure modifier key (Shift, Ctrl, Alt) to show expansion info
 
 **Filter Options:**
+
 - Enable/disable filters for inventory, bank, and guild bank
 - Enable/disable Baganator integration
 - Enable/disable Bagnon integration
