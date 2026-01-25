@@ -52,7 +52,7 @@ Database\DatabaseMount.lua
 Database\DatabasePatch.lua
 
 ItemData.lua
-APIHook.lua
+# APIHook.lua
 Events.lua
 
 Modules\Tooltip\Tooltip.lua

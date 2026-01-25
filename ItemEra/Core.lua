@@ -4,7 +4,7 @@ ItemEra = LibStub("AceAddon-3.0"):NewAddon(addon, addonName)
 
 function ItemEra:OnInitialize()
     ItemEra.Settings:Initialize()
-    ItemEra.APIHook:Initialize()
+    -- ItemEra.APIHook:Initialize()
     ItemEra.Tooltip:Initialize()
     ItemEra.Decorations:Initialize()
     ItemEra.Filters:Initialize()
