@@ -36,16 +36,16 @@ end
 local function Hooked_GetItemInfo(itemID)
     -- Call the original function
     local itemName, itemLink, itemQuality, itemLevel, itemMinLevel,
-          itemType, itemSubType, itemStackCount, itemEquipLoc,
-          itemTexture, sellPrice, classID, subclassID, bindType,
-          expacID, setID, isCraftingReagent = Original_GetItemInfo(itemID)
+    itemType, itemSubType, itemStackCount, itemEquipLoc,
+    itemTexture, sellPrice, classID, subclassID, bindType,
+    expacID, setID, isCraftingReagent = Original_GetItemInfo(itemID)
 
     -- If the original returned nil (item not cached), return as-is
     if not itemName then
         return itemName, itemLink, itemQuality, itemLevel, itemMinLevel,
-               itemType, itemSubType, itemStackCount, itemEquipLoc,
-               itemTexture, sellPrice, classID, subclassID, bindType,
-               expacID, setID, isCraftingReagent
+            itemType, itemSubType, itemStackCount, itemEquipLoc,
+            itemTexture, sellPrice, classID, subclassID, bindType,
+            expacID, setID, isCraftingReagent
     end
 
     -- Check if we should override the expansionID
@@ -57,9 +57,9 @@ local function Hooked_GetItemInfo(itemID)
     end
 
     return itemName, itemLink, itemQuality, itemLevel, itemMinLevel,
-           itemType, itemSubType, itemStackCount, itemEquipLoc,
-           itemTexture, sellPrice, classID, subclassID, bindType,
-           expacID, setID, isCraftingReagent
+        itemType, itemSubType, itemStackCount, itemEquipLoc,
+        itemTexture, sellPrice, classID, subclassID, bindType,
+        expacID, setID, isCraftingReagent
 end
 
 function ItemEra.APIHook:Initialize()
