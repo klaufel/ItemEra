@@ -23,26 +23,34 @@ addon.DB.PATCH = {
     ["4.1"] = "Rise of the Zandalari",
     ["4.2"] = "Rage of the Firelands",
     ["4.3"] = "Hour of Twilight",
-    
+
+    -- Warlords of Draenor
     ["5.1"] = "Landfall",
     ["5.2"] = "The Thunder King",
     ["5.4"] = "Siege of Orgrimmar",
-    
+
+    -- Legion
     ["6.1"] = "Garrison Updates",
     ["6.2"] = "Fury of Hellfire",
     ["7.1"] = "Return to Karazhan",
     ["7.2"] = "The Tomb of Sargeras",
     ["7.3"] = "Shadows of Argus",
-    
+
+    -- Battle for Azeroth
     ["8.1"] = "Tides of Vengeance",
     ["8.2"] = "Rise of Azshara",
     ["8.3"] = "Visions of N'Zoth",
-    
+
+    -- Shadowlands
     ["9.1"] = "Chains of Domination",
     ["9.2"] = "Eternity's End",
+
+    -- Dragonflight
     ["10.1"] = "Embers of Neltharion",
     ["10.2"] = "Guardians of the Dream",
     ["10.2.7"] = "Dark Heart",
+
+    -- The War Within
     ["11.0"] = "The War Within",
     ["11.1"] = "Delves and Warbands",
     ["11.2"] = "Tazavesh"
