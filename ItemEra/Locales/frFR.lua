@@ -8,6 +8,7 @@ end
 L["SELECT_EXPANSION"] = "Sélectionner l'extension"
 L["ALL_EXPANSION"] = "Toutes les extensions"
 L["EXPANSION"] = "Extension:"
+L["PROFESSION"] = "Métier:"
 
 L["SETTINGS_MAIN_DESCRIPTION"] = "Filtrer et afficher les informations d'extension pour vos objets."
 L["SETTINGS_SUBPAGE_TOOLTIP"] = "Infobulle"

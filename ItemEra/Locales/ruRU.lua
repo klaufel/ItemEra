@@ -10,6 +10,7 @@ end
 L["SELECT_EXPANSION"] = "Выбрать дополнение"
 L["ALL_EXPANSION"] = "Все дополнения"
 L["EXPANSION"] = "Дополнение:"
+L["PROFESSION"] = "Профессия:"
 
 L["SETTINGS_MAIN_DESCRIPTION"] = "Фильтруйте и отображайте информацию о дополнении для ваших предметов."
 L["SETTINGS_SUBPAGE_TOOLTIP"] = "Подсказка"

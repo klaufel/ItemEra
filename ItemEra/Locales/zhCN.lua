@@ -10,6 +10,7 @@ end
 L["SELECT_EXPANSION"] = "选择扩展"
 L["ALL_EXPANSION"] = "所有扩展"
 L["EXPANSION"] = "扩展:"
+L["PROFESSION"] = "专业:"
 
 L["SETTINGS_MAIN_DESCRIPTION"] = "为您的物品筛选和显示扩展信息。"
 L["SETTINGS_SUBPAGE_TOOLTIP"] = "工具提示"

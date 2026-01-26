@@ -8,6 +8,7 @@ end
 L["SELECT_EXPANSION"] = "Selecionar expansão"
 L["ALL_EXPANSION"] = "Todas as expansões"
 L["EXPANSION"] = "Expansão:"
+L["PROFESSION"] = "Profissão:"
 
 L["SETTINGS_MAIN_DESCRIPTION"] = "Filtra e exibe informações da expansão para seus itens."
 L["SETTINGS_SUBPAGE_TOOLTIP"] = "Tooltip"

@@ -8,6 +8,7 @@ end
 L["SELECT_EXPANSION"] = "Seleccionar expansión"
 L["ALL_EXPANSION"] = "Todas las expansiones"
 L["EXPANSION"] = "Expansión:"
+L["PROFESSION"] = "Profesión:"
 
 L["SETTINGS_MAIN_DESCRIPTION"] = "Filtra y muestra información de la expansión de tus objetos."
 L["SETTINGS_SUBPAGE_TOOLTIP"] = "Tooltip"
@@ -66,12 +67,14 @@ L["SETTINGS_DISCORD_POPUP_TEXT"] = "Copia este enlace para unirte a nuestro Disc
 L["SETTINGS_DECORATIONS_HEADER_NAME"] = "Decoraciones de objetos"
 L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] = "Muestra iconos de expansión en los objetos del inventario."
 L["SETTINGS_DECORATIONS_ENABLED_NAME"] = "Habilitar decoraciones de objetos"
-L["SETTINGS_DECORATIONS_ENABLED_DESC"] = "Muestra un pequeño icono de expansión en cada objeto de tus bolsas. Pasa el ratón sobre el icono para ver el nombre de la expansión."
+L["SETTINGS_DECORATIONS_ENABLED_DESC"] =
+"Muestra un pequeño icono de expansión en cada objeto de tus bolsas. Pasa el ratón sobre el icono para ver el nombre de la expansión."
 
 L["SETTINGS_BAGANATOR_HEADER_NAME"] = "Integración con Baganator"
 L["SETTINGS_BAGANATOR_DETECTED"] = "¡Baganator detectado!"
 L["SETTINGS_BAGANATOR_NOT_DETECTED"] = "Baganator no detectado."
-L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] = "ItemEra añadirá iconos de expansión en las esquinas de los objetos en Baganator. Los filtros nativos se desactivan cuando Baganator está activo."
+L["SETTINGS_BAGANATOR_DESCRIPTION_ACTIVE"] =
+"ItemEra añadirá iconos de expansión en las esquinas de los objetos en Baganator. Los filtros nativos se desactivan cuando Baganator está activo."
 L["SETTINGS_BAGANATOR_DESCRIPTION_INACTIVE"] = "Instala Baganator para usar la integración de categorías por expansión."
 L["SETTINGS_BAGANATOR_ENABLED_NAME"] = "Habilitar integración con Baganator"
 L["SETTINGS_BAGANATOR_ENABLED_DESC"] = "Muestra iconos de expansión en los objetos cuando usas Baganator"
@@ -79,14 +82,18 @@ L["SETTINGS_BAGANATOR_ENABLED_DESC"] = "Muestra iconos de expansión en los obje
 L["SETTINGS_BAGNON_HEADER_NAME"] = "Integración con Bagnon"
 L["SETTINGS_BAGNON_DETECTED"] = "¡Bagnon detectado!"
 L["SETTINGS_BAGNON_NOT_DETECTED"] = "Bagnon no detectado."
-L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] = "ItemEra añadirá filtros de expansión a Bagnon. Los filtros nativos se desactivan cuando Bagnon está activo."
+L["SETTINGS_BAGNON_DESCRIPTION_ACTIVE"] =
+"ItemEra añadirá filtros de expansión a Bagnon. Los filtros nativos se desactivan cuando Bagnon está activo."
 L["SETTINGS_BAGNON_DESCRIPTION_INACTIVE"] = "Instala Bagnon para usar la integración de filtros por expansión."
 L["SETTINGS_BAGNON_ENABLED_NAME"] = "Habilitar integración con Bagnon"
 L["SETTINGS_BAGNON_ENABLED_DESC"] = "Muestra el selector de filtro por expansión cuando usas Bagnon"
 
 L["SETTINGS_SUBPAGE_ADVANCED"] = "Avanzado"
 L["SETTINGS_API_HOOK_HEADER_NAME"] = "Sobrescritura de API"
-L["SETTINGS_API_HOOK_DESCRIPTION"] = "Sobrescribe la función C_Item.GetItemInfo del juego para que TODOS los addons reciban los IDs de expansión corregidos de ItemEra en lugar de los valores predeterminados del juego."
-L["SETTINGS_API_HOOK_WARNING"] = "Advertencia: Esta es una función experimental que modifica una función central del juego. Puede causar problemas de compatibilidad con otros addons. Úsalo bajo tu propio riesgo."
+L["SETTINGS_API_HOOK_DESCRIPTION"] =
+"Sobrescribe la función C_Item.GetItemInfo del juego para que TODOS los addons reciban los IDs de expansión corregidos de ItemEra en lugar de los valores predeterminados del juego."
+L["SETTINGS_API_HOOK_WARNING"] =
+"Advertencia: Esta es una función experimental que modifica una función central del juego. Puede causar problemas de compatibilidad con otros addons. Úsalo bajo tu propio riesgo."
 L["SETTINGS_API_HOOK_ENABLED_NAME"] = "Habilitar sobrescritura de API"
-L["SETTINGS_API_HOOK_ENABLED_DESC"] = "Reemplaza C_Item.GetItemInfo para devolver los IDs de expansión de ItemEra globalmente"
+L["SETTINGS_API_HOOK_ENABLED_DESC"] =
+"Reemplaza C_Item.GetItemInfo para devolver los IDs de expansión de ItemEra globalmente"
