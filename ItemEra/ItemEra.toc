@@ -48,6 +48,7 @@ Settings.lua
 Database\Database.lua
 Database\DatabaseItem.lua
 Database\DatabaseItemExcluded.lua
+Database\DatabaseItemReagents.lua
 Database\DatabaseMount.lua
 Database\DatabasePatch.lua
 
