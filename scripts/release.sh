@@ -17,7 +17,7 @@ fi
 if grep -q "^## Version:" "$TOC_FILE"; then
   OLD_VERSION=$(grep "^## Version:" "$TOC_FILE" | awk '{print $3}')
   IFS='.' read -r MAJOR MINOR PATCH <<< "$OLD_VERSION"
-  NEW_VERSION="$MAJOR.$MINOR.$((PATCH))"
+  NEW_VERSION="$MAJOR.$MINOR.$((PATCH + 1))"
   sed -i '' "s/^## Version: .*/## Version: $NEW_VERSION/" "$TOC_FILE"
   echo "✅ Version updated: $OLD_VERSION → $NEW_VERSION"
 else
