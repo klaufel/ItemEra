@@ -20,6 +20,7 @@ local defaults = {
             showProfessionLiteral = true,
             showProfessionName = true,
             showProfessionIcon = true,
+            wrapProfessionText = true,
             useKeyModifier = false,
             keyModifier = ItemEra.Utils.KeyModifiers.SHIFT
         }
@@ -57,8 +58,8 @@ local function GetTooltipPreview(type)
         return expansionPreview
     end
     if (type == 'profession') then
-        local itemID = 4306                                                    -- MN
-        local professionText = ItemEra.Utils:GetProfessionTextByItemID(itemID) -- Paño de seda
+        local itemID = 14047 -- Runecloth
+        local professionText = ItemEra.Utils:GetProfessionTextByItemID(itemID)
         local professionPreview = not isProfessionDisabled and professionText ~= "" and professionText or
             "|cffff0000" .. L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] .. "|r"
         return professionPreview
@@ -178,17 +179,30 @@ local function GetOptions()
                         get = HandleGetSettingsValue,
                         set = HandleUpdateSettingsValue,
                     },
+                    wrapProfessionText = {
+                        type = "toggle",
+                        name = L["SETTINGS_WRAP_PROFESSION_TEXT_NAME"],
+                        desc = L["SETTINGS_WRAP_PROFESSION_TEXT_DESC"],
+                        width = "full",
+                        disabled = function()
+                            return not ItemEra.DB_SETTINGS.global.settings.showProfessionName and
+                                not ItemEra.DB_SETTINGS.global.settings.showProfessionIcon
+                        end,
+                        order = 33,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
                     spacerPreviewProfession = {
                         type = "description",
                         name = "\n",
-                        order = 33,
+                        order = 34,
                     },
                     previewProfession = {
                         type = "description",
                         name = GetTooltipPreview("profession"),
-                        order = 34,
+                        order = 35,
                         fontSize = "medium",
-                        width = 34,
+                        width = ItemEra.DB_SETTINGS.global.settings.wrapProfessionText and 1 or 3,
                     },
                     spacer2 = {
                         type = "description",

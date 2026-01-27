@@ -8,13 +8,15 @@ local TooltipDataTypes = ItemEra.Utils.TooltipDataTypes
 local function AddExpansionLine(tooltip, item)
     if not tooltip or not item then return end
 
-    local expansionText = ItemEra.Utils:GetExpansionTextByExpansionID(item.expansionID)
     tooltip:AddLine(" ")
+
+    local expansionText = ItemEra.Utils:GetExpansionTextByExpansionID(item.expansionID)
     tooltip:AddLine(expansionText)
 
     local professionText = ItemEra.Utils:GetProfessionTextByItemID(item.itemID)
     if (professionText and professionText ~= "") then
-        tooltip:AddLine(professionText)
+        local wrapText = ItemEra.DB_SETTINGS.global.settings.wrapProfessionText
+        tooltip:AddLine(professionText, nil, nil, nil, wrapText)
     end
 
     if ItemEra.DB_SETTINGS and ItemEra.DB_SETTINGS.global and ItemEra.DB_SETTINGS.global.settings then

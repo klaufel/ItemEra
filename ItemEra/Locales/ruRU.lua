@@ -40,6 +40,9 @@ L["SETTINGS_SHOW_PROFESSION_NAME_DESC"] = "Показывает название
 L["SETTINGS_SHOW_PROFESSION_ICON_NAME"] = "Иконка профессии"
 L["SETTINGS_SHOW_PROFESSION_ICON_DESC"] = "Показывает иконку профессии в подсказках"
 
+L["SETTINGS_WRAP_PROFESSION_TEXT_NAME"] = "Перенос текста профессии"
+L["SETTINGS_WRAP_PROFESSION_TEXT_DESC"] = "Переносит текст профессии на несколько строк, если он слишком длинный"
+
 L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] = "(Подсказка не будет показана)"
 L["SETTINGS_TOOLTIP_PREVIEW_NAME"] = "Предварительный просмотр подсказки:"
 

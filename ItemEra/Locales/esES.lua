@@ -38,6 +38,9 @@ L["SETTINGS_SHOW_PROFESSION_NAME_DESC"] = "Muestra el nombre de la profesión en
 L["SETTINGS_SHOW_PROFESSION_ICON_NAME"] = "Icono de profesión"
 L["SETTINGS_SHOW_PROFESSION_ICON_DESC"] = "Muestra el icono de la profesión en los tooltips"
 
+L["SETTINGS_WRAP_PROFESSION_TEXT_NAME"] = "Ajustar texto de profesión"
+L["SETTINGS_WRAP_PROFESSION_TEXT_DESC"] = "Ajusta el texto de profesión a varias líneas cuando es demasiado largo"
+
 L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] = "(No se mostrará el tooltip)"
 L["SETTINGS_TOOLTIP_PREVIEW_NAME"] = "Vista previa del tooltip:"
 

@@ -38,6 +38,9 @@ L["SETTINGS_SHOW_PROFESSION_NAME_DESC"] = "Affiche le nom du métier dans les in
 L["SETTINGS_SHOW_PROFESSION_ICON_NAME"] = "Icône du métier"
 L["SETTINGS_SHOW_PROFESSION_ICON_DESC"] = "Affiche l'icône du métier dans les infobulles"
 
+L["SETTINGS_WRAP_PROFESSION_TEXT_NAME"] = "Retour à la ligne du texte de métier"
+L["SETTINGS_WRAP_PROFESSION_TEXT_DESC"] = "Retourne le texte de métier sur plusieurs lignes quand il est trop long"
+
 L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] = "(L'infobulle ne sera pas affichée)"
 L["SETTINGS_TOOLTIP_PREVIEW_NAME"] = "Aperçu de l'infobulle:"
 
