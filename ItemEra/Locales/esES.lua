@@ -27,7 +27,8 @@ L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Logo de expansión"
 L["SETTINGS_SHOW_EXPANSION_LOGO_DESC"] = "Muestra el logo de la expansión junto al icono en los tooltips"
 
 L["SETTINGS_PROFESSION_HEADER_NAME"] = "Visualización de profesión"
-L["SETTINGS_PROFESSION_DESCRIPTION_NAME"] = "Configura las opciones de visualización de profesión para reagentes de fabricación."
+L["SETTINGS_PROFESSION_DESCRIPTION_NAME"] =
+"Configura las opciones de visualización de profesión para los componentes."
 
 L["SETTINGS_SHOW_PROFESSION_LITERAL_NAME"] = "Literal 'Profesión'"
 L["SETTINGS_SHOW_PROFESSION_LITERAL_DESC"] = "Muestra el literal 'Profesión' antes del nombre e icono en los tooltips"
@@ -124,8 +125,8 @@ L["FEATURES_POPUP_DONT_SHOW_AGAIN"] = "No volver a mostrar para esta versión"
 L["FEATURES_POPUP_CONTENT"] = [[
 |cff00ff00¡Hey! ¿Qué tiene esta nueva versión?|r
 
-|cffffd700Reagentes de fabricación|r
-Ahora se muestra en el tooltip las profesiones por las que son usados. Están basados en todas las recetas del juego y asociados a su profesión. Base de datos actualizada y compatible con rangos de reagentes.
+|cffffd700Componentes de profesión|r
+Ahora se muestra en el tooltip las profesiones por las que son usados. Están basados en todas las recetas del juego y asociados a su profesión. Base de datos actualizada y compatible con rangos de componentes de profesión.
 
 Puedes modificar la forma en la que se muestran las profesiones (icono + nombre, solo nombre o solo icono).
 
