@@ -19,14 +19,26 @@ L["SETTINGS_SUBPAGE_FILTERS"] = "Фильтры"
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Отображение дополнений"
 L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Настройте параметры отображения ItemEra."
 
-L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Показать текст 'Дополнение'"
+L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Текст 'Дополнение'"
 L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"] = "Показывает текст 'Дополнение' перед именем и логотипом в подсказках"
 
-L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Показать название дополнения"
+L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Название дополнения"
 L["SETTINGS_SHOW_EXPANSION_NAME_DESC"] = "Показывает название дополнения рядом с иконкой в подсказках"
 
-L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Показать логотип дополнения"
+L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Логотип дополнения"
 L["SETTINGS_SHOW_EXPANSION_LOGO_DESC"] = "Показывает логотип дополнения рядом с иконкой в подсказках"
+
+L["SETTINGS_PROFESSION_HEADER_NAME"] = "Отображение профессии"
+L["SETTINGS_PROFESSION_DESCRIPTION_NAME"] = "Настройте параметры отображения профессии для ремесленных реагентов."
+
+L["SETTINGS_SHOW_PROFESSION_LITERAL_NAME"] = "Текст 'Профессия'"
+L["SETTINGS_SHOW_PROFESSION_LITERAL_DESC"] = "Показывает текст 'Профессия' перед именем и иконкой в подсказках"
+
+L["SETTINGS_SHOW_PROFESSION_NAME_NAME"] = "Название профессии"
+L["SETTINGS_SHOW_PROFESSION_NAME_DESC"] = "Показывает название профессии в подсказках"
+
+L["SETTINGS_SHOW_PROFESSION_ICON_NAME"] = "Иконка профессии"
+L["SETTINGS_SHOW_PROFESSION_ICON_DESC"] = "Показывает иконку профессии в подсказках"
 
 L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] = "(Подсказка не будет показана)"
 L["SETTINGS_TOOLTIP_PREVIEW_NAME"] = "Предварительный просмотр подсказки:"

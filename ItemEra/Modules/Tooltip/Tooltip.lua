@@ -12,19 +12,17 @@ local function AddExpansionLine(tooltip, item)
     tooltip:AddLine(" ")
     tooltip:AddLine(expansionText)
 
-    local isCraftingReagent = select(17, C_Item.GetItemInfo(item.itemID))
-    if (isCraftingReagent) then
-        local professionIDs = ItemEra.Utils:GetProfessionIDsByItemID(item.itemID)
-        if #professionIDs > 0 then
-            local professionNames = {}
-            for _, id in ipairs(professionIDs) do
-                local professionText = ItemEra.Utils:GetProfessionTextByProfessionID(id)
-                table.insert(professionNames, professionText)
-            end
-
-            tooltip:AddLine(L["PROFESSION"] .. " " .. table.concat(professionNames, ", "))
-        end
+    local professionText = ItemEra.Utils:GetProfessionTextByItemID(item.itemID)
+    if (professionText and professionText ~= "") then
+        tooltip:AddLine(professionText)
     end
+
+    if ItemEra.DB_SETTINGS and ItemEra.DB_SETTINGS.global and ItemEra.DB_SETTINGS.global.settings then
+        showProfessionName = ItemEra.DB_SETTINGS.global.settings.showProfessionName
+        showProfessionIcon = ItemEra.DB_SETTINGS.global.settings.showProfessionIcon
+        showProfessionLiteral = ItemEra.DB_SETTINGS.global.settings.showProfessionLiteral
+    end
+
     -- if (item.expansionPatchShort or item.expansionPatchName) then
     --     local expansionPatchName = item.expansionPatchName or ""
     --     local expansionPatchText = item.expansionPatchShort and "(" .. item.expansionPatchShort .. ")" or ""

@@ -17,14 +17,26 @@ L["SETTINGS_SUBPAGE_FILTERS"] = "Filters"
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Expansion Display"
 L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configure ItemEra display options."
 
-L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Show 'Expansion' literal"
+L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "'Expansion' literal"
 L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"] = "Shows the 'Expansion' literal before the name and logo in tooltips"
 
-L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Show expansion name"
+L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Expansion name"
 L["SETTINGS_SHOW_EXPANSION_NAME_DESC"] = "Shows the expansion name next to the icon in tooltips"
 
-L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Show expansion logo"
+L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Expansion logo"
 L["SETTINGS_SHOW_EXPANSION_LOGO_DESC"] = "Shows the expansion logo next to the icon in tooltips"
+
+L["SETTINGS_PROFESSION_HEADER_NAME"] = "Profession Display"
+L["SETTINGS_PROFESSION_DESCRIPTION_NAME"] = "Configure profession display options for crafting reagents."
+
+L["SETTINGS_SHOW_PROFESSION_LITERAL_NAME"] = "'Profession' literal"
+L["SETTINGS_SHOW_PROFESSION_LITERAL_DESC"] = "Shows the 'Profession' literal before the name and icon in tooltips"
+
+L["SETTINGS_SHOW_PROFESSION_NAME_NAME"] = "Profession name"
+L["SETTINGS_SHOW_PROFESSION_NAME_DESC"] = "Shows the profession name in tooltips"
+
+L["SETTINGS_SHOW_PROFESSION_ICON_NAME"] = "Profession icon"
+L["SETTINGS_SHOW_PROFESSION_ICON_DESC"] = "Shows the profession icon in tooltips"
 
 L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] = "(Tooltip will not be shown)"
 L["SETTINGS_TOOLTIP_PREVIEW_NAME"] = "Tooltip preview:"

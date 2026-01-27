@@ -17,14 +17,26 @@ L["SETTINGS_SUBPAGE_FILTERS"] = "Filtros"
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Visualización de la expansión"
 L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configura las opciones de visualización de ItemEra."
 
-L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Mostrar literal 'Expansión'"
+L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Literal 'Expansión'"
 L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"] = "Muestra el literal 'Expansión' antes del nombre y logo en los tooltips"
 
-L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Mostrar nombre de expansión"
+L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Nombre de expansión"
 L["SETTINGS_SHOW_EXPANSION_NAME_DESC"] = "Muestra el nombre de la expansión junto al icono en los tooltips"
 
-L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Mostrar logo de expansión"
+L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Logo de expansión"
 L["SETTINGS_SHOW_EXPANSION_LOGO_DESC"] = "Muestra el logo de la expansión junto al icono en los tooltips"
+
+L["SETTINGS_PROFESSION_HEADER_NAME"] = "Visualización de profesión"
+L["SETTINGS_PROFESSION_DESCRIPTION_NAME"] = "Configura las opciones de visualización de profesión para reagentes de fabricación."
+
+L["SETTINGS_SHOW_PROFESSION_LITERAL_NAME"] = "Literal 'Profesión'"
+L["SETTINGS_SHOW_PROFESSION_LITERAL_DESC"] = "Muestra el literal 'Profesión' antes del nombre e icono en los tooltips"
+
+L["SETTINGS_SHOW_PROFESSION_NAME_NAME"] = "Nombre de profesión"
+L["SETTINGS_SHOW_PROFESSION_NAME_DESC"] = "Muestra el nombre de la profesión en los tooltips"
+
+L["SETTINGS_SHOW_PROFESSION_ICON_NAME"] = "Icono de profesión"
+L["SETTINGS_SHOW_PROFESSION_ICON_DESC"] = "Muestra el icono de la profesión en los tooltips"
 
 L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] = "(No se mostrará el tooltip)"
 L["SETTINGS_TOOLTIP_PREVIEW_NAME"] = "Vista previa del tooltip:"

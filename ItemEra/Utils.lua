@@ -254,8 +254,53 @@ function ItemEra.Utils:GetProfessionTextByProfessionID(professionID)
     local spellInfo = C_Spell.GetSpellInfo(spellID)
     if not spellInfo then return "ID: " .. professionID end
 
-    local icon = spellInfo.iconID and ("|T" .. spellInfo.iconID .. ":14:14|t") or ""
-    return icon .. " " .. spellInfo.name
+    local showProfessionName = true
+    local showProfessionIcon = true
+
+    if ItemEra.DB_SETTINGS and ItemEra.DB_SETTINGS.global and ItemEra.DB_SETTINGS.global.settings then
+        showProfessionName = ItemEra.DB_SETTINGS.global.settings.showProfessionName
+        showProfessionIcon = ItemEra.DB_SETTINGS.global.settings.showProfessionIcon
+    end
+
+    local icon = (showProfessionIcon and spellInfo.iconID) and ("|T" .. spellInfo.iconID .. ":14:14|t") or ""
+    local name = showProfessionName and spellInfo.name or ""
+
+    local professionText = icon .. " " .. name
+    professionText = professionText:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
+    return professionText
+end
+
+function ItemEra.Utils:GetProfessionTextByItemID(itemID)
+    local isCraftingReagent = select(17, C_Item.GetItemInfo(itemID))
+    if (isCraftingReagent) then
+        local showProfessionName = true
+        local showProfessionIcon = true
+        local showProfessionLiteral = true
+
+        if ItemEra.DB_SETTINGS and ItemEra.DB_SETTINGS.global and ItemEra.DB_SETTINGS.global.settings then
+            showProfessionName = ItemEra.DB_SETTINGS.global.settings.showProfessionName
+            showProfessionIcon = ItemEra.DB_SETTINGS.global.settings.showProfessionIcon
+            showProfessionLiteral = ItemEra.DB_SETTINGS.global.settings.showProfessionLiteral
+        end
+
+        if (not showProfessionName and not showProfessionIcon) then
+            return
+        end
+
+        local professionIDs = ItemEra.Utils:GetProfessionIDsByItemID(itemID)
+        if #professionIDs > 0 then
+            local professionNames = {}
+            for _, id in ipairs(professionIDs) do
+                local professionText = ItemEra.Utils:GetProfessionTextByProfessionID(id)
+                table.insert(professionNames, professionText)
+            end
+
+            local professionLiteral = showProfessionLiteral and ("|cffffd100" .. L["PROFESSION"] .. "|r") or ""
+            local professionLine = professionLiteral .. " " .. table.concat(professionNames, ", ")
+            professionLine = professionLine:gsub("^%s+", "")
+            return professionLine
+        end
+    end
 end
 
 -- External addons (Bagnon / Baganator)

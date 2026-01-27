@@ -17,14 +17,26 @@ L["SETTINGS_SUBPAGE_FILTERS"] = "Filtres"
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Affichage de l'extension"
 L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configure les options d'affichage d'ItemEra."
 
-L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Afficher le littéral 'Extension'"
+L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Littéral 'Extension'"
 L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"] = "Affiche le littéral 'Extension' avant le nom et le logo dans les infobulles"
 
-L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Afficher le nom de l'extension"
+L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Nom de l'extension"
 L["SETTINGS_SHOW_EXPANSION_NAME_DESC"] = "Affiche le nom de l'extension à côté de l'icône dans les infobulles"
 
-L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Afficher le logo de l'extension"
+L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Logo de l'extension"
 L["SETTINGS_SHOW_EXPANSION_LOGO_DESC"] = "Affiche le logo de l'extension à côté de l'icône dans les infobulles"
+
+L["SETTINGS_PROFESSION_HEADER_NAME"] = "Affichage du métier"
+L["SETTINGS_PROFESSION_DESCRIPTION_NAME"] = "Configure les options d'affichage du métier pour les composants d'artisanat."
+
+L["SETTINGS_SHOW_PROFESSION_LITERAL_NAME"] = "Littéral 'Métier'"
+L["SETTINGS_SHOW_PROFESSION_LITERAL_DESC"] = "Affiche le littéral 'Métier' avant le nom et l'icône dans les infobulles"
+
+L["SETTINGS_SHOW_PROFESSION_NAME_NAME"] = "Nom du métier"
+L["SETTINGS_SHOW_PROFESSION_NAME_DESC"] = "Affiche le nom du métier dans les infobulles"
+
+L["SETTINGS_SHOW_PROFESSION_ICON_NAME"] = "Icône du métier"
+L["SETTINGS_SHOW_PROFESSION_ICON_DESC"] = "Affiche l'icône du métier dans les infobulles"
 
 L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] = "(L'infobulle ne sera pas affichée)"
 L["SETTINGS_TOOLTIP_PREVIEW_NAME"] = "Aperçu de l'infobulle:"
