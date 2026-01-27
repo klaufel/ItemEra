@@ -104,3 +104,26 @@ L["SETTINGS_API_HOOK_DESCRIPTION"] = "覆盖游戏的 C_Item.GetItemInfo 函数�
 L["SETTINGS_API_HOOK_WARNING"] = "警告：此功能为实验性功能，会修改游戏的核心函数，可能会导致与其他插件的兼容性问题。请自行承担风险。"
 L["SETTINGS_API_HOOK_ENABLED_NAME"] = "启用 API 覆盖"
 L["SETTINGS_API_HOOK_ENABLED_DESC"] = "替换 C_Item.GetItemInfo 以全局返回 ItemEra 的资料片 ID"
+
+L["SETTINGS_FEATURES_POPUP_NAME"] = "新功能"
+L["SETTINGS_FEATURES_POPUP_DESC"] = "查看此版本的新功能"
+
+-- Features Popup
+L["FEATURES_POPUP_TITLE"] = "新功能"
+L["FEATURES_POPUP_VERSION"] = "版本"
+L["FEATURES_POPUP_CLOSE"] = "关闭"
+L["FEATURES_POPUP_DONT_SHOW_AGAIN"] = "此版本不再显示"
+L["FEATURES_POPUP_CONTENT"] = [[
+|cff00ff00嘿！这个版本有什么新内容？|r
+
+|cffffd700制作材料|r
+现在工具提示会显示使用该材料的专业。基于游戏中的所有配方并关联到相应专业。数据库已更新，支持材料等级。
+
+您可以自定义专业的显示方式（图标+名称、仅名称或仅图标）。
+
+|cffffd700上一版本中:|r
+- 支持 Baganator 和 Bagnon 的过滤器（使用内部搜索）
+- 在完全重新设计的"设置"部分中提供更多配置选项
+
+感谢您使用 ItemEra！
+]]

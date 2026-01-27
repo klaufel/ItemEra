@@ -113,3 +113,26 @@ L["SETTINGS_API_HOOK_WARNING"] =
 L["SETTINGS_API_HOOK_ENABLED_NAME"] = "Abilita sostituzione API"
 L["SETTINGS_API_HOOK_ENABLED_DESC"] =
 "Sostituire C_Item.GetItemInfo per restituire globalmente gli ID di espansione di ItemEra"
+
+L["SETTINGS_FEATURES_POPUP_NAME"] = "Novità"
+L["SETTINGS_FEATURES_POPUP_DESC"] = "Scopri le novità di questa versione"
+
+-- Features Popup
+L["FEATURES_POPUP_TITLE"] = "Novità"
+L["FEATURES_POPUP_VERSION"] = "Versione"
+L["FEATURES_POPUP_CLOSE"] = "Chiudi"
+L["FEATURES_POPUP_DONT_SHOW_AGAIN"] = "Non mostrare più per questa versione"
+L["FEATURES_POPUP_CONTENT"] = [[
+|cff00ff00Hey! Cosa c'è di nuovo in questa versione?|r
+
+|cffffd700Reagenti di creazione|r
+Ora il tooltip mostra quali professioni usano ogni reagente. Basato su tutte le ricette del gioco e collegato alla loro professione. Database aggiornato con supporto per i gradi dei reagenti.
+
+Puoi personalizzare come vengono mostrate le professioni (icona + nome, solo nome, o solo icona).
+
+|cffffd700Nella versione precedente:|r
+- Supporto filtri per Baganator e Bagnon (usando la ricerca interna)
+- Più opzioni di configurazione nella sezione "Impostazioni" completamente ridisegnata
+
+Grazie per usare ItemEra!
+]]

@@ -79,6 +79,9 @@ L["SETTINGS_DISCORD_NAME"] = "Únete al Discord"
 L["SETTINGS_DISCORD_DESC"] = "Únete a nuestra comunidad de Discord para soporte y actualizaciones"
 L["SETTINGS_DISCORD_POPUP_TEXT"] = "Copia este enlace para unirte a nuestro Discord:"
 
+L["SETTINGS_FEATURES_POPUP_NAME"] = "Novedades"
+L["SETTINGS_FEATURES_POPUP_DESC"] = "Ver las novedades de esta versión"
+
 L["SETTINGS_DECORATIONS_HEADER_NAME"] = "Decoraciones de objetos"
 L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] = "Muestra iconos de expansión en los objetos del inventario."
 L["SETTINGS_DECORATIONS_ENABLED_NAME"] = "Habilitar decoraciones de objetos"
@@ -112,3 +115,23 @@ L["SETTINGS_API_HOOK_WARNING"] =
 L["SETTINGS_API_HOOK_ENABLED_NAME"] = "Habilitar sobrescritura de API"
 L["SETTINGS_API_HOOK_ENABLED_DESC"] =
 "Reemplaza C_Item.GetItemInfo para devolver los IDs de expansión de ItemEra globalmente"
+
+-- Features Popup
+L["FEATURES_POPUP_TITLE"] = "Novedades"
+L["FEATURES_POPUP_VERSION"] = "Versión"
+L["FEATURES_POPUP_CLOSE"] = "Cerrar"
+L["FEATURES_POPUP_DONT_SHOW_AGAIN"] = "No volver a mostrar para esta versión"
+L["FEATURES_POPUP_CONTENT"] = [[
+|cff00ff00¡Hey! ¿Qué tiene esta nueva versión?|r
+
+|cffffd700Reagentes de fabricación|r
+Ahora se muestra en el tooltip las profesiones por las que son usados. Están basados en todas las recetas del juego y asociados a su profesión. Base de datos actualizada y compatible con rangos de reagentes.
+
+Puedes modificar la forma en la que se muestran las profesiones (icono + nombre, solo nombre o solo icono).
+
+|cffffd700En la versión anterior:|r
+- Soporte de filtros para Baganator y Bagnon (usando internamente la búsqueda)
+- Más opciones de configuración en el apartado de "Settings" que ha sido modificado por completo
+
+¡Gracias por usar ItemEra!
+]]

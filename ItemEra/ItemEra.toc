@@ -68,3 +68,5 @@ Modules\Filters\Filters_Baganator.lua
 Modules\Filters\Filters_Bagnon.lua
 Modules\Filters\Filters.lua
 
+Modules\FeaturesPopup\FeaturesPopup.lua
+

@@ -8,6 +8,7 @@ function ItemEra:OnInitialize()
     ItemEra.Tooltip:Initialize()
     ItemEra.Decorations:Initialize()
     ItemEra.Filters:Initialize()
+    ItemEra.FeaturesPopup:Initialize()
 
     if ItemEra.CONFIG.DEBUG then
         print("[ItemEra] DEBUG: " .. tostring(ItemEra.CONFIG.DEBUG))

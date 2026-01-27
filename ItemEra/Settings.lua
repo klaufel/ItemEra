@@ -22,7 +22,8 @@ local defaults = {
             showProfessionIcon = true,
             wrapProfessionText = false,
             useKeyModifier = false,
-            keyModifier = ItemEra.Utils.KeyModifiers.SHIFT
+            keyModifier = ItemEra.Utils.KeyModifiers.SHIFT,
+            lastShownFeaturesPopupKey = nil
         }
     }
 }
@@ -416,6 +417,16 @@ local function GetOptions()
                 width = 1.2,
                 func = function()
                     StaticPopup_Show("ITEMERA_DISCORD_LINK")
+                end
+            },
+            featuresPopupButton = {
+                type = "execute",
+                name = L["SETTINGS_FEATURES_POPUP_NAME"],
+                desc = L["SETTINGS_FEATURES_POPUP_DESC"],
+                order = 0.2,
+                width = 1.2,
+                func = function()
+                    ItemEra.FeaturesPopup:Show()
                 end
             },
         },

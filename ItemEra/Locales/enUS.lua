@@ -75,6 +75,9 @@ L["SETTINGS_DISCORD_NAME"] = "Join Discord"
 L["SETTINGS_DISCORD_DESC"] = "Join our Discord community for support and updates"
 L["SETTINGS_DISCORD_POPUP_TEXT"] = "Copy this link to join our Discord:"
 
+L["SETTINGS_FEATURES_POPUP_NAME"] = "What's New"
+L["SETTINGS_FEATURES_POPUP_DESC"] = "See what's new in this version"
+
 L["SETTINGS_DECORATIONS_HEADER_NAME"] = "Item Decorations"
 L["SETTINGS_DECORATIONS_DESCRIPTION_NAME"] = "Show expansion icons on items in your inventory."
 L["SETTINGS_DECORATIONS_ENABLED_NAME"] = "Enable item decorations"
@@ -102,3 +105,23 @@ L["SETTINGS_API_HOOK_DESCRIPTION"] = "Override the game's C_Item.GetItemInfo fun
 L["SETTINGS_API_HOOK_WARNING"] = "Warning: This is an experimental feature that modifies a core game function. It may cause compatibility issues with other addons. Use at your own risk."
 L["SETTINGS_API_HOOK_ENABLED_NAME"] = "Enable API Override"
 L["SETTINGS_API_HOOK_ENABLED_DESC"] = "Replace C_Item.GetItemInfo to return ItemEra's expansion IDs globally"
+
+-- Features Popup
+L["FEATURES_POPUP_TITLE"] = "What's New"
+L["FEATURES_POPUP_VERSION"] = "Version"
+L["FEATURES_POPUP_CLOSE"] = "Close"
+L["FEATURES_POPUP_DONT_SHOW_AGAIN"] = "Don't show again for this version"
+L["FEATURES_POPUP_CONTENT"] = [[
+|cff00ff00Hey! What's new in this version?|r
+
+|cffffd700Crafting Reagents|r
+Now the tooltip shows which professions use each reagent. Based on all in-game recipes and linked to their profession. Updated database with support for reagent ranks.
+
+You can customize how professions are displayed (icon + name, name only, or icon only).
+
+|cffffd700In the previous version:|r
+- Filter support for Baganator and Bagnon (using internal search)
+- More configuration options in the completely redesigned "Settings" section
+
+Thank you for using ItemEra!
+]]

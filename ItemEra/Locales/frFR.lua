@@ -112,3 +112,26 @@ L["SETTINGS_API_HOOK_WARNING"] =
 L["SETTINGS_API_HOOK_ENABLED_NAME"] = "Activer le remplacement de l'API"
 L["SETTINGS_API_HOOK_ENABLED_DESC"] =
 "Remplacer C_Item.GetItemInfo pour renvoyer globalement les ID d'extension d'ItemEra"
+
+L["SETTINGS_FEATURES_POPUP_NAME"] = "Nouveautés"
+L["SETTINGS_FEATURES_POPUP_DESC"] = "Voir les nouveautés de cette version"
+
+-- Features Popup
+L["FEATURES_POPUP_TITLE"] = "Nouveautés"
+L["FEATURES_POPUP_VERSION"] = "Version"
+L["FEATURES_POPUP_CLOSE"] = "Fermer"
+L["FEATURES_POPUP_DONT_SHOW_AGAIN"] = "Ne plus afficher pour cette version"
+L["FEATURES_POPUP_CONTENT"] = [[
+|cff00ff00Hey ! Quoi de neuf dans cette version ?|r
+
+|cffffd700Composants d'artisanat|r
+L'infobulle affiche maintenant les métiers qui utilisent chaque composant. Basé sur toutes les recettes du jeu et lié à leur métier. Base de données mise à jour avec support des rangs de composants.
+
+Vous pouvez personnaliser l'affichage des métiers (icône + nom, nom seul, ou icône seule).
+
+|cffffd700Dans la version précédente :|r
+- Support des filtres pour Baganator et Bagnon (utilisant la recherche interne)
+- Plus d'options de configuration dans la section "Paramètres" entièrement repensée
+
+Merci d'utiliser ItemEra !
+]]
