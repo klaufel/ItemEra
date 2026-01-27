@@ -115,6 +115,39 @@ ItemEra.Utils.KeyModifiers = {
     ALT = "ALT"
 }
 
+
+
+ItemEra.Utils.TooltipDataTypes = {
+    ITEM = Enum.TooltipDataType.Item,
+    SPELL = Enum.TooltipDataType.Spell,
+    -- UNIT = Enum.TooltipDataType.Unit,
+    -- CORPSE = Enum.TooltipDataType.Corpse,
+    -- OBJECT = Enum.TooltipDataType.Object,
+    -- CURRENCY = Enum.TooltipDataType.Currency,
+    -- BATTLEPET = Enum.TooltipDataType.BattlePet,
+    -- UNITAURA = Enum.TooltipDataType.UnitAura,
+    -- AZERITE_ESSENCE = Enum.TooltipDataType.AzeriteEssence,
+    -- COMPANION_PET = Enum.TooltipDataType.CompanionPet,
+    MOUNT = Enum.TooltipDataType.Mount,
+    -- PET_ACTION = Enum.TooltipDataType.PetAction,
+    -- ACHIEVEMENT = Enum.TooltipDataType.Achievement,
+    -- ENHANCED_CONDUIT = Enum.TooltipDataType.EnhancedConduit,
+    -- EQUIPMENT_SET = Enum.TooltipDataType.EquipmentSet,
+    -- INSTANCE_LOCK = Enum.TooltipDataType.InstanceLock,
+    -- PVP_BRAWL = Enum.TooltipDataType.PvPBrawl,
+    -- RECIPE_RANK_INFO = Enum.TooltipDataType.RecipeRankInfo,
+    -- TOTEM = Enum.TooltipDataType.Totem,
+    TOY = Enum.TooltipDataType.Toy,
+    -- CORRUPTION_CLEANSE = Enum.TooltipDataType.CorruptionCleanser,
+    -- MINIMAP_MOUSEOVER = Enum.TooltipDataType.MinimapMouseover,
+    -- FLYOUT = Enum.TooltipDataType.Flyout,
+    -- QUEST = Enum.TooltipDataType.Quest,
+    -- QUEST_PARTY_PROGRESS = Enum.TooltipDataType.QuestPartyProgress,
+    -- MACRO = Enum.TooltipDataType.Macro,
+    -- DEBUG = Enum.TooltipDataType.Debug,
+}
+
+
 ItemEra.Utils.ProfessionName = {
     -- Primary
     [Enum.Profession.Alchemy] = 2259,
@@ -221,7 +254,8 @@ function ItemEra.Utils:GetProfessionTextByProfessionID(professionID)
     local spellInfo = C_Spell.GetSpellInfo(spellID)
     if not spellInfo then return "ID: " .. professionID end
 
-    return spellInfo.name
+    local icon = spellInfo.iconID and ("|T" .. spellInfo.iconID .. ":14:14|t") or ""
+    return icon .. " " .. spellInfo.name
 end
 
 -- External addons (Bagnon / Baganator)
