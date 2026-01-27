@@ -8,6 +8,7 @@ end
 L["SELECT_EXPANSION"] = "Seleziona espansione"
 L["ALL_EXPANSION"] = "Tutte le espansioni"
 L["EXPANSION"] = "Espansione:"
+L["PROFESSION"] = "Professione:"
 
 L["SETTINGS_MAIN_DESCRIPTION"] = "Filtra e visualizza le informazioni dell'espansione per i tuoi oggetti."
 L["SETTINGS_SUBPAGE_TOOLTIP"] = "Tooltip"
@@ -16,14 +17,29 @@ L["SETTINGS_SUBPAGE_FILTERS"] = "Filtri"
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Visualizzazione espansione"
 L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configura le opzioni di visualizzazione di ItemEra."
 
-L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Mostra letterale 'Espansione'"
+L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Letterale 'Espansione'"
 L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"] = "Mostra il letterale 'Espansione' prima del nome e logo nei tooltip"
 
-L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Mostra nome espansione"
+L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Nome espansione"
 L["SETTINGS_SHOW_EXPANSION_NAME_DESC"] = "Mostra il nome dell'espansione accanto all'icona nei tooltip"
 
-L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Mostra logo espansione"
+L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Logo espansione"
 L["SETTINGS_SHOW_EXPANSION_LOGO_DESC"] = "Mostra il logo dell'espansione accanto all'icona nei tooltip"
+
+L["SETTINGS_PROFESSION_HEADER_NAME"] = "Visualizzazione professione"
+L["SETTINGS_PROFESSION_DESCRIPTION_NAME"] = "Configura le opzioni di visualizzazione della professione per i reagenti di creazione."
+
+L["SETTINGS_SHOW_PROFESSION_LITERAL_NAME"] = "Letterale 'Professione'"
+L["SETTINGS_SHOW_PROFESSION_LITERAL_DESC"] = "Mostra il letterale 'Professione' prima del nome e icona nei tooltip"
+
+L["SETTINGS_SHOW_PROFESSION_NAME_NAME"] = "Nome professione"
+L["SETTINGS_SHOW_PROFESSION_NAME_DESC"] = "Mostra il nome della professione nei tooltip"
+
+L["SETTINGS_SHOW_PROFESSION_ICON_NAME"] = "Icona professione"
+L["SETTINGS_SHOW_PROFESSION_ICON_DESC"] = "Mostra l'icona della professione nei tooltip"
+
+L["SETTINGS_WRAP_PROFESSION_TEXT_NAME"] = "A capo testo professione"
+L["SETTINGS_WRAP_PROFESSION_TEXT_DESC"] = "Manda a capo il testo della professione su più righe quando è troppo lungo"
 
 L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] = "(Il tooltip non verrà mostrato)"
 L["SETTINGS_TOOLTIP_PREVIEW_NAME"] = "Anteprima tooltip:"

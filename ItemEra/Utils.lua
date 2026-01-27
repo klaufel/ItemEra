@@ -115,6 +115,62 @@ ItemEra.Utils.KeyModifiers = {
     ALT = "ALT"
 }
 
+
+
+ItemEra.Utils.TooltipDataTypes = {
+    ITEM = Enum.TooltipDataType.Item,
+    SPELL = Enum.TooltipDataType.Spell,
+    -- UNIT = Enum.TooltipDataType.Unit,
+    -- CORPSE = Enum.TooltipDataType.Corpse,
+    -- OBJECT = Enum.TooltipDataType.Object,
+    -- CURRENCY = Enum.TooltipDataType.Currency,
+    -- BATTLEPET = Enum.TooltipDataType.BattlePet,
+    -- UNITAURA = Enum.TooltipDataType.UnitAura,
+    -- AZERITE_ESSENCE = Enum.TooltipDataType.AzeriteEssence,
+    -- COMPANION_PET = Enum.TooltipDataType.CompanionPet,
+    MOUNT = Enum.TooltipDataType.Mount,
+    -- PET_ACTION = Enum.TooltipDataType.PetAction,
+    -- ACHIEVEMENT = Enum.TooltipDataType.Achievement,
+    -- ENHANCED_CONDUIT = Enum.TooltipDataType.EnhancedConduit,
+    -- EQUIPMENT_SET = Enum.TooltipDataType.EquipmentSet,
+    -- INSTANCE_LOCK = Enum.TooltipDataType.InstanceLock,
+    -- PVP_BRAWL = Enum.TooltipDataType.PvPBrawl,
+    -- RECIPE_RANK_INFO = Enum.TooltipDataType.RecipeRankInfo,
+    -- TOTEM = Enum.TooltipDataType.Totem,
+    TOY = Enum.TooltipDataType.Toy,
+    -- CORRUPTION_CLEANSE = Enum.TooltipDataType.CorruptionCleanser,
+    -- MINIMAP_MOUSEOVER = Enum.TooltipDataType.MinimapMouseover,
+    -- FLYOUT = Enum.TooltipDataType.Flyout,
+    -- QUEST = Enum.TooltipDataType.Quest,
+    -- QUEST_PARTY_PROGRESS = Enum.TooltipDataType.QuestPartyProgress,
+    -- MACRO = Enum.TooltipDataType.Macro,
+    -- DEBUG = Enum.TooltipDataType.Debug,
+}
+
+
+ItemEra.Utils.ProfessionName = {
+    -- Primary
+    [Enum.Profession.Alchemy] = 2259,
+    [Enum.Profession.Blacksmithing] = 2018,
+    [Enum.Profession.Enchanting] = 7411,
+    [Enum.Profession.Engineering] = 4036,
+    [Enum.Profession.Inscription] = 45357,
+    [Enum.Profession.Jewelcrafting] = 25229,
+    [Enum.Profession.Leatherworking] = 2108,
+    [Enum.Profession.Tailoring] = 3908,
+
+    -- Harvest
+    [Enum.Profession.Mining] = 2575,
+    [Enum.Profession.Herbalism] = 2366,
+    [Enum.Profession.Skinning] = 8613,
+
+    -- Secondary
+    [Enum.Profession.Fishing] = 131474,
+    [Enum.Profession.Cooking] = 2550,
+    [Enum.Profession.Archaeology] = 78670,
+}
+
+
 function ItemEra.Utils:toRGB(hex)
     hex = hex:gsub("#", "")
     return tonumber("0x" .. hex:sub(1, 2)),
@@ -141,44 +197,6 @@ ItemEra.Utils.PathAssets = "Interface\\AddOns\\ItemEra\\Assets\\"
 
 function ItemEra.Utils:GetExpansionLogoById(expansionID)
     return ItemEra.Utils.PathAssets .. "Icons\\Exp_Logo_" .. expansionID .. ".tga"
-end
-
--- Detectar si Baganator está cargado
-function ItemEra.Utils:IsBaganatorLoaded()
-    local isLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
-    if isLoaded then
-        local loaded = select(2, isLoaded("Baganator"))
-        return loaded == true
-    end
-    return false
-end
-
--- Verificar si Baganator existe (puede no estar cargado aún)
-function ItemEra.Utils:DoesBaganatorExist()
-    local doesExist = C_AddOns and C_AddOns.DoesAddOnExist or DoesAddOnExist
-    if doesExist then
-        return doesExist("Baganator")
-    end
-    return false
-end
-
--- Detectar si Bagnon está cargado
-function ItemEra.Utils:IsBagnonLoaded()
-    local isLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
-    if isLoaded then
-        local loaded = select(2, isLoaded("Bagnon"))
-        return loaded == true
-    end
-    return false
-end
-
--- Verificar si Bagnon existe (puede no estar cargado aún)
-function ItemEra.Utils:DoesBagnonExist()
-    local doesExist = C_AddOns and C_AddOns.DoesAddOnExist or DoesAddOnExist
-    if doesExist then
-        return doesExist("Bagnon")
-    end
-    return false
 end
 
 function ItemEra.Utils:GetExpansionTextByExpansionID(expansionID)
@@ -210,4 +228,117 @@ function ItemEra.Utils:GetExpansionTextByExpansionID(expansionID)
     local expansionText = expansionLiteral .. " " .. expansionLogo .. "  " .. coloredExpansionName
     expansionText = expansionText:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
     return expansionText
+end
+
+-- Professions utils
+
+function ItemEra.Utils:GetProfessionIDsByItemID(itemID)
+    local professionIDs = {}
+
+    for key, items in pairs(ItemEra.DB.ITEM_REAGENTS) do
+        for _, id in ipairs(items) do
+            if id == itemID then
+                table.insert(professionIDs, key)
+                break
+            end
+        end
+    end
+
+    return professionIDs
+end
+
+function ItemEra.Utils:GetProfessionTextByProfessionID(professionID)
+    local spellID = ItemEra.Utils.ProfessionName[professionID]
+    if not spellID then return "ID: " .. professionID end
+
+    local spellInfo = C_Spell.GetSpellInfo(spellID)
+    if not spellInfo then return "ID: " .. professionID end
+
+    local showProfessionName = true
+    local showProfessionIcon = true
+
+    if ItemEra.DB_SETTINGS and ItemEra.DB_SETTINGS.global and ItemEra.DB_SETTINGS.global.settings then
+        showProfessionName = ItemEra.DB_SETTINGS.global.settings.showProfessionName
+        showProfessionIcon = ItemEra.DB_SETTINGS.global.settings.showProfessionIcon
+    end
+
+    local icon = (showProfessionIcon and spellInfo.iconID) and ("|T" .. spellInfo.iconID .. ":14:14|t") or ""
+    local name = showProfessionName and spellInfo.name or ""
+
+    local professionText = icon .. " " .. name
+    professionText = professionText:gsub("%s+", " "):gsub("^%s+", ""):gsub("%s+$", "")
+    return professionText
+end
+
+function ItemEra.Utils:GetProfessionTextByItemID(itemID)
+    local isCraftingReagent = select(17, C_Item.GetItemInfo(itemID))
+    if (isCraftingReagent) then
+        local showProfessionName = true
+        local showProfessionIcon = true
+        local showProfessionLiteral = true
+
+        if ItemEra.DB_SETTINGS and ItemEra.DB_SETTINGS.global and ItemEra.DB_SETTINGS.global.settings then
+            showProfessionName = ItemEra.DB_SETTINGS.global.settings.showProfessionName
+            showProfessionIcon = ItemEra.DB_SETTINGS.global.settings.showProfessionIcon
+            showProfessionLiteral = ItemEra.DB_SETTINGS.global.settings.showProfessionLiteral
+        end
+
+        if (not showProfessionName and not showProfessionIcon) then
+            return
+        end
+
+        local professionIDs = ItemEra.Utils:GetProfessionIDsByItemID(itemID)
+        if #professionIDs > 0 then
+            local professionNames = {}
+            for _, id in ipairs(professionIDs) do
+                local professionText = ItemEra.Utils:GetProfessionTextByProfessionID(id)
+                table.insert(professionNames, professionText)
+            end
+
+            local professionLiteral = showProfessionLiteral and ("|cffffd100" .. L["PROFESSION"] .. "|r") or ""
+            local professionNamesText = "|cffffffff" .. table.concat(professionNames, ", ") .. "|r"
+            local professionLine = professionLiteral .. " " .. professionNamesText
+            professionLine = professionLine:gsub("^%s+", "")
+            return professionLine
+        end
+    end
+end
+
+-- External addons (Bagnon / Baganator)
+
+-- Baganator
+function ItemEra.Utils:IsBaganatorLoaded()
+    local isLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+    if isLoaded then
+        local loaded = select(2, isLoaded("Baganator"))
+        return loaded == true
+    end
+    return false
+end
+
+-- Verificar si Baganator existe (puede no estar cargado aún)
+function ItemEra.Utils:DoesBaganatorExist()
+    local doesExist = C_AddOns and C_AddOns.DoesAddOnExist or DoesAddOnExist
+    if doesExist then
+        return doesExist("Baganator")
+    end
+    return false
+end
+
+-- Bagnon
+function ItemEra.Utils:IsBagnonLoaded()
+    local isLoaded = C_AddOns and C_AddOns.IsAddOnLoaded or IsAddOnLoaded
+    if isLoaded then
+        local loaded = select(2, isLoaded("Bagnon"))
+        return loaded == true
+    end
+    return false
+end
+
+function ItemEra.Utils:DoesBagnonExist()
+    local doesExist = C_AddOns and C_AddOns.DoesAddOnExist or DoesAddOnExist
+    if doesExist then
+        return doesExist("Bagnon")
+    end
+    return false
 end

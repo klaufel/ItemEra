@@ -17,6 +17,10 @@ local defaults = {
             showExpansionName = true,
             showExpansionLogo = true,
             showExpansionLiteral = true,
+            showProfessionLiteral = true,
+            showProfessionName = true,
+            showProfessionIcon = true,
+            wrapProfessionText = false,
             useKeyModifier = false,
             keyModifier = ItemEra.Utils.KeyModifiers.SHIFT
         }
@@ -40,15 +44,29 @@ local function HandleGetSettingsValue(info)
 end
 
 
-local function GetTooltipPreview()
-    local isDisabled = not ItemEra.DB_SETTINGS.global.settings.showExpansionName and
+local function GetTooltipPreview(type)
+    local isExpansionDisabled = not ItemEra.DB_SETTINGS.global.settings.showExpansionName and
         not ItemEra.DB_SETTINGS.global.settings.showExpansionLogo
-    local expansionID = 11 -- MN
-    local expansionText = ItemEra.Utils:GetExpansionTextByExpansionID(expansionID)
-    local tooltipPreview = not isDisabled and expansionText ~= "" and expansionText or
-        "|cffff0000" .. L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] .. "|r"
+    local isProfessionDisabled = not ItemEra.DB_SETTINGS.global.settings.showProfessionName and
+        not ItemEra.DB_SETTINGS.global.settings.showProfessionIcon
 
-    return L["SETTINGS_TOOLTIP_PREVIEW_NAME"] .. "\n\n\n" .. tooltipPreview
+    if (type == 'expansion') then
+        local expansionID = 11 -- MN
+        local expansionText = ItemEra.Utils:GetExpansionTextByExpansionID(expansionID)
+        local expansionPreview = not isExpansionDisabled and expansionText ~= "" and expansionText or
+            "|cffff0000" .. L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] .. "|r"
+        return expansionPreview
+    end
+    if (type == 'profession') then
+        local itemID = 14047 -- Runecloth
+        local professionText = ItemEra.Utils:GetProfessionTextByItemID(itemID)
+        local professionPreview = not isProfessionDisabled and professionText ~= "" and professionText or
+            "|cffff0000" .. L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] .. "|r"
+        return professionPreview
+    end
+
+
+    return ""
 end
 
 local function GetOptions()
@@ -76,21 +94,12 @@ local function GetOptions()
                         type = "toggle",
                         name = L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"],
                         desc = L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"],
-                        width = "full",
+                        width = 1,
                         disabled = function()
                             return not ItemEra.DB_SETTINGS.global.settings.showExpansionName and
                                 not ItemEra.DB_SETTINGS.global.settings.showExpansionLogo
                         end,
-                        order = 10,
-                        get = HandleGetSettingsValue,
-                        set = HandleUpdateSettingsValue,
-                    },
-                    showExpansionName = {
-                        type = "toggle",
-                        name = L["SETTINGS_SHOW_EXPANSION_NAME_NAME"],
-                        desc = L["SETTINGS_SHOW_EXPANSION_NAME_DESC"],
-                        width = "full",
-                        order = 11,
+                        order = 5,
                         get = HandleGetSettingsValue,
                         set = HandleUpdateSettingsValue,
                     },
@@ -98,22 +107,102 @@ local function GetOptions()
                         type = "toggle",
                         name = L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"],
                         desc = L["SETTINGS_SHOW_EXPANSION_LOGO_DESC"],
-                        width = "full",
-                        order = 12,
+                        width = 1,
+                        order = 6,
                         get = HandleGetSettingsValue,
                         set = HandleUpdateSettingsValue,
                     },
+                    showExpansionName = {
+                        type = "toggle",
+                        name = L["SETTINGS_SHOW_EXPANSION_NAME_NAME"],
+                        desc = L["SETTINGS_SHOW_EXPANSION_NAME_DESC"],
+                        width = 1,
+                        order = 7,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    spacerPreviewExpansion = {
+                        type = "description",
+                        name = "\n",
+                        order = 10,
+                    },
+                    previewExpansion = {
+                        type = "description",
+                        name = GetTooltipPreview("expansion"),
+                        order = 11,
+                        fontSize = "medium",
+                        width = 3,
+                    },
                     spacer1 = {
                         type = "description",
-                        name = "\n\n",
+                        name = "\n",
                         order = 20,
                     },
-                    preview = {
+                    professionHeader = {
+                        type = "header",
+                        name = L["SETTINGS_PROFESSION_HEADER_NAME"],
+                        order = 25,
+                    },
+                    professionDescription = {
                         type = "description",
-                        name = GetTooltipPreview,
-                        order = 21,
-                        fontSize = "medium",
+                        name = "\n" .. L["SETTINGS_PROFESSION_DESCRIPTION_NAME"] .. "\n\n",
+                        order = 26,
+                    },
+                    showProfessionLiteral = {
+                        type = "toggle",
+                        name = L["SETTINGS_SHOW_PROFESSION_LITERAL_NAME"],
+                        desc = L["SETTINGS_SHOW_PROFESSION_LITERAL_DESC"],
+                        width = 1,
+                        disabled = function()
+                            return not ItemEra.DB_SETTINGS.global.settings.showProfessionName and
+                                not ItemEra.DB_SETTINGS.global.settings.showProfessionIcon
+                        end,
+                        order = 30,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    showProfessionIcon = {
+                        type = "toggle",
+                        name = L["SETTINGS_SHOW_PROFESSION_ICON_NAME"],
+                        desc = L["SETTINGS_SHOW_PROFESSION_ICON_DESC"],
+                        width = 1,
+                        order = 31,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    showProfessionName = {
+                        type = "toggle",
+                        name = L["SETTINGS_SHOW_PROFESSION_NAME_NAME"],
+                        desc = L["SETTINGS_SHOW_PROFESSION_NAME_DESC"],
+                        width = 1,
+                        order = 32,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    wrapProfessionText = {
+                        type = "toggle",
+                        name = L["SETTINGS_WRAP_PROFESSION_TEXT_NAME"],
+                        desc = L["SETTINGS_WRAP_PROFESSION_TEXT_DESC"],
                         width = "full",
+                        disabled = function()
+                            return not ItemEra.DB_SETTINGS.global.settings.showProfessionName and
+                                not ItemEra.DB_SETTINGS.global.settings.showProfessionIcon
+                        end,
+                        order = 33,
+                        get = HandleGetSettingsValue,
+                        set = HandleUpdateSettingsValue,
+                    },
+                    spacerPreviewProfession = {
+                        type = "description",
+                        name = "\n",
+                        order = 34,
+                    },
+                    previewProfession = {
+                        type = "description",
+                        name = GetTooltipPreview("profession"),
+                        order = 35,
+                        fontSize = "medium",
+                        width = ItemEra.DB_SETTINGS.global.settings.wrapProfessionText and 1 or 3,
                     },
                     spacer2 = {
                         type = "description",

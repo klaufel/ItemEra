@@ -8,6 +8,7 @@ end
 L["SELECT_EXPANSION"] = "Selecionar expansão"
 L["ALL_EXPANSION"] = "Todas as expansões"
 L["EXPANSION"] = "Expansão:"
+L["PROFESSION"] = "Profissão:"
 
 L["SETTINGS_MAIN_DESCRIPTION"] = "Filtra e exibe informações da expansão para seus itens."
 L["SETTINGS_SUBPAGE_TOOLTIP"] = "Tooltip"
@@ -16,14 +17,29 @@ L["SETTINGS_SUBPAGE_FILTERS"] = "Filtros"
 L["SETTINGS_TOOLTIP_HEADER_NAME"] = "Exibição de expansão"
 L["SETTINGS_TOOLTIP_DESCRIPTION_NAME"] = "Configure as opções de exibição do ItemEra."
 
-L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Mostrar literal 'Expansão'"
+L["SETTINGS_SHOW_EXPANSION_LITERAL_NAME"] = "Literal 'Expansão'"
 L["SETTINGS_SHOW_EXPANSION_LITERAL_DESC"] = "Mostra o literal 'Expansão' antes do nome e logo nos tooltips"
 
-L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Mostrar nome da expansão"
+L["SETTINGS_SHOW_EXPANSION_NAME_NAME"] = "Nome da expansão"
 L["SETTINGS_SHOW_EXPANSION_NAME_DESC"] = "Mostra o nome da expansão ao lado do ícone nos tooltips"
 
-L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Mostrar logo da expansão"
+L["SETTINGS_SHOW_EXPANSION_LOGO_NAME"] = "Logo da expansão"
 L["SETTINGS_SHOW_EXPANSION_LOGO_DESC"] = "Mostra o logo da expansão ao lado do ícone nos tooltips"
+
+L["SETTINGS_PROFESSION_HEADER_NAME"] = "Exibição de profissão"
+L["SETTINGS_PROFESSION_DESCRIPTION_NAME"] = "Configure as opções de exibição de profissão para reagentes de fabricação."
+
+L["SETTINGS_SHOW_PROFESSION_LITERAL_NAME"] = "Literal 'Profissão'"
+L["SETTINGS_SHOW_PROFESSION_LITERAL_DESC"] = "Mostra o literal 'Profissão' antes do nome e ícone nos tooltips"
+
+L["SETTINGS_SHOW_PROFESSION_NAME_NAME"] = "Nome da profissão"
+L["SETTINGS_SHOW_PROFESSION_NAME_DESC"] = "Mostra o nome da profissão nos tooltips"
+
+L["SETTINGS_SHOW_PROFESSION_ICON_NAME"] = "Ícone da profissão"
+L["SETTINGS_SHOW_PROFESSION_ICON_DESC"] = "Mostra o ícone da profissão nos tooltips"
+
+L["SETTINGS_WRAP_PROFESSION_TEXT_NAME"] = "Quebrar texto da profissão"
+L["SETTINGS_WRAP_PROFESSION_TEXT_DESC"] = "Quebra o texto da profissão em várias linhas quando é muito longo"
 
 L["SETTINGS_TOOLTIP_PREVIEW_HIDDEN"] = "(O tooltip não será mostrado)"
 L["SETTINGS_TOOLTIP_PREVIEW_NAME"] = "Visualização do tooltip:"

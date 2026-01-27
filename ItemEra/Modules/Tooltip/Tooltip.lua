@@ -3,42 +3,27 @@ local L = LibStub("AceLocale-3.0"):GetLocale(addonName)
 
 ItemEra.Tooltip = {}
 
-local TOOLTIP_DATA_TYPES = {
-    ITEM = Enum.TooltipDataType.Item,
-    SPELL = Enum.TooltipDataType.Spell,
-    -- UNIT = Enum.TooltipDataType.Unit,
-    -- CORPSE = Enum.TooltipDataType.Corpse,
-    -- OBJECT = Enum.TooltipDataType.Object,
-    -- CURRENCY = Enum.TooltipDataType.Currency,
-    -- BATTLEPET = Enum.TooltipDataType.BattlePet,
-    -- UNITAURA = Enum.TooltipDataType.UnitAura,
-    -- AZERITE_ESSENCE = Enum.TooltipDataType.AzeriteEssence,
-    -- COMPANION_PET = Enum.TooltipDataType.CompanionPet,
-    MOUNT = Enum.TooltipDataType.Mount,
-    -- PET_ACTION = Enum.TooltipDataType.PetAction,
-    -- ACHIEVEMENT = Enum.TooltipDataType.Achievement,
-    -- ENHANCED_CONDUIT = Enum.TooltipDataType.EnhancedConduit,
-    -- EQUIPMENT_SET = Enum.TooltipDataType.EquipmentSet,
-    -- INSTANCE_LOCK = Enum.TooltipDataType.InstanceLock,
-    -- PVP_BRAWL = Enum.TooltipDataType.PvPBrawl,
-    -- RECIPE_RANK_INFO = Enum.TooltipDataType.RecipeRankInfo,
-    -- TOTEM = Enum.TooltipDataType.Totem,
-    TOY = Enum.TooltipDataType.Toy,
-    -- CORRUPTION_CLEANSE = Enum.TooltipDataType.CorruptionCleanser,
-    -- MINIMAP_MOUSEOVER = Enum.TooltipDataType.MinimapMouseover,
-    -- FLYOUT = Enum.TooltipDataType.Flyout,
-    -- QUEST = Enum.TooltipDataType.Quest,
-    -- QUEST_PARTY_PROGRESS = Enum.TooltipDataType.QuestPartyProgress,
-    -- MACRO = Enum.TooltipDataType.Macro,
-    -- DEBUG = Enum.TooltipDataType.Debug,
-}
+local TooltipDataTypes = ItemEra.Utils.TooltipDataTypes
 
 local function AddExpansionLine(tooltip, item)
     if not tooltip or not item then return end
 
-    local expansionText = ItemEra.Utils:GetExpansionTextByExpansionID(item.expansionID)
     tooltip:AddLine(" ")
+
+    local expansionText = ItemEra.Utils:GetExpansionTextByExpansionID(item.expansionID)
     tooltip:AddLine(expansionText)
+
+    local professionText = ItemEra.Utils:GetProfessionTextByItemID(item.itemID)
+    if (professionText and professionText ~= "") then
+        local wrapText = ItemEra.DB_SETTINGS.global.settings.wrapProfessionText
+        tooltip:AddLine(professionText, nil, nil, nil, wrapText)
+    end
+
+    if ItemEra.DB_SETTINGS and ItemEra.DB_SETTINGS.global and ItemEra.DB_SETTINGS.global.settings then
+        showProfessionName = ItemEra.DB_SETTINGS.global.settings.showProfessionName
+        showProfessionIcon = ItemEra.DB_SETTINGS.global.settings.showProfessionIcon
+        showProfessionLiteral = ItemEra.DB_SETTINGS.global.settings.showProfessionLiteral
+    end
 
     -- if (item.expansionPatchShort or item.expansionPatchName) then
     --     local expansionPatchName = item.expansionPatchName or ""
@@ -63,13 +48,13 @@ local function AddTooltipLine(tooltip, data)
     local dataType = data.type
     local dataID = data.id
 
-    if (dataType == TOOLTIP_DATA_TYPES.MOUNT) then
+    if (dataType == TooltipDataTypes.MOUNT) then
         local mount = ItemEra.ItemData:GetMountDBVersion(dataID)
         if (mount) then AddExpansionLine(tooltip, mount) end
         return
     end
 
-    if (dataType == TOOLTIP_DATA_TYPES.SPELL) then
+    if (dataType == TooltipDataTypes.SPELL) then
         local mountID = C_MountJournal.GetMountFromSpell(dataID)
         if not mountID then return end
         local mount = ItemEra.ItemData:GetMountDBVersion(mountID)
@@ -77,7 +62,7 @@ local function AddTooltipLine(tooltip, data)
         return
     end
 
-    if (dataType == TOOLTIP_DATA_TYPES.ITEM or dataType == TOOLTIP_DATA_TYPES.TOY) then
+    if (dataType == TooltipDataTypes.ITEM or dataType == TooltipDataTypes.TOY) then
         if (dataID) then
             itemID = dataID
         elseif tooltip.GetItem then
@@ -116,7 +101,7 @@ end
 
 
 function ItemEra.Tooltip:Initialize()
-    for _, tooltipDataType in pairs(TOOLTIP_DATA_TYPES) do
+    for _, tooltipDataType in pairs(TooltipDataTypes) do
         TooltipDataProcessor.AddTooltipPostCall(tooltipDataType, ShowTooltip)
     end
 end
