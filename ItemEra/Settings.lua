@@ -20,7 +20,7 @@ local defaults = {
             showProfessionLiteral = true,
             showProfessionName = true,
             showProfessionIcon = true,
-            wrapProfessionText = true,
+            wrapProfessionText = false,
             useKeyModifier = false,
             keyModifier = ItemEra.Utils.KeyModifiers.SHIFT
         }

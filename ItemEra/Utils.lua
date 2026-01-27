@@ -296,7 +296,8 @@ function ItemEra.Utils:GetProfessionTextByItemID(itemID)
             end
 
             local professionLiteral = showProfessionLiteral and ("|cffffd100" .. L["PROFESSION"] .. "|r") or ""
-            local professionLine = professionLiteral .. " " .. table.concat(professionNames, ", ")
+            local professionNamesText = "|cffffffff" .. table.concat(professionNames, ", ") .. "|r"
+            local professionLine = professionLiteral .. " " .. professionNamesText
             professionLine = professionLine:gsub("^%s+", "")
             return professionLine
         end
