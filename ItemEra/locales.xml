@@ -6,4 +6,5 @@
     <Include file="Locales\ptBR.lua" />
     <Include file="Locales\ruRU.lua" />
     <Include file="Locales\zhCN.lua" />
+    <Include file="Locales\kokr.lua" />
 </Ui>
