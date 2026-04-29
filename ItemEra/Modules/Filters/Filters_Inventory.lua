@@ -93,7 +93,7 @@ local function Initialize()
             else
                 InventoryFilterDropdown:ClearAllPoints()
                 InventoryFilterDropdown:SetParent(containerFrame1)
-                InventoryFilterDropdown:SetWidth(120)
+                InventoryFilterDropdown:SetWidth(160)
                 InventoryFilterDropdown:SetPoint("TOPRIGHT", containerFrame1, "TOPRIGHT", -12, -64)
             end
         end
