@@ -19,18 +19,18 @@ ItemEra.Utils.ExpansionDictionary = {
 }
 
 ItemEra.Utils.ExpansionNames = {
-    [ItemEra.Utils.ExpansionDictionary.CLASSIC] = "Classic",
-    [ItemEra.Utils.ExpansionDictionary.TBC]     = "The Burning Crusade",
-    [ItemEra.Utils.ExpansionDictionary.WOTLK]   = "Wrath of the Lich King",
-    [ItemEra.Utils.ExpansionDictionary.CATA]    = "Cataclysm",
-    [ItemEra.Utils.ExpansionDictionary.MOP]     = "Mists of Pandaria",
-    [ItemEra.Utils.ExpansionDictionary.WOD]     = "Warlords of Draenor",
-    [ItemEra.Utils.ExpansionDictionary.LEGION]  = "Legion",
-    [ItemEra.Utils.ExpansionDictionary.BFA]     = "Battle for Azeroth",
-    [ItemEra.Utils.ExpansionDictionary.SHADOW]  = "Shadowlands",
-    [ItemEra.Utils.ExpansionDictionary.DF]      = "Dragonflight",
-    [ItemEra.Utils.ExpansionDictionary.TWW]     = "The War Within",
-    [ItemEra.Utils.ExpansionDictionary.MN]      = "Midnight"
+    [ItemEra.Utils.ExpansionDictionary.CLASSIC] = L["Classic"],
+    [ItemEra.Utils.ExpansionDictionary.TBC]     = L["The Burning Crusade"],
+    [ItemEra.Utils.ExpansionDictionary.WOTLK]   = L["Wrath of the Lich King"],
+    [ItemEra.Utils.ExpansionDictionary.CATA]    = L["Cataclysm"],
+    [ItemEra.Utils.ExpansionDictionary.MOP]     = L["Mists of Pandaria"],
+    [ItemEra.Utils.ExpansionDictionary.WOD]     = L["Warlords of Draenor"],
+    [ItemEra.Utils.ExpansionDictionary.LEGION]  = L["Legion"],
+    [ItemEra.Utils.ExpansionDictionary.BFA]     = L["Battle for Azeroth"],
+    [ItemEra.Utils.ExpansionDictionary.SHADOW]  = L["Shadowlands"],
+    [ItemEra.Utils.ExpansionDictionary.DF]      = L["Dragonflight"],
+    [ItemEra.Utils.ExpansionDictionary.TWW]     = L["The War Within"],
+    [ItemEra.Utils.ExpansionDictionary.MN]      = L["Midnight"]
 }
 
 ItemEra.Utils.ExpansionSearchTermsBaganator = {

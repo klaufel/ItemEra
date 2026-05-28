@@ -114,6 +114,18 @@ L["SETTINGS_FEATURES_POPUP_NAME"] = "새로운 기능"
 L["SETTINGS_FEATURES_POPUP_DESC"] = "이 버전의 새로운 기능을 확인합니다"
 L["FEATURES_POPUP_CONTENT"] = [[
 |cff00ff00안녕하세요! 이번 버전의 새로운 기능은 다음과 같습니다.|r
+L["Classic"] = "오리지널"
+L["The Burning Crusade"] = "불타는 성전"
+L["Wrath of the Lich King"] = "리치 왕의 분노"
+L["Cataclysm"] = "대격변"
+L["Mists of Pandaria"] = "판다리아의 안개"
+L["Warlords of Draenor"] = "드레노어의 전쟁군주"
+L["Legion"] = "군단"
+L["Battle for Azeroth"] = "격전의 아제로스"
+L["Shadowlands"] = "어둠땅"
+L["Dragonflight"] = "용군단"
+L["The War Within"] = "내부 전쟁"
+L["Midnight"] = "한밤"
 
 |cffffd700제작 시약|r
 이제 툴팁에 각 시약을 사용하는 전문 기술이 표시됩니다. 모든 게임 내 제작법을 기반으로 하며 해당 전문 기술과 연결됩니다. 시약 등급 지원을 포함해 데이터베이스가 업데이트되었습니다.
