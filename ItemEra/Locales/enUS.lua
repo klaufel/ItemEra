@@ -1,5 +1,5 @@
 local addonName = ...
-local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "enUS", true)
+local L = LibStub("AceLocale-3.0"):NewLocale(addonName, "enUS", true, true)
 
 if not L then
     return
@@ -9,6 +9,19 @@ L["SELECT_EXPANSION"] = "Select expansion"
 L["ALL_EXPANSION"] = "All expansions"
 L["EXPANSION"] = "Expansion:"
 L["PROFESSION"] = "Profession:"
+
+L["Classic"] = "Classic"
+L["The Burning Crusade"] = "The Burning Crusade"
+L["Wrath of the Lich King"] = "Wrath of the Lich King"
+L["Cataclysm"] = "Cataclysm"
+L["Mists of Pandaria"] = "Mists of Pandaria"
+L["Warlords of Draenor"] = "Warlords of Draenor"
+L["Legion"] = "Legion"
+L["Battle for Azeroth"] = "Battle for Azeroth"
+L["Shadowlands"] = "Shadowlands"
+L["Dragonflight"] = "Dragonflight"
+L["The War Within"] = "The War Within"
+L["Midnight"] = "Midnight"
 
 L["SETTINGS_MAIN_DESCRIPTION"] = "Filter and display expansion information for your items."
 L["SETTINGS_SUBPAGE_TOOLTIP"] = "Tooltip"
