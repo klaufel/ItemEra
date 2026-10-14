@@ -5,7 +5,13 @@ ItemEra.Tooltip = {}
 
 local TooltipDataTypes = ItemEra.Utils.TooltipDataTypes
 
-local function AddExpansionLine(tooltip, item)
+local function IsMountItem(itemID)
+    if not itemID then return false end
+    local _, _, _, _, _, classID, subClassID = C_Item.GetItemInfoInstant(itemID)
+    return classID == Enum.ItemClass.Miscellaneous and subClassID == Enum.ItemMiscellaneousSubclass.Mount
+end
+
+local function AddExpansionLine(tooltip, item, isMount)
     if not tooltip or not item then return end
 
     tooltip:AddLine(" ")
@@ -13,7 +19,7 @@ local function AddExpansionLine(tooltip, item)
     local expansionText = ItemEra.Utils:GetExpansionTextByExpansionID(item.expansionID)
     tooltip:AddLine(expansionText)
 
-    local professionText = ItemEra.Utils:GetProfessionTextByItemID(item.itemID)
+    local professionText = not isMount and ItemEra.Utils:GetProfessionTextByItemID(item.itemID)
     if (professionText and professionText ~= "") then
         local wrapText = ItemEra.DB_SETTINGS.global.settings.wrapProfessionText
         tooltip:AddLine(professionText, nil, nil, nil, wrapText)
@@ -50,7 +56,7 @@ local function AddTooltipLine(tooltip, data)
 
     if (dataType == TooltipDataTypes.MOUNT) then
         local mount = ItemEra.ItemData:GetMountDBVersion(dataID)
-        if (mount) then AddExpansionLine(tooltip, mount) end
+        if (mount) then AddExpansionLine(tooltip, mount, true) end
         return
     end
 
@@ -58,7 +64,7 @@ local function AddTooltipLine(tooltip, data)
         local mountID = C_MountJournal.GetMountFromSpell(dataID)
         if not mountID then return end
         local mount = ItemEra.ItemData:GetMountDBVersion(mountID)
-        if (mount) then AddExpansionLine(tooltip, mount) end
+        if (mount) then AddExpansionLine(tooltip, mount, true) end
         return
     end
 
@@ -74,7 +80,7 @@ local function AddTooltipLine(tooltip, data)
         if not itemID then return end
 
         local item = ItemEra.ItemData:GetItemExpansionID(itemID)
-        if (item) then AddExpansionLine(tooltip, item) end
+        if (item) then AddExpansionLine(tooltip, item, IsMountItem(itemID)) end
         return
     end
 end
